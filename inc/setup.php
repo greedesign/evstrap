@@ -89,11 +89,30 @@ if ( ! function_exists ( 'understrap_setup' ) ) {
 			'default-image' => '',
 		) ) );
 
+		// Logo size
+		add_image_size( 'ev-blocks-logo', 300 );
+
 		// Set up the WordPress Theme logo feature.
-		add_theme_support( 'custom-logo' );
-		
+		//add_theme_support( 'custom-logo' );
+		add_theme_support( 'custom-logo', array(
+			'header-text' => array( 'titles-wrap' ),
+			'size'        => 'ev-blocks-logo',
+		) );
+
 		// Add support for responsive embedded content.
 		add_theme_support( 'responsive-embeds' );
+
+		// Add theme support for selective refresh for widgets.
+		add_theme_support( 'customize-selective-refresh-widgets' );
+
+		// Add support for Block Styles.
+		add_theme_support( 'wp-block-styles' );
+
+		// Add support for full and wide align images.
+		add_theme_support( 'align-wide' );
+
+		// Add support for editor styles.
+		add_theme_support( 'editor-styles' );
 
 		// Check and setup theme default settings.
 		understrap_setup_theme_default_settings();
