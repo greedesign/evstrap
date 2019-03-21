@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-$container = get_theme_mod( 'understrap_container_type' );
+$container = get_theme_mod( 'understrap_navbar_container' );
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>

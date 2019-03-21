@@ -26,10 +26,22 @@ if ( ! function_exists( 'understrap_setup_theme_default_settings' ) ) {
 			set_theme_mod( 'understrap_sidebar_position', 'right' );
 		}
 
-		// Container width.
+		// Body Container width.
 		$understrap_container_type = get_theme_mod( 'understrap_container_type' );
 		if ( '' == $understrap_container_type ) {
 			set_theme_mod( 'understrap_container_type', 'container' );
 		}
+
+		$understrap_navbar_container = get_theme_mod( 'understrap_navbar_container' );
+		if ( '' == $understrap_navbar_container ) {
+			set_theme_mod( 'understrap_navbar_container', 'container' );
+		}
+
+		// Color Palette.
+		$understrap_color_primary = get_theme_mod( 'understrap_color_primary' );
+		if ( '' == $understrap_color_primary ) {
+			set_theme_mod( 'understrap_color_primary', '#7C008C' );
+		}
+
 	}
 }

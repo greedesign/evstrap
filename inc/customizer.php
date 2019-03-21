@@ -130,6 +130,136 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 				)
 			)
 		);
+
+			// BS Navbar settings.
+			$wp_customize->add_section(
+				'understrap_theme_navbar_options',
+				array(
+					'title'       => __( 'Theme Navbar Settings', 'understrap' ),
+					'capability'  => 'edit_theme_options',
+					'description' => __( 'Navbar skin and layout defaults', 'understrap' ),
+					'priority'    => 161,
+				)
+			);
+
+			$wp_customize->add_setting(
+				'understrap_navbar_position',
+				array(
+					'default'           => 'default',
+					'type'              => 'theme_mod',
+					'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'capability'        => 'edit_theme_options',
+				)
+			);
+
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'understrap_navbar_position',
+					array(
+						'label'       => __( 'Navbar Position', 'understrap' ),
+						'description' => __( 'Choose between Bootstrap\'s static, fixed top, fixed bottom, and sticky top navbar', 'understrap' ),
+						'section'     => 'understrap_theme_navbar_options',
+						'settings'    => 'understrap_navbar_position',
+						'type'        => 'select',
+						'choices'     => array(
+							'default'       				=> __( 'Default', 'understrap' ),
+							'fixed-top'   	=> __( 'Fixed top', 'understrap' ),
+							'fixed-bottom' 	=> __( 'Fixed bottom', 'understrap' ),
+							'sticky-top' 		=> __( 'Sticky Top', 'understrap' ),
+						),
+						'priority'    => '10',
+					)
+				)
+			);
+
+			$wp_customize->add_setting(
+				'understrap_navbar_container',
+				array(
+					'default'           => 'container',
+					'type'              => 'theme_mod',
+					'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'capability'        => 'edit_theme_options',
+				)
+			);
+
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'understrap_navbar_container',
+					array(
+						'label'       => __( 'Navbar Position', 'understrap' ),
+						'description' => __( 'Choose between Bootstrap\'s container and container-fluid', 'understrap' ),
+						'section'     => 'understrap_theme_navbar_options',
+						'settings'    => 'understrap_navbar_container',
+						'type'        => 'select',
+						'choices'     => array(
+							'container'       => __( 'Fixed width container', 'understrap' ),
+							'container-fluid' => __( 'Full width container', 'understrap' ),
+						),
+						'priority'    => '10',
+					)
+				)
+			);
+
+			// Colour Pallete
+			// primary color
+			$understrap_color_palette[] = array(
+				'slug'=>'understrap_color_primary', 
+				'default' => '#7C008C',
+				'label' => 'Primary Color'
+			);
+
+			// secondary color
+			$understrap_color_palette[] = array(
+				'slug'=>'understrap_color_secondary', 
+				'default' => '#6c757d',
+				'label' => 'Secondary Color'
+			);
+
+			// info color
+			$understrap_color_palette[] = array(
+				'slug'=>'understrap_color_info', 
+				'default' => '#17a2b8',
+				'label' => 'Info Color'
+			);
+
+			// warning color
+			$understrap_color_palette[] = array(
+				'slug'=>'understrap_color_warning', 
+				'default' => '#ffc107',
+				'label' => 'Warning Color'
+			);
+
+			// danger color
+			$understrap_color_palette[] = array(
+				'slug'=>'understrap_color_danger', 
+				'default' => '#dc3545',
+				'label' => 'Danger Color'
+			);
+
+			// add the settings and controls for each color
+			foreach( $understrap_color_palette as $understrap_color_palette ) {
+				// SETTINGS
+				$wp_customize->add_setting(
+						$understrap_color_palette['slug'], array(
+								'default' => $understrap_color_palette['default'],
+								'type' => 'option', 
+								'capability' =>  'edit_theme_options'
+						)
+				);
+				// CONTROLS
+				$wp_customize->add_control(
+					new WP_Customize_Color_Control(
+							$wp_customize,
+							$understrap_color_palette['slug'], 
+							array('label' => $understrap_color_palette['label'], 
+							'section' => 'colors',
+							'settings' => $understrap_color_palette['slug'])
+					)
+				);
+			}
+
 	}
 } // endif function_exists( 'understrap_theme_customize_register' ).
 add_action( 'customize_register', 'understrap_theme_customize_register' );
