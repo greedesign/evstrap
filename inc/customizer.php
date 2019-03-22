@@ -131,134 +131,174 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 			)
 		);
 
-			// BS Navbar settings.
-			$wp_customize->add_section(
-				'understrap_theme_navbar_options',
-				array(
-					'title'       => __( 'Theme Navbar Settings', 'understrap' ),
-					'capability'  => 'edit_theme_options',
-					'description' => __( 'Navbar skin and layout defaults', 'understrap' ),
-					'priority'    => 161,
-				)
-			);
+		// BS Navbar settings.
+		$wp_customize->add_section(
+			'understrap_theme_navbar_options',
+			array(
+				'title'       => __( 'Theme Navbar Settings', 'understrap' ),
+				'capability'  => 'edit_theme_options',
+				'description' => __( 'Navbar skin and layout defaults', 'understrap' ),
+				'priority'    => 161,
+			)
+		);
 
-			$wp_customize->add_setting(
+		// Navbar Poistion
+		$wp_customize->add_setting(
+			'understrap_navbar_position',
+			array(
+				'default'           => 'default',
+				'type'              => 'theme_mod',
+				'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+				'capability'        => 'edit_theme_options',
+			)
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Control(
+				$wp_customize,
 				'understrap_navbar_position',
 				array(
-					'default'           => 'default',
-					'type'              => 'theme_mod',
-					'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
-					'capability'        => 'edit_theme_options',
+					'label'       => __( 'Navbar Position', 'understrap' ),
+					'description' => __( 'Choose between Bootstrap\'s static, fixed top, fixed bottom, and sticky top navbar', 'understrap' ),
+					'section'     => 'understrap_theme_navbar_options',
+					'settings'    => 'understrap_navbar_position',
+					'type'        => 'select',
+					'choices'     => array(
+						'default'       				=> __( 'Default', 'understrap' ),
+						'fixed-top'   	=> __( 'Fixed top', 'understrap' ),
+						'fixed-bottom' 	=> __( 'Fixed bottom', 'understrap' ),
+						'sticky-top' 		=> __( 'Sticky Top', 'understrap' ),
+					),
+					'priority'    => '10',
 				)
-			);
+			)
+		);
 
-			$wp_customize->add_control(
-				new WP_Customize_Control(
-					$wp_customize,
-					'understrap_navbar_position',
-					array(
-						'label'       => __( 'Navbar Position', 'understrap' ),
-						'description' => __( 'Choose between Bootstrap\'s static, fixed top, fixed bottom, and sticky top navbar', 'understrap' ),
-						'section'     => 'understrap_theme_navbar_options',
-						'settings'    => 'understrap_navbar_position',
-						'type'        => 'select',
-						'choices'     => array(
-							'default'       				=> __( 'Default', 'understrap' ),
-							'fixed-top'   	=> __( 'Fixed top', 'understrap' ),
-							'fixed-bottom' 	=> __( 'Fixed bottom', 'understrap' ),
-							'sticky-top' 		=> __( 'Sticky Top', 'understrap' ),
-						),
-						'priority'    => '10',
-					)
-				)
-			);
-
-			$wp_customize->add_setting(
+		// Navbar Container Width
+		$wp_customize->add_setting(
+			'understrap_navbar_container',
+			array(
+				'default'           => 'container',
+				'type'              => 'theme_mod',
+				'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+				'capability'        => 'edit_theme_options',
+			)
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Control(
+				$wp_customize,
 				'understrap_navbar_container',
 				array(
-					'default'           => 'container',
-					'type'              => 'theme_mod',
-					'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
-					'capability'        => 'edit_theme_options',
+					'label'       => __( 'Navbar Position', 'understrap' ),
+					'description' => __( 'Choose between Bootstrap\'s container and container-fluid', 'understrap' ),
+					'section'     => 'understrap_theme_navbar_options',
+					'settings'    => 'understrap_navbar_container',
+					'type'        => 'select',
+					'choices'     => array(
+						'container'       => __( 'Fixed width container', 'understrap' ),
+						'container-fluid' => __( 'Full width container', 'understrap' ),
+					),
+					'priority'    => '10',
 				)
-			);
+			)
+		);
 
+		// Colour Pallete
+		// primary color
+		$understrap_color_palette[] = array(
+			'slug'=>'understrap_color_primary', 
+			'default' => '#7C008C',
+			'label' => 'Primary Color'
+		);
+
+		// secondary color
+		$understrap_color_palette[] = array(
+			'slug'=>'understrap_color_secondary', 
+			'default' => '#6c757d',
+			'label' => 'Secondary Color'
+		);
+
+		// info color
+		$understrap_color_palette[] = array(
+			'slug'=>'understrap_color_info', 
+			'default' => '#17a2b8',
+			'label' => 'Info Color'
+		);
+
+		// warning color
+		$understrap_color_palette[] = array(
+			'slug'=>'understrap_color_warning', 
+			'default' => '#ffc107',
+			'label' => 'Warning Color'
+		);
+
+		// danger color
+		$understrap_color_palette[] = array(
+			'slug'=>'understrap_color_danger', 
+			'default' => '#dc3545',
+			'label' => 'Danger Color'
+		);
+
+		// add the settings and controls for each color
+		foreach( $understrap_color_palette as $understrap_color_palette ) {
+			// SETTINGS
+			$wp_customize->add_setting(
+					$understrap_color_palette['slug'], array(
+							'default' => $understrap_color_palette['default'],
+							'type' => 'option', 
+							'capability' =>  'edit_theme_options'
+					)
+			);
+			// CONTROLS
 			$wp_customize->add_control(
-				new WP_Customize_Control(
-					$wp_customize,
-					'understrap_navbar_container',
-					array(
-						'label'       => __( 'Navbar Position', 'understrap' ),
-						'description' => __( 'Choose between Bootstrap\'s container and container-fluid', 'understrap' ),
-						'section'     => 'understrap_theme_navbar_options',
-						'settings'    => 'understrap_navbar_container',
-						'type'        => 'select',
-						'choices'     => array(
-							'container'       => __( 'Fixed width container', 'understrap' ),
-							'container-fluid' => __( 'Full width container', 'understrap' ),
-						),
-						'priority'    => '10',
-					)
+				new WP_Customize_Color_Control(
+						$wp_customize,
+						$understrap_color_palette['slug'], 
+						array('label' => $understrap_color_palette['label'], 
+						'section' => 'colors',
+						'settings' => $understrap_color_palette['slug'])
 				)
 			);
+		}
 
-			// Colour Pallete
-			// primary color
-			$understrap_color_palette[] = array(
-				'slug'=>'understrap_color_primary', 
-				'default' => '#7C008C',
-				'label' => 'Primary Color'
-			);
-
-			// secondary color
-			$understrap_color_palette[] = array(
-				'slug'=>'understrap_color_secondary', 
-				'default' => '#6c757d',
-				'label' => 'Secondary Color'
-			);
-
-			// info color
-			$understrap_color_palette[] = array(
-				'slug'=>'understrap_color_info', 
-				'default' => '#17a2b8',
-				'label' => 'Info Color'
-			);
-
-			// warning color
-			$understrap_color_palette[] = array(
-				'slug'=>'understrap_color_warning', 
-				'default' => '#ffc107',
-				'label' => 'Warning Color'
-			);
-
-			// danger color
-			$understrap_color_palette[] = array(
-				'slug'=>'understrap_color_danger', 
-				'default' => '#dc3545',
-				'label' => 'Danger Color'
-			);
-
-			// add the settings and controls for each color
-			foreach( $understrap_color_palette as $understrap_color_palette ) {
-				// SETTINGS
-				$wp_customize->add_setting(
-						$understrap_color_palette['slug'], array(
-								'default' => $understrap_color_palette['default'],
-								'type' => 'option', 
-								'capability' =>  'edit_theme_options'
-						)
-				);
-				// CONTROLS
-				$wp_customize->add_control(
-					new WP_Customize_Color_Control(
-							$wp_customize,
-							$understrap_color_palette['slug'], 
-							array('label' => $understrap_color_palette['label'], 
-							'section' => 'colors',
-							'settings' => $understrap_color_palette['slug'])
-					)
-				);
+		/* Multi Input field */
+		class Multi_Input_Custom_control extends WP_Customize_Control{
+			public $type = 'multi_input';
+			public function enqueue(){
+				wp_enqueue_script( 'custom_controls', get_template_directory_uri().'/inc/customizer/js/custom_controls.js', array( 'jquery' ),'', true );
+				wp_enqueue_style( 'custom_controls_css', get_template_directory_uri().'/inc/customizer/css/custom_controls.css');
 			}
+			public function render_content(){
+				?>
+				<label class="customize_multi_input">
+					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+					<p><?php echo wp_kses_post($this->description); ?></p>
+					<input type="hidden" id="<?php echo esc_attr($this->id); ?>" name="<?php echo esc_attr($this->id); ?>" value="<?php echo esc_attr($this->value()); ?>" class="customize_multi_value_field" data-customize-setting-link="<?php echo esc_attr($this->id); ?>"/>
+					<div class="customize_multi_fields">
+						<div class="set">
+							<input type="text" value="" class="customize_multi_single_field"/>
+							<a href="#" class="customize_multi_remove_field">X</a>
+						</div>
+					</div>
+					<a href="#" class="button button-primary customize_multi_add_field"><?php esc_attr_e('Add More', 'mytheme') ?></a>
+				</label>
+				<?php
+			}
+		}
+
+		/**
+		* Multiple input field
+		**/
+		$wp_customize->add_setting('multi_field', array(
+			'default'           => '',
+			'transport'         => 'postMessage',
+			'sanitize_callback' => 'mytheme_text_sanitization',
+		));
+		$wp_customize->add_control(new Multi_Input_Custom_control($wp_customize, 'multi_field', array(
+			'label'    		=> esc_html__('Multiple inputs', 'mytheme'),
+			'description' 	=> esc_html__('Add more and more and more...', 'mytheme'),
+			'settings'		=> 'multi_field',
+			'section'  		=> 'understrap_theme_navbar_options',
+		)));
 
 	}
 } // endif function_exists( 'understrap_theme_customize_register' ).
