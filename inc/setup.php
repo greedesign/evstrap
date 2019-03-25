@@ -112,7 +112,7 @@ if ( ! function_exists ( 'understrap_setup' ) ) {
 		add_theme_support( 'align-wide' );
 
 		// Add support for editor styles.
-		add_theme_support( 'editor-styles' );
+		//add_theme_support( 'editor-styles' );
 
 		// Check and setup theme default settings.
 		understrap_setup_theme_default_settings();

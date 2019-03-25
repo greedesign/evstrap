@@ -72,6 +72,19 @@ $container = get_theme_mod( 'understrap_navbar_container' );
 						'walker'          => new Understrap_WP_Bootstrap_Navwalker(),
 					)
 				); ?>
+
+				<?php $navbar_shortcodes = get_theme_mod( 'navbar_shortcode' ) ?>
+				<?php if ( $navbar_shortcodes !== '' ) : ?>
+					<div class="ev-navbar-region">
+						<?php
+							$navbar_shortcodes = explode("|", $navbar_shortcodes);
+							foreach ( $navbar_shortcodes as $navbar_shortcode ) {
+    						echo do_shortcode( $navbar_shortcode );
+							}
+						?>
+					</div>
+				<?php endif; ?>
+
 			<?php if ( 'container' == $container ) : ?>
 			</div><!-- .container -->
 			<?php endif; ?>
