@@ -45,7 +45,10 @@ gulp.task( 'sass', function() {
 // Starts watcher. Watcher runs gulp sass task on changes
 gulp.task( 'watch', function() {
     gulp.watch( paths.sass + '/**/*.scss', ['styles'] );
+    gulp.watch( paths.js + '/customize-controls/*.js', ['customize_controls_scripts'] );
+    
     gulp.watch( [paths.dev + '/js/**/*.js', 'js/**/*.js', '!js/theme.js', '!js/theme.min.js'], ['scripts'] );
+    
 
     //Inside the watch task.
     gulp.watch( paths.imgsrc + '/**', ['imagemin-watch'] );
@@ -72,33 +75,35 @@ gulp.task( 'imagemin', function() {
 // gulp cssnano
 // Minifies CSS files
 gulp.task( 'cssnano', function() {
-  return gulp.src( paths.css + '/theme.css' )
-    .pipe( sourcemaps.init( { loadMaps: true } ) )
-    .pipe( plumber( {
-            errorHandler: function( err ) {
-                console.log( err );
-                this.emit( 'end' );
-            }
-        } ) )
-    .pipe( rename( { suffix: '.min' } ) )
-    .pipe( cssnano( { discardComments: { removeAll: true } } ) )
-    .pipe( sourcemaps.write( './' ) )
-    .pipe( gulp.dest( paths.css ) );
+  var stream = gulp.src([paths.css + '/*.css', '!./css/*.min.css'])
+      .pipe( sourcemaps.init( { loadMaps: true } ) )
+      .pipe( plumber( {
+          errorHandler: function( err ) {
+              console.log( err );
+              this.emit( 'end' );
+          }
+      } ) )
+      .pipe( rename( { suffix: '.min' } ) )
+      .pipe( cssnano( { discardComments: { removeAll: true } } ) )
+      .pipe( sourcemaps.write( './' ) )
+      .pipe( gulp.dest( paths.css ) );
+  return stream;
 });
 
 gulp.task( 'minifycss', function() {
-  return gulp.src( paths.css + '/theme.css' )
-  .pipe( sourcemaps.init( { loadMaps: true } ) )
-    .pipe( cleanCSS( { compatibility: '*' } ) )
-    .pipe( plumber( {
-            errorHandler: function( err ) {
-                console.log( err ) ;
-                this.emit( 'end' );
-            }
-        } ) )
-    .pipe( rename( { suffix: '.min' } ) )
-     .pipe( sourcemaps.write( './' ) )
-    .pipe( gulp.dest( paths.css ) );
+  var stream = gulp.src([paths.css + '/*.css', '!./css/*.min.css'])
+      .pipe( sourcemaps.init( { loadMaps: true } ) )
+      .pipe( cleanCSS( { compatibility: '*' } ) )
+      .pipe( plumber( {
+          errorHandler: function( err ) {
+              console.log( err ) ;
+              this.emit( 'end' );
+          }
+      } ) )
+      .pipe( rename( { suffix: '.min' } ) )
+      .pipe( sourcemaps.write( './' ) )
+      .pipe( gulp.dest( paths.css ) );
+  return stream;
 });
 
 gulp.task( 'cleancss', function() {
@@ -123,6 +128,21 @@ gulp.task( 'browser-sync', function() {
 // Starts watcher with browser-sync. Browser-sync reloads page automatically on your browser
 gulp.task( 'watch-bs', ['browser-sync', 'watch', 'scripts'], function() {
 } );
+
+// Run:
+// gulp customize control scripts.
+// Uglifies and concat customizer JS files into one
+gulp.task( 'customize_controls_scripts', function() {
+
+  gulp.src( paths.js + '/customize-controls/*.js' )
+    .pipe( concat( 'customize-controls.min.js' ) )
+    .pipe( uglify() )
+    .pipe( gulp.dest( paths.js ) );
+
+  gulp.src( paths.js + '/customize-controls/*.js' )
+    .pipe( concat( 'customize-controls.js' ) )
+    .pipe( gulp.dest( paths.js ) );
+});
 
 // Run:
 // gulp scripts.
