@@ -45,8 +45,8 @@ gulp.task( 'sass', function() {
 // Starts watcher. Watcher runs gulp sass task on changes
 gulp.task( 'watch', function() {
     gulp.watch( paths.sass + '/**/*.scss', ['styles'] );
-    gulp.watch( paths.js + '/customize-controls/*.js', ['customize_controls_scripts'] );
-    
+    gulp.watch( paths.js + '/custom-controls/*.js', ['custom_controls_scripts'] );
+
     gulp.watch( [paths.dev + '/js/**/*.js', 'js/**/*.js', '!js/theme.js', '!js/theme.min.js'], ['scripts'] );
     
 
@@ -132,16 +132,20 @@ gulp.task( 'watch-bs', ['browser-sync', 'watch', 'scripts'], function() {
 // Run:
 // gulp customize control scripts.
 // Uglifies and concat customizer JS files into one
-gulp.task( 'customize_controls_scripts', function() {
+gulp.task( 'custom_controls_scripts', function() {
 
-  gulp.src( paths.js + '/customize-controls/*.js' )
-    .pipe( concat( 'customize-controls.min.js' ) )
-    .pipe( uglify() )
+  gulp.src( paths.js + '/custom-controls/*.js' )
+  .pipe( concat( 'customizer.js' ) )
+  .pipe( gulp.dest( paths.js ) );
+
+  gulp.src( paths.js + '/custom-controls/*.js' )
+    .pipe( concat( 'customizer.min.js' ) )
+    .pipe( uglify().on('error', function(e){
+      console.log(e);
+    }))
     .pipe( gulp.dest( paths.js ) );
 
-  gulp.src( paths.js + '/customize-controls/*.js' )
-    .pipe( concat( 'customize-controls.js' ) )
-    .pipe( gulp.dest( paths.js ) );
+
 });
 
 // Run:
@@ -163,7 +167,9 @@ gulp.task( 'scripts', function() {
     ];
   gulp.src( scripts )
     .pipe( concat( 'theme.min.js' ) )
-    .pipe( uglify() )
+    .pipe( uglify().on('error', function(e){
+      console.log(e);
+    }))
     .pipe( gulp.dest( paths.js ) );
 
   gulp.src( scripts )

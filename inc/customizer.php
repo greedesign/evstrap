@@ -28,29 +28,29 @@ if ( ! function_exists( 'understrap_customize_register' ) ) {
 }
 add_action( 'customize_register', 'understrap_customize_register' );
 
-
+require_once trailingslashit( dirname(__FILE__) ) . 'custom-controls.php';
 
 /**
  * Add Theme Customize Control Assets
  */
-if ( ! function_exists( 'understrap_enqueue_customize_controls_stylesheet' ) ) {
-	/**
-	 * Enqueue the stylesheet.
-	 */
-	function understrap_enqueue_customize_controls_stylesheet() {
-		wp_enqueue_style( 'customize_controls_css', get_template_directory_uri().'/css/customize-controls.min.css');
-	}
-	add_action( 'customize_controls_print_styles', 'understrap_enqueue_customize_controls_stylesheet' );
-}
-if ( ! function_exists( 'understrap_enqueue_customize_controls_script' ) ) {
-	/**
-	 * Enqueue script for Customize Control Assets
-	 */
-	function understrap_enqueue_customize_controls_script() {
-		wp_enqueue_script( 'customize_controls', get_template_directory_uri() . '/js/customize-controls.min.js', array( 'jquery', 'customize-controls' ), false, true );
-	}
-	add_action( 'customize_controls_enqueue_scripts', 'understrap_enqueue_customize_controls_script' );
-}
+// if ( ! function_exists( 'understrap_enqueue_customize_controls_stylesheet' ) ) {
+// 	/**
+// 	 * Enqueue the stylesheet.
+// 	 */
+// 	function understrap_enqueue_customize_controls_stylesheet() {
+// 		wp_enqueue_style( 'customize_controls_css', get_template_directory_uri().'/css/customize-controls.min.css');
+// 	}
+// 	add_action( 'customize_controls_print_styles', 'understrap_enqueue_customize_controls_stylesheet' );
+// }
+// if ( ! function_exists( 'understrap_enqueue_customize_controls_script' ) ) {
+// 	/**
+// 	 * Enqueue script for Customize Control Assets
+// 	 */
+// 	function understrap_enqueue_customize_controls_script() {
+// 		wp_enqueue_script( 'customize_controls', get_template_directory_uri() . '/js/customize-controls.min.js', array( 'jquery', 'customize-controls' ), false, true );
+// 	}
+// 	add_action( 'customize_controls_enqueue_scripts', 'understrap_enqueue_customize_controls_script' );
+// }
 
 
 
@@ -241,25 +241,27 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 			);
 
 		// @TODO Move all Customize Controls (add others from https://madebydenis.com/adding-custom-controls-to-your-customization-api/ ) to seperate include file and organize all assets
-		class Multi_Input_Custom_control extends WP_Customize_Control{
-			public $type = 'multi_input';
-			public function render_content(){
-				?>
-				<label class="customize_multi_input test">
-					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-					<p><?php echo wp_kses_post($this->description); ?></p>
-					<input type="hidden" id="<?php echo esc_attr($this->id); ?>" name="<?php echo esc_attr($this->id); ?>" value="<?php echo esc_attr($this->value()); ?>" class="customize_multi_value_field" data-customize-setting-link="<?php echo esc_attr($this->id); ?>"/>
-					<div class="customize_multi_fields">
-						<div class="set d-flex justify-content-end align-items-center">
-							<input type="text" value="" class="customize_multi_single_field"/>
-							<a href="#" class="customize_multi_remove_field"><i class="fas fa-trash-alt fa-fw"></i></a>
+		/*if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Multi_Input_Custom_control' ) ) :
+			class Multi_Input_Custom_control extends WP_Customize_Control{
+				public $type = 'multi_input';
+				public function render_content(){
+					?>
+					<label class="customize_multi_input test">
+						<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+						<p><?php echo wp_kses_post($this->description); ?></p>
+						<input type="hidden" id="<?php echo esc_attr($this->id); ?>" name="<?php echo esc_attr($this->id); ?>" value="<?php echo esc_attr($this->value()); ?>" class="customize_multi_value_field" data-customize-setting-link="<?php echo esc_attr($this->id); ?>"/>
+						<div class="customize_multi_fields">
+							<div class="set d-flex justify-content-end align-items-center">
+								<input type="text" value="" class="customize_multi_single_field"/>
+								<a href="#" class="customize_multi_remove_field"><i class="fas fa-trash-alt fa-fw"></i></a>
+							</div>
 						</div>
-					</div>
-					<a href="#" class="button button-primary customize_multi_add_field"><?php esc_attr_e('Add More', 'understrap') ?></a>
-				</label>
-				<?php
+						<a href="#" class="button button-primary customize_multi_add_field"><?php esc_attr_e('Add More', 'understrap') ?></a>
+					</label>
+					<?php
+				}
 			}
-		}
+		endif;*/
 
 		$wp_customize->add_section(
 			'understrap_theme_navbar_content',
@@ -277,16 +279,16 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		**/
 		$wp_customize->add_setting('navbar_shortcode', array(
 			'default'           => '',
-			'transport'         => 'postMessage',
-			'sanitize_callback' => 'wp_filter_nohtml_kses',
+			'transport'         => 'refresh',
+			//'sanitize_callback' => 'esc_attr',
+			//'sanitize_js_callback' => 'esc_html',
 		));
-		$wp_customize->add_control(new Multi_Input_Custom_control($wp_customize, 'navbar_shortcode', array(
+		$wp_customize->add_control(new Understrap_Sortable_Repeater_Custom_Control($wp_customize, 'navbar_shortcode', array(
 			'label'    		=> esc_html__('Navbar Elements', 'understrap'),
 			'description' 	=> esc_html__('Add shortcodes here to add icon link, call-to-action buttons, etc', 'understrap'),
 			'settings'		=> 'navbar_shortcode',
 			'section'  		=> 'understrap_theme_navbar_content',
 		)));
-
 
 		// Colour Pallete
 		// primary color
@@ -353,18 +355,18 @@ add_action( 'customize_register', 'understrap_theme_customize_register' );
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
-if ( ! function_exists( 'understrap_customize_preview_js' ) ) {
-	/**
-	 * Setup JS integration for live previewing.
-	 */
-	function understrap_customize_preview_js() {
-		wp_enqueue_script(
-			'understrap_customizer',
-			get_template_directory_uri() . '/js/customizer.js',
-			array( 'customize-preview' ),
-			'20130508',
-			true
-		);
-	}
-}
-add_action( 'customize_preview_init', 'understrap_customize_preview_js' );
+// if ( ! function_exists( 'understrap_customize_preview_js' ) ) {
+// 	/**
+// 	 * Setup JS integration for live previewing.
+// 	 */
+// 	function understrap_customize_preview_js() {
+// 		wp_enqueue_script(
+// 			'understrap_customizer',
+// 			get_template_directory_uri() . '/js/customizer.js',
+// 			array( 'customize-preview' ),
+// 			'20130508',
+// 			true
+// 		);
+// 	}
+// }
+// add_action( 'customize_preview_init', 'understrap_customize_preview_js' );

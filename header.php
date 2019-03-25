@@ -77,9 +77,13 @@ $container = get_theme_mod( 'understrap_navbar_container' );
 				<?php if ( $navbar_shortcodes !== '' ) : ?>
 					<div class="ev-navbar-region">
 						<?php
-							$navbar_shortcodes = explode("|", $navbar_shortcodes);
+							$navbar_shortcodes = explode(",", $navbar_shortcodes);
 							foreach ( $navbar_shortcodes as $navbar_shortcode ) {
-    						echo do_shortcode( $navbar_shortcode );
+								if ( false === strpos( $navbar_shortcode, '[' ) ) {
+									echo htmlspecialchars_decode($navbar_shortcode);
+								} else {
+									echo do_shortcode( $navbar_shortcode );
+								}
 							}
 						?>
 					</div>
