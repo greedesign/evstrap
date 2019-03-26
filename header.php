@@ -11,7 +11,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+// @TODO create simple function to pass inf check if customizer setting is set so we can reduce the amount of code in out templates
 $container = get_theme_mod( 'understrap_navbar_container' );
+$navbar_position = get_theme_mod('understrap_navbar_position'); //@TODO add CSS to apply appropriate spacing for navbar position body classes
+$navbar_breakpoint = get_theme_mod( 'understrap_navbar_breakpoint' );
+$navbar_shortcodes = get_theme_mod( 'understrap_navbar_shortcode' );
+$navbar_color_scheme = get_theme_mod( 'understrap_navbar_color_scheme' );
+$navbar_bgcolor = get_theme_mod( 'understrap_navbar_bgcolor' );
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -30,8 +36,8 @@ $container = get_theme_mod( 'understrap_navbar_container' );
 	<div id="wrapper-navbar" itemscope itemtype="http://schema.org/WebSite">
 
 		<a class="skip-link sr-only sr-only-focusable" href="#content"><?php esc_html_e( 'Skip to content', 'understrap' ); ?></a>
-
-		<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+		<?php //@TODO Add function to loop through all applicable navbar classes and output in one declaration to cleanup code ?>
+		<nav class="navbar <?php echo ( $navbar_breakpoint !== '' ? $navbar_breakpoint : '' );  ?> <?php echo ( $navbar_color_scheme !== '' ? $navbar_color_scheme : '' );  ?> <?php echo ( $navbar_bgcolor !== '' ? $navbar_bgcolor : '' );  ?> <?php echo ( $navbar_position !== '' ? $navbar_position : '' );  ?>">
 
 		<?php if ( 'container' == $container ) : ?>
 			<div class="container">
@@ -73,7 +79,6 @@ $container = get_theme_mod( 'understrap_navbar_container' );
 					)
 				); ?>
 
-				<?php $navbar_shortcodes = get_theme_mod( 'navbar_shortcode' ) ?>
 				<?php if ( $navbar_shortcodes !== '' ) : ?>
 					<div class="ev-navbar-region">
 						<?php

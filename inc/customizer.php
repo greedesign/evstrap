@@ -28,30 +28,10 @@ if ( ! function_exists( 'understrap_customize_register' ) ) {
 }
 add_action( 'customize_register', 'understrap_customize_register' );
 
-require_once trailingslashit( dirname(__FILE__) ) . 'custom-controls.php';
-
 /**
- * Add Theme Customize Control Assets
+ * Add Custom Controls
  */
-// if ( ! function_exists( 'understrap_enqueue_customize_controls_stylesheet' ) ) {
-// 	/**
-// 	 * Enqueue the stylesheet.
-// 	 */
-// 	function understrap_enqueue_customize_controls_stylesheet() {
-// 		wp_enqueue_style( 'customize_controls_css', get_template_directory_uri().'/css/customize-controls.min.css');
-// 	}
-// 	add_action( 'customize_controls_print_styles', 'understrap_enqueue_customize_controls_stylesheet' );
-// }
-// if ( ! function_exists( 'understrap_enqueue_customize_controls_script' ) ) {
-// 	/**
-// 	 * Enqueue script for Customize Control Assets
-// 	 */
-// 	function understrap_enqueue_customize_controls_script() {
-// 		wp_enqueue_script( 'customize_controls', get_template_directory_uri() . '/js/customize-controls.min.js', array( 'jquery', 'customize-controls' ), false, true );
-// 	}
-// 	add_action( 'customize_controls_enqueue_scripts', 'understrap_enqueue_customize_controls_script' );
-// }
-
+require_once trailingslashit( dirname(__FILE__) ) . 'custom-controls.php';
 
 
 if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
@@ -91,7 +71,9 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		) );
 	
 
-		// Theme layout settings.
+		/**
+		 * Theme layout settings.
+		 */ 
 		$wp_customize->add_section(
 			'understrap_theme_layout_options',
 			array(
@@ -99,7 +81,6 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 				'capability'  => 'edit_theme_options',
 				'description' => __( 'Container width and sidebar defaults', 'understrap' ),
 				'panel' => 'understrap_options',
-				//'priority'    => 160,
 			)
 		);
 
@@ -168,7 +149,9 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 				)
 			);
 
-		// BS Navbar settings.
+		/**
+		 * BS Navbar settings.
+		*/
 		$wp_customize->add_section(
 			'understrap_theme_navbar_options',
 			array(
@@ -227,7 +210,7 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 					'understrap_navbar_container',
 					array(
 						'label'       => __( 'Navbar Container', 'understrap' ),
-						'description' => __( 'Choose between Bootstrap\'s container and container-fluid', 'understrap' ),
+						'description' => __( 'Choose between Bootstrap\'s container and container-fluid. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#how-it-works" target="_blank">more details</a>', 'understrap' ),
 						'section'     => 'understrap_theme_navbar_options',
 						'settings'    => 'understrap_navbar_container',
 						'type'        => 'select',
@@ -235,33 +218,103 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 							'container'       => __( 'Fixed width container', 'understrap' ),
 							'container-fluid' => __( 'Full width container', 'understrap' ),
 						),
-						'priority'    => '10',
 					)
 				)
 			);
 
-		// @TODO Move all Customize Controls (add others from https://madebydenis.com/adding-custom-controls-to-your-customization-api/ ) to seperate include file and organize all assets
-		/*if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Multi_Input_Custom_control' ) ) :
-			class Multi_Input_Custom_control extends WP_Customize_Control{
-				public $type = 'multi_input';
-				public function render_content(){
-					?>
-					<label class="customize_multi_input test">
-						<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-						<p><?php echo wp_kses_post($this->description); ?></p>
-						<input type="hidden" id="<?php echo esc_attr($this->id); ?>" name="<?php echo esc_attr($this->id); ?>" value="<?php echo esc_attr($this->value()); ?>" class="customize_multi_value_field" data-customize-setting-link="<?php echo esc_attr($this->id); ?>"/>
-						<div class="customize_multi_fields">
-							<div class="set d-flex justify-content-end align-items-center">
-								<input type="text" value="" class="customize_multi_single_field"/>
-								<a href="#" class="customize_multi_remove_field"><i class="fas fa-trash-alt fa-fw"></i></a>
-							</div>
-						</div>
-						<a href="#" class="button button-primary customize_multi_add_field"><?php esc_attr_e('Add More', 'understrap') ?></a>
-					</label>
-					<?php
-				}
-			}
-		endif;*/
+			// Navbar Breakpoint
+			$wp_customize->add_setting(
+				'understrap_navbar_breakpoint',
+				array(
+					'default'           => '',
+					'type'              => 'theme_mod',
+					'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'capability'        => 'edit_theme_options',
+				)
+			);
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'understrap_navbar_breakpoint',
+					array(
+						'label'       => __( 'Navbar Collapse Breakpoint', 'understrap' ),
+						'description' => __( 'Choose at which device breakpoint the navbar collapses for mobile display. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#responsive-behaviors" target="_blank">more details</a>', 'understrap' ),
+						'section'     => 'understrap_theme_navbar_options',
+						'settings'    => 'understrap_navbar_breakpoint',
+						'type'        => 'select',
+						'choices'     => array(
+							'navbar-expand-sm'    => __( 'Small (sm)', 'understrap' ),
+							'navbar-expand-md'   	=> __( 'Medium (md)', 'understrap' ),
+							'navbar-expand-lg' 		=> __( 'Large (lg)', 'understrap' ),
+							'navbar-expand-xl' 		=> __( 'Extra Large (xl)', 'understrap' ),
+							'navbar-expand'				=> __( 'Never Collapse', 'understrap' ),
+							''										=> __( 'Always Collapse Collapse', 'understrap' ),
+						)
+					)
+				)
+			);
+
+			// Navbar Colour scheme
+			$wp_customize->add_setting(
+				'understrap_navbar_color_scheme',
+				array(
+					'default'           => '',
+					'type'              => 'theme_mod',
+					'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'capability'        => 'edit_theme_options',
+				)
+			);
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'understrap_navbar_color_scheme',
+					array(
+						'label'       => __( 'Navbar Color scheme', 'understrap' ),
+						'description' => __( 'Choose base colour scheme. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#color-schemes" target="_blank">more details</a>', 'understrap' ),
+						'section'     => 'understrap_theme_navbar_options',
+						'settings'    => 'understrap_navbar_color_scheme',
+						'type'        => 'select',
+						'choices'     => array(
+							'navbar-dark'    => __( 'Dark', 'understrap' ),
+							'navbar-light'   	=> __( 'Light', 'understrap' ),
+						)
+					)
+				)
+			);
+
+			// Navbar background color
+			$wp_customize->add_setting(
+				'understrap_navbar_bgcolor',
+				array(
+					'default'           => '',
+					'type'              => 'theme_mod',
+					'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'capability'        => 'edit_theme_options',
+				)
+			);
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'understrap_navbar_bgcolor',
+					array(
+						'label'       => __( 'Navbar Background Color', 'understrap' ),
+						'description' => __( 'Choose Navbar background colour based on theme primary, secondary, dark, and light classes. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#background-colors" target="_blank">more details</a>', 'understrap' ),
+						'section'     => 'understrap_theme_navbar_options',
+						'settings'    => 'understrap_navbar_bgcolor',
+						'type'        => 'select',
+						'choices'     => array(
+							'bg-primary'    => __( 'Primary Background', 'understrap' ),
+							'bg-secondary'   	=> __( 'Secondary Background ', 'understrap' ),
+							'bg-light'   	=> __( 'Light Background ', 'understrap' ),
+							'bg-dark'   	=> __( 'Dark Background ', 'understrap' ),
+						)
+					)
+				)
+			);
+
+		/**
+		* Navbar Features
+		**/
 
 		$wp_customize->add_section(
 			'understrap_theme_navbar_content',
@@ -270,25 +323,45 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 				'capability'  => 'edit_theme_options',
 				'description' => __( 'Navbar featured elements', 'understrap' ),
 				'panel' => 'understrap_options',
-				//'priority'    => 161,
 			)
 		);
 
-		/**
-		* Multiple input field
-		**/
-		$wp_customize->add_setting('navbar_shortcode', array(
-			'default'           => '',
-			'transport'         => 'refresh',
-			//'sanitize_callback' => 'esc_attr',
-			//'sanitize_js_callback' => 'esc_html',
-		));
-		$wp_customize->add_control(new Understrap_Sortable_Repeater_Custom_Control($wp_customize, 'navbar_shortcode', array(
-			'label'    		=> esc_html__('Navbar Elements', 'understrap'),
-			'description' 	=> esc_html__('Add shortcodes here to add icon link, call-to-action buttons, etc', 'understrap'),
-			'settings'		=> 'navbar_shortcode',
-			'section'  		=> 'understrap_theme_navbar_content',
-		)));
+		$wp_customize->add_setting(
+			'understrap_navbar_shortcode',
+			array(
+				'default'           => '',
+				'transport'         => 'refresh',
+				//'sanitize_callback' => 'esc_attr',
+				//'sanitize_js_callback' => 'esc_html',
+			)
+		);
+		$wp_customize->add_control(
+			new Understrap_Sortable_Repeater_Custom_Control(
+			$wp_customize,
+				'understrap_navbar_shortcode',
+				array(
+					'label'    		=> esc_html__('Navbar Elements', 'understrap'),
+					'description' 	=> esc_html__('Add shortcodes here to add icon link, call-to-action buttons, etc', 'understrap'),
+					'settings'		=> 'understrap_navbar_shortcode',
+					'section'  		=> 'understrap_theme_navbar_content',
+				)
+			)
+		);
+
+
+		// Pahe Header settings.
+		// $wp_customize->add_section(
+		// 	'understrap_theme_header_settings',
+		// 	array(
+		// 		'title'       => __( 'Page Header Settings', 'understrap' ),
+		// 		'capability'  => 'edit_theme_options',
+		// 		'description' => __( 'Navbar skin and layout defaults', 'understrap' ),
+		// 		'panel' => 'understrap_options',
+		// 	)
+		// );
+
+
+
 
 		// Colour Pallete
 		// primary color
@@ -352,21 +425,3 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 } // endif function_exists( 'understrap_theme_customize_register' ).
 add_action( 'customize_register', 'understrap_theme_customize_register' );
 
-/**
- * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
- */
-// if ( ! function_exists( 'understrap_customize_preview_js' ) ) {
-// 	/**
-// 	 * Setup JS integration for live previewing.
-// 	 */
-// 	function understrap_customize_preview_js() {
-// 		wp_enqueue_script(
-// 			'understrap_customizer',
-// 			get_template_directory_uri() . '/js/customizer.js',
-// 			array( 'customize-preview' ),
-// 			'20130508',
-// 			true
-// 		);
-// 	}
-// }
-// add_action( 'customize_preview_init', 'understrap_customize_preview_js' );

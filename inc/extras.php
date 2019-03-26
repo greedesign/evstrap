@@ -31,6 +31,25 @@ if ( ! function_exists( 'understrap_body_classes' ) ) {
 			$classes[] = 'hfeed';
 		}
 
+		// Add state class to body to give us ability to make appropriate spacing for applicable nabvar position
+		$understrap_navbar_position = get_theme_mod( 'understrap_navbar_position' );
+		if ( $understrap_navbar_position !== '' ) {
+			switch ($understrap_navbar_position) {
+				case "default":
+					break;
+				case "fixed-top":
+					$classes[] = "navbar-is-fixed-top";
+					break;
+				case "fixed-bottom":
+					$classes[] = "navbar-is-fixed-bottom";
+					break;
+				case "sticky-top":
+					$classes[] = "navbar-is-fixed-bottom";
+					break;
+			}
+			//
+		}
+
 		return $classes;
 	}
 }
