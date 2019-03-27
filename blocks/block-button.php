@@ -21,7 +21,6 @@
       break;
   }
 
-
   if( $template == "empty" ) {
     // explode
     $html_elements = explode("_", $html_element);
@@ -51,8 +50,6 @@
   // Button Block
   $block_button = (NULL == block_value('block-button') ? '' : 'btn-block' );
 
-
-
 ?>
 
 <?php if($template == "standard") { ?>
@@ -64,4 +61,3 @@
 <?php if($template == "empty") { ?>
   <<?php echo $html_element; ?> <?php if(isset($type)): ?> type="<?php echo $type; ?>"<?php endif; ?> class="btn <?php echo $style; ?> <?php echo $block_button; ?> <?php block_field('size'); ?>" value="<?php block_field('label'); ?>">
 <?php } ?>
-
