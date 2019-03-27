@@ -37,9 +37,12 @@ if ( ! function_exists( 'understrap_custom_header_setup' ) ) {
 				'understrap_custom_header_args',
 				array(
 					'default-image' => get_parent_theme_file_uri( '/img/header.jpg' ),
-					'width'         => 2000,
-					'height'        => 1200,
+					'default-text-color'     => '000000',
+					'width'         => 1920,
+					'height'        => 550,
 					'flex-height'   => true,
+					'uploads'       => true,
+					'wp-head-callback' => 'understrap_header_style',
 				)
 			)
 		);
@@ -53,5 +56,7 @@ if ( ! function_exists( 'understrap_custom_header_setup' ) ) {
 				),
 			)
 		);
+
+
 	}
 }

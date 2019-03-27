@@ -99,6 +99,15 @@ if ( ! function_exists ( 'understrap_setup' ) ) {
 			'size'        => 'ev-blocks-logo',
 		) );
 
+		// Theme Image Sizes
+		// @TODO Add theme image sizes
+		// Good reference when ading image sizes https://developer.wordpress.org/reference/functions/add_image_size/
+		add_image_size( 'banner-default-fixed-container', 1170, 300, true );
+		add_image_size( 'banner-tall-fixed-container', 1170, 550, true );
+		add_image_size( 'banner-default-full-container', 1920, 300, true );
+		add_image_size( 'banner-tall-full-container', 1920, 550, true );
+		add_image_size( 'banner-full-screen', 1920, 1080, true );
+
 		// Add support for responsive embedded content.
 		add_theme_support( 'responsive-embeds' );
 
