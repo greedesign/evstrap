@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Add ACF Field Group for Page Background Header settings
-if( function_exists('acf_add_local_field_group') ):
+/*if( function_exists('acf_add_local_field_group') ):
 
   acf_add_local_field_group(array(
     'key' => 'group_5c9bc90ce3549',
@@ -186,8 +186,8 @@ if( function_exists('acf_add_local_field_group') ):
   ));
   
   endif;
+*/
 
-// Check if Header Background Image page attributes
 function acf_header_styles() {
 
   if(get_field('header_background_image')) {
@@ -200,6 +200,8 @@ function acf_header_styles() {
     $header_width = get_field('page_header_width');
     $header_height = get_field('page_header_height');
     $header_img = get_field('different_header_image');
+    $overlay_color = get_field('overlay_color');
+    $overlay_transparency = (get_field('overlay_transparency') / 100);
 
     // Set Image Variables for output
     switch($header_height) {
@@ -237,7 +239,7 @@ function acf_header_styles() {
     if($header_img == true && get_field('header_image')) {
       $header_img_url = get_field('header_image')['sizes'][$img_size];
     } else {
-      $header_img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
+      $header_img_url = get_the_post_thumbnail_url(get_the_ID(), $img_size);
     }
 
     $header_css = "
@@ -245,13 +247,29 @@ function acf_header_styles() {
       padding-top: 0;
     }
     .entry-header {
+      position: relative;
       padding: 50px;
       color: #fff;
       height: {$height};
       background-image: url({$header_img_url});
       background-repeat: no-repeat;
       background-size: cover;
-    }";
+    }
+    .entry-header > * {
+      position: relative;
+    }
+    .entry-header::before {
+      content: \"\";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: {$overlay_color};
+      opacity: {$overlay_transparency};
+      z-index: 0;
+    }"
+    ;
     wp_add_inline_style( 'custom-header-style', $header_css );
   }
 }

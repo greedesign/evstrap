@@ -8,11 +8,20 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+
+// Combine variables for use as classes
+$header_classes = [];
+
+$header_classes[] = get_field('page_header_width');
+$header_classes[] = get_field('title_alignment');
+
+$header_classes = implode (" ", $header_classes);
+
 ?>
 
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-	<header class="entry-header <?php echo the_field('page_header_width'); ?>">
+	<header class="entry-header <?php echo $header_classes; ?>">
 
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 

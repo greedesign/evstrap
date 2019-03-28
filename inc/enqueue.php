@@ -32,3 +32,12 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 } // endif function_exists( 'understrap_scripts' ).
 
 add_action( 'wp_enqueue_scripts', 'understrap_scripts' );
+
+if ( ! function_exists( 'admin_scripts' ) ) {
+	function admin_scripts() {
+
+		wp_enqueue_script( 'admin-scripts', get_template_directory_uri() . '/js/admin.min.js', array(), $js_version, true );
+
+	}
+}
+add_action( 'admin_enqueue_scripts', 'admin_scripts' );
