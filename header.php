@@ -11,6 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+// Collect and format customizer variables for output
 // @TODO create simple function to pass inf check if customizer setting is set so we can reduce the amount of code in out templates
 $container = get_theme_mod( 'understrap_navbar_container' );
 $navbar_position = get_theme_mod('understrap_navbar_position'); //@TODO add CSS to apply appropriate spacing for navbar position body classes
@@ -18,6 +19,24 @@ $navbar_breakpoint = get_theme_mod( 'understrap_navbar_breakpoint' );
 $navbar_shortcodes = get_theme_mod( 'understrap_navbar_shortcode' );
 $navbar_color_scheme = get_theme_mod( 'understrap_navbar_color_scheme' );
 $navbar_bgcolor = get_theme_mod( 'understrap_navbar_bgcolor' );
+
+// check if variable has value
+$navbar_breakpoint !== '' ? $navbar_breakpoint : '';
+$navbar_color_scheme !== '' ? $navbar_color_scheme : '';
+$navbar_position !== '' ? $navbar_position : '';
+$navbar_bgcolor !== '' ? $navbar_bgcolor : '';
+
+// concatinate all variables into tidy class string
+$navbar_classes[] = $navbar_breakpoint;
+$navbar_classes[] = $navbar_color_scheme;
+//$navbar_classes[] = $navbar_position;
+$navbar_classes[] = $navbar_bgcolor;
+
+$navbar_classes = implode (" ", $navbar_classes);
+
+/*<?php echo ( $navbar_breakpoint !== '' ? $navbar_breakpoint : '' );  ?> <?php echo ( $navbar_color_scheme !== '' ? $navbar_color_scheme : '' );  ?> <?php echo ( $navbar_position !== '' ? $navbar_position : '' );  ?>*/
+
+
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -33,11 +52,11 @@ $navbar_bgcolor = get_theme_mod( 'understrap_navbar_bgcolor' );
 <div class="site" id="page">
 
 	<!-- ******************* The Navbar Area ******************* -->
-	<div id="wrapper-navbar" itemscope itemtype="http://schema.org/WebSite">
+	<div id="wrapper-navbar" class="<?php echo $navbar_position; ?>" itemscope itemtype="http://schema.org/WebSite">
 
 		<a class="skip-link sr-only sr-only-focusable" href="#content"><?php esc_html_e( 'Skip to content', 'understrap' ); ?></a>
 		<?php //@TODO Add function to loop through all applicable navbar classes and output in one declaration to cleanup code ?>
-		<nav class="navbar <?php echo ( $navbar_breakpoint !== '' ? $navbar_breakpoint : '' );  ?> <?php echo ( $navbar_color_scheme !== '' ? $navbar_color_scheme : '' );  ?> <?php echo ( $navbar_bgcolor !== '' ? $navbar_bgcolor : '' );  ?> <?php echo ( $navbar_position !== '' ? $navbar_position : '' );  ?>">
+		<nav class="navbar <?php echo $navbar_classes; ?>">
 
 		<?php if ( 'container' == $container ) : ?>
 			<div class="container">
