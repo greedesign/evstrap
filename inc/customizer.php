@@ -229,7 +229,7 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 			$wp_customize->add_setting(
 				'understrap_navbar_breakpoint',
 				array(
-					'default'           => '',
+					'default'           => 'navbar-expand-md',
 					'type'              => 'theme_mod',
 					'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
 					'capability'        => 'edit_theme_options',
@@ -289,7 +289,7 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 			$wp_customize->add_setting(
 				'understrap_navbar_bgcolor',
 				array(
-					'default'           => '',
+					'default'           => 'bg-primary',
 					'type'              => 'theme_mod',
 					'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
 					'capability'        => 'edit_theme_options',
@@ -311,11 +311,71 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 							'bg-light'   	=> __( 'Light Background ', 'understrap' ),
 							'bg-dark'   	=> __( 'Dark Background ', 'understrap' ),
 							'bg-white'   	=> __( 'White ', 'understrap' ),
-							'bg-transparent'   	=> __( 'Transparent', 'understrap' ),
+							//'bg-transparent'   	=> __( 'Transparent', 'understrap' ),
 						)
 					)
 				)
 			);
+
+			// Navbar background transparancy
+			$wp_customize->add_setting(
+				'understrap_navbar_bgalpha',
+				array(
+					'default'           => 100,
+					'type'              => 'theme_mod',
+					'sanitize_callback' => 'understrap_sanitize_integer',
+					'capability'        => 'edit_theme_options',
+				)
+			);
+			$wp_customize->add_control(
+				new Understrap_Slider_Custom_Control(
+					$wp_customize,
+					'understrap_navbar_bgalpha',
+					array(
+						'label'       => __( 'Navbar background transparancy', 'understrap' ),
+						'description' => __( 'Choose opacity of background color', 'understrap' ),
+						'section'     => 'understrap_theme_navbar_options',
+						'settings'    => 'understrap_navbar_bgalpha',
+						'input_attrs' => array(
+							'min' => 0, // Required. Minimum value for the slider
+							'max' => 100, // Required. Maximum value for the slider
+							'step' => 1, // Required. The size of each interval or step the slider takes between the minimum and maximum values
+						),
+					)
+				)
+			);
+
+			// // Alpha Color Picker setting.
+			// $wp_customize->add_setting(
+			// 	'understrap_navbar_bgcolor2',
+			// 	array(
+			// 		'default'     => 'rgba(209,0,55,0.7)',
+			// 		'type'        => 'theme_mod',
+			// 		'capability'  => 'edit_theme_options',
+			// 		'transport'   => 'postMessage'
+			// 	)
+			// );
+
+			// // Alpha Color Picker control.
+			// $wp_customize->add_control(
+			// 	new Understrap_Customize_Alpha_Color_Control(
+			// 		$wp_customize,
+			// 		'understrap_navbar_bgcolor2',
+			// 		array(
+			// 			'label'         => __( 'Alpha Color Picker', 'understrap' ),
+			// 			'section'       => 'understrap_theme_navbar_options',
+			// 			'settings'      => 'understrap_navbar_bgcolor2',
+			// 			'show_opacity'  => true, // Optional.
+			// 			'palette'	=> array(
+			// 				'rgb(150, 50, 220)', // RGB, RGBa, and hex values supported
+			// 				'rgba(50,50,50,0.8)',
+			// 				'rgba( 255, 255, 255, 0.2 )', // Different spacing = no problem
+			// 				'#00CC99' // Mix of color types = no problem
+			// 			)
+			// 		)
+			// 	)
+			// );
+
 
 		/**
 		* Navbar Features
@@ -431,4 +491,7 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 	}
 } // endif function_exists( 'understrap_theme_customize_register' ).
 add_action( 'customize_register', 'understrap_theme_customize_register' );
+
+// File dosn't work
+get_template_part( 'inc/customizer', 'header' );
 

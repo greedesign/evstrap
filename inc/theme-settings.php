@@ -64,6 +64,18 @@ if ( ! function_exists( 'understrap_setup_theme_default_settings' ) ) {
 			set_theme_mod( 'understrap_navbar_bgcolor', 'bg-primary' );
 		}
 
+		// $understrap_navbar_bgcolor2 = get_theme_mod( 'understrap_navbar_bgcolor2' );
+		// if ( '' == $understrap_navbar_bgcolor2 ) {
+		// 	set_theme_mod( 'understrap_navbar_bgcolor2', '' );
+		// }
+
+		$understrap_navbar_bgalpha = get_theme_mod( 'understrap_navbar_bgalpha' );
+		if ( '' == $understrap_navbar_bgalpha ) {
+			set_theme_mod( 'understrap_navbar_bgalpha', 100 );
+		}
+
+		
+
 		// Navbar Feature content
 		$understrap_navbar_shortcodes = get_theme_mod( 'understrap_navbar_shortcode' );
 		if ( '' == $understrap_navbar_shortcodes ) {
@@ -78,25 +90,40 @@ if ( ! function_exists( 'understrap_setup_theme_default_settings' ) ) {
 		if ( '' == $understrap_color_primary ) {
 			set_theme_mod( 'understrap_color_primary', '#7C008C' );
 		}
-
+		// Secondary
 		$understrap_color_secondary = get_theme_mod( 'understrap_color_secondary' );
 		if ( '' == $understrap_color_secondary ) {
 			set_theme_mod( 'understrap_color_secondary', '#6c757d' );
 		}
-
+		// Info
 		$understrap_color_info = get_theme_mod( 'understrap_color_info' );
 		if ( '' == $understrap_color_info ) {
 			set_theme_mod( 'understrap_color_info', '#17a2b8' );
 		}
-
+		// Warning
 		$understrap_color_warning = get_theme_mod( 'understrap_color_warning' );
 		if ( '' == $understrap_color_warning ) {
 			set_theme_mod( 'understrap_color_warning', '#ffc107' );
 		}
-
+		// Danger
 		$understrap_color_danger = get_theme_mod( 'understrap_color_danger' );
 		if ( '' == $understrap_color_danger ) {
 			set_theme_mod( 'understrap_color_danger', '#7C008C' );
+		}
+		// Light
+		$understrap_color_light = get_theme_mod( 'understrap_color_light' );
+		if ( '' == $understrap_color_light ) {
+			set_theme_mod( 'understrap_color_light', '#f8f9fa' );
+		}
+		// Dark
+		$understrap_color_dark = get_theme_mod( 'understrap_color_dark' );
+		if ( '' == $understrap_color_dark ) {
+			set_theme_mod( 'understrap_color_dark', '#343a40' );
+		}
+		// White
+		$understrap_color_white = get_theme_mod( 'understrap_color_white' );
+		if ( '' == $understrap_color_white ) {
+			set_theme_mod( 'understrap_color_white', '#ffffff' );
 		}
 
 	}

@@ -56,14 +56,13 @@ function acf_header_styles() {
         break;
     }
     // Determine Header Image source
-
-
     if($header_img == true && get_field('header_image')) {
       $header_img_url = get_field('header_image')['sizes'][$img_size];
     } else {
       $header_img_url = get_the_post_thumbnail_url(get_the_ID(), $img_size);
     }
 
+    // Styles
     $header_css[] = "
     .wrapper {
       padding-top: 0;
