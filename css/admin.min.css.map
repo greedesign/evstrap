@@ -1,0 +1,1 @@
+{"version":3,"sources":["admin.scss"],"names":[],"mappings":"AAGA,mCACI,WAAA","file":"admin.min.css","sourcesContent":["/**\r\n * Admin styles\r\n */\r\nbody.navbar-is-fixed-top.admin-bar {\r\n    margin-top: 32px;\r\n}\r\n"]}
