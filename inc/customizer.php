@@ -64,20 +64,23 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		}
 
 
+		/**
+		 * Create Theme Options Panel
+		 */
 		$wp_customize->add_panel( 'understrap_options', array(
-			'title' => __( 'Theme Settings' ),
-			'description' => __( 'Custom Theme Settings', 'understrap' ), // Include html tags such as <p>.
+			'title' => __( 'Theme Options' ),
+			'description' => __( 'Custom Theme Options', 'understrap' ), // Include html tags such as <p>.
 			'priority' => 160, // Mixed with top-level-section hierarchy.
 		) );
 	
 
 		/**
-		 * Theme layout settings.
+		 * Theme layout options.
 		 */ 
 		$wp_customize->add_section(
 			'understrap_theme_layout_options',
 			array(
-				'title'       => __( 'Site Layout Settings', 'understrap' ),
+				'title'       => __( 'Site Layout Options', 'understrap' ),
 				'capability'  => 'edit_theme_options',
 				'description' => __( 'Container width and sidebar defaults', 'understrap' ),
 				'panel' => 'understrap_options',
@@ -102,7 +105,7 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 						'label'       => __( 'Container Width', 'understrap' ),
 						'description' => __( 'Choose between Bootstrap\'s container and container-fluid', 'understrap' ),
 						'section'     => 'understrap_theme_layout_options',
-						'settings'    => 'understrap_container_type',
+						'options'    => 'understrap_container_type',
 						'type'        => 'select',
 						'choices'     => array(
 							'container'       => __( 'Fixed width container', 'understrap' ),
@@ -135,7 +138,7 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 							'understrap'
 						),
 						'section'           => 'understrap_theme_layout_options',
-						'settings'          => 'understrap_sidebar_position',
+						'options'          => 'understrap_sidebar_position',
 						'type'              => 'select',
 						'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
 						'choices'           => array(
@@ -150,12 +153,12 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 			);
 
 		/**
-		 * BS Navbar settings.
+		 * BS Navbar Options.
 		*/
 		$wp_customize->add_section(
 			'understrap_theme_navbar_options',
 			array(
-				'title'       => __( 'Navbar Settings', 'understrap' ),
+				'title'       => __( 'Navbar Options', 'understrap' ),
 				'capability'  => 'edit_theme_options',
 				'description' => __( 'Navbar skin and layout defaults', 'understrap' ),
 				'panel' => 'understrap_options',
@@ -270,7 +273,7 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 					'understrap_navbar_color_scheme',
 					array(
 						'label'       => __( 'Navbar Color scheme', 'understrap' ),
-						'description' => __( 'Choose base colour scheme. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#color-schemes" target="_blank">more details</a>', 'understrap' ),
+						'description' => __( 'Choose base colour scheme./n See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#color-schemes" target="_blank">more details</a>', 'understrap' ),
 						'section'     => 'understrap_theme_navbar_options',
 						'settings'    => 'understrap_navbar_color_scheme',
 						'type'        => 'select',
@@ -307,6 +310,8 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 							'bg-secondary'   	=> __( 'Secondary Background ', 'understrap' ),
 							'bg-light'   	=> __( 'Light Background ', 'understrap' ),
 							'bg-dark'   	=> __( 'Dark Background ', 'understrap' ),
+							'bg-white'   	=> __( 'White ', 'understrap' ),
+							'bg-transparent'   	=> __( 'Transparent', 'understrap' ),
 						)
 					)
 				)
@@ -315,7 +320,6 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		/**
 		* Navbar Features
 		**/
-
 		$wp_customize->add_section(
 			'understrap_theme_navbar_content',
 			array(
@@ -349,7 +353,7 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		);
 
 
-		// Pahe Header settings.
+		// Page Header options.
 		// $wp_customize->add_section(
 		// 	'understrap_theme_header_settings',
 		// 	array(
@@ -360,10 +364,11 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		// 	)
 		// );
 
-
-
-
-		// Colour Pallete
+		/**
+		 * Colour Pallete
+		 * * Building palette array 
+		 */
+		 
 		// primary color
 		$understrap_color_palette[] = array(
 			'slug'=>'understrap_color_primary', 
@@ -399,7 +404,9 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 			'label' => 'Danger Color'
 		);
 
-		// add the settings and controls for each color
+		/**
+		 * Loop through palette aray and define settings and controls for each
+		 */ 
 		foreach( $understrap_color_palette as $understrap_color_palette ) {
 			// SETTINGS
 			$wp_customize->add_setting(

@@ -32,6 +32,9 @@ if ( ! function_exists( 'understrap_setup_theme_default_settings' ) ) {
 			set_theme_mod( 'understrap_container_type', 'container' );
 		}
 
+		/**
+		 * Navbar Options
+		 */
 		// Navbar Container type
 		$understrap_navbar_container = get_theme_mod( 'understrap_navbar_container' );
 		if ( '' == $understrap_navbar_container ) {
@@ -67,10 +70,33 @@ if ( ! function_exists( 'understrap_setup_theme_default_settings' ) ) {
 			set_theme_mod( 'understrap_navbar_shortcodes', '' );
 		}
 
-		// Color Palette.
+		/**
+		 * Colour Pallets
+		 */
+		// Primary.
 		$understrap_color_primary = get_theme_mod( 'understrap_color_primary' );
 		if ( '' == $understrap_color_primary ) {
 			set_theme_mod( 'understrap_color_primary', '#7C008C' );
+		}
+
+		$understrap_color_secondary = get_theme_mod( 'understrap_color_secondary' );
+		if ( '' == $understrap_color_secondary ) {
+			set_theme_mod( 'understrap_color_secondary', '#6c757d' );
+		}
+
+		$understrap_color_info = get_theme_mod( 'understrap_color_info' );
+		if ( '' == $understrap_color_info ) {
+			set_theme_mod( 'understrap_color_info', '#17a2b8' );
+		}
+
+		$understrap_color_warning = get_theme_mod( 'understrap_color_warning' );
+		if ( '' == $understrap_color_warning ) {
+			set_theme_mod( 'understrap_color_warning', '#ffc107' );
+		}
+
+		$understrap_color_danger = get_theme_mod( 'understrap_color_danger' );
+		if ( '' == $understrap_color_danger ) {
+			set_theme_mod( 'understrap_color_danger', '#7C008C' );
 		}
 
 	}

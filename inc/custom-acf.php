@@ -21,6 +21,7 @@ function acf_header_styles() {
     $header_width = get_field('page_header_width');
     $header_height = get_field('page_header_height');
     $header_img = get_field('different_header_image');
+    $overlay = get_field('overlay');
     $overlay_color = get_field('overlay_color');
     $overlay_transparency = (get_field('overlay_transparency') / 100);
 
@@ -63,7 +64,7 @@ function acf_header_styles() {
       $header_img_url = get_the_post_thumbnail_url(get_the_ID(), $img_size);
     }
 
-    $header_css = "
+    $header_css[] = "
     .wrapper {
       padding-top: 0;
     }
@@ -76,21 +77,29 @@ function acf_header_styles() {
       background-repeat: no-repeat;
       background-size: cover;
     }
-    .entry-header > * {
-      position: relative;
-    }
-    .entry-header::before {
-      content: \"\";
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: {$overlay_color};
-      opacity: {$overlay_transparency};
-      z-index: 0;
-    }"
-    ;
+    .navbar-is-fixed-top .entry-header {
+      padding-top: calc(50px + 56px);
+    }";
+    if($overlay):
+      $header_css[] = "
+      .entry-header > * {
+        position: relative;
+      }
+      .entry-header::before {
+        content: \"\";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: {$overlay_color};
+        opacity: {$overlay_transparency};
+        z-index: 0;
+      }";
+    endif;
+
+    $header_css = implode(" ", $header_css);
+
     wp_add_inline_style( 'custom-header-style', $header_css );
   }
 }
