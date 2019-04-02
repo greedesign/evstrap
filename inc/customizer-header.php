@@ -97,13 +97,11 @@ function understrap_navbar() {
 
     // Collect and format customizer variables for output
     // @TODO create simple function to pass inf check if customizer setting is set so we can reduce the amount of code in out templates
-    $container = get_theme_mod( 'understrap_navbar_container' );
     $navbar_position = (get_theme_mod('understrap_navbar_position') !== '' ? get_theme_mod('understrap_navbar_position') : '');
     $navbar_breakpoint = (get_theme_mod('understrap_navbar_breakpoint') !== '' ? get_theme_mod('understrap_navbar_breakpoint') : '');
     $navbar_color_scheme = (get_theme_mod('understrap_navbar_color_scheme') !== '' ? get_theme_mod('understrap_navbar_color_scheme') : '');
     $navbar_bgcolor = (get_theme_mod('understrap_navbar_bgcolor') !== '' ? get_theme_mod('understrap_navbar_bgcolor') : '');
     $navbar_bgalpha = (get_theme_mod('understrap_navbar_bgalpha') !== '' ? 'bg-alpha' : '');
-    $navbar_shortcodes = get_theme_mod('understrap_navbar_shortcode');
 
     // check if variable has value
     //$navbar_position !== '' ? $navbar_position : '';

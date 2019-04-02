@@ -63,6 +63,9 @@ $navbar_classes[] = $navbar_bgcolor;
 
 $navbar_classes = implode (" ", $navbar_classes);
 */
+
+$container = get_theme_mod( 'understrap_navbar_container' );
+$navbar_shortcodes = (get_theme_mod( 'understrap_navbar_shortcode' ) !== '' ? get_theme_mod( 'understrap_navbar_shortcode' ) : '');
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>

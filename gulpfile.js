@@ -1,4 +1,10 @@
 // Defining requirements
+
+/**
+ * TODO - rework gulp file to be more straight forward.
+ * This should be a good starting point - https://gist.github.com/cferdinandi/8ca81dcff6b0324f7335003cd9003e99
+ */
+
 var gulp = require( 'gulp' );
 var plumber = require( 'gulp-plumber' );
 var sass = require( 'gulp-sass' );
@@ -144,7 +150,6 @@ gulp.task( 'custom_controls_scripts', function() {
       console.log(e);
     }))
     .pipe( gulp.dest( paths.js ) );
-
 
 });
 
