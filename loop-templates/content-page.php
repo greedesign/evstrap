@@ -14,6 +14,7 @@ $header_classes = [];
 
 $header_classes[] = get_field('page_header_width');
 $header_classes[] = get_field('title_alignment');
+$header_classes[] = (get_field('header_background_image') !== '' ? 'header-background-img' : '');
 
 $header_classes = implode (" ", $header_classes);
 

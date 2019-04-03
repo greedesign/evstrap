@@ -93,11 +93,15 @@ if ( ! function_exists ( 'understrap_setup' ) ) {
 		add_image_size( 'ev-blocks-logo', 300 );
 
 		// Set up the WordPress Theme logo feature.
-		//add_theme_support( 'custom-logo' );
-		add_theme_support( 'custom-logo', array(
+		add_theme_support( 'custom-logo' );
+		/*add_theme_support( 'custom-logo', array(
 			'header-text' => array( 'titles-wrap' ),
+			'flex-height' => true,
+        	'flex-width'  => true,
 			'size'        => 'ev-blocks-logo',
-		) );
+		));*/
+
+
 
 		// Theme Image Sizes
 		// @TODO Add theme image sizes
