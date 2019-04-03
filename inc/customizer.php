@@ -152,6 +152,270 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 				)
 			);
 
+			/*
+			$header_classes[] = (get_field('header_background_image') !== '' ? 'header-background-img' : '');
+			$header_classes[] = get_field('page_header_width');
+			$header_classes[] = get_field('title_alignment');
+			$header_classes[] = (get_field('enable_advanced_header_alignment') !== '' ? 'd-felx' : '');
+			
+			$header_classes[] = get_field('header_vertical_align');
+			$header_classes[] = get_field('header_horizontal_align');
+			$header_classes[] = get_field('header_content_align');
+			*/
+
+		/**
+		 * Theme layout options.
+		 */ 
+		$wp_customize->add_section(
+			'understrap_page_header_defaults',
+			array(
+				'title'       => __( 'Page Header Defaults', 'understrap' ),
+				'capability'  => 'edit_theme_options',
+				'description' => __( 'Set page header options.', 'understrap' ),
+				'panel' => 'understrap_options',
+			)
+		);
+
+			// Enable Page Header Background Image Default
+			$wp_customize->add_setting(
+				'understrap_enable_page_header_bgimg_default',
+				array(
+					'default'           => 0,
+					'type'              => 'theme_mod',
+					'sanitize_callback' => 'understrap_switch_sanitization',
+					'capability'        => 'edit_theme_options',
+				)
+			);
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'understrap_enable_page_header_bgimg_default',
+					array(
+						'label'       => __( 'Header Background Image', 'understrap' ),
+						'description' => __( 'Enable to set a page background image. Will use the Featured Image by default or you can specify another one if required.', 'understrap' ),
+						'section'     => 'understrap_page_header_defaults',
+						'options'    => 'understrap_enable_page_header_bgimg_default',
+						'type'        => 'checkbox',
+					)
+				)
+			);
+
+			// Page Background Image Default
+			$wp_customize->add_setting(
+				'understrap_page_header_bgimg_default',
+				array(
+					'default'           => '',
+					'type'              => 'theme_mod',
+					//'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'capability'        => 'edit_theme_options',
+				)
+			);
+			$wp_customize->add_control(
+				new WP_Customize_Image_Control(
+					$wp_customize,
+					'understrap_page_header_bgimg_default',
+					array(
+						'label'       => __( 'Default Page Header Background Image', 'understrap' ),
+						'description' => __( 'Upload image to be used if page has no featured image set', 'understrap' ),
+						'section'     => 'understrap_page_header_defaults',
+						'options'    => 'understrap_page_header_bgimg_default',
+					)
+				)
+			);
+
+			// Page Header Width Default
+			$wp_customize->add_setting(
+				'understrap_page_header_width_default',
+				array(
+					'default'           => 'default',
+					'type'              => 'theme_mod',
+					//'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'capability'        => 'edit_theme_options',
+				)
+			);
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'understrap_page_header_width_default',
+					array(
+						'label'       => __( 'Header Width', 'understrap' ),
+						'description' => __( '', 'understrap' ),
+						'section'     => 'understrap_page_header_defaults',
+						'options'    => 'understrap_page_header_width_default',
+						'type'        => 'select',
+						'choices'		=> array(
+							'default' => __( 'Default' ),
+							'alignwide' => __( 'Wide' ),
+							'alignfull' => __( 'Fullwidth' )
+						)
+					)
+				)
+			);
+
+			// Page Header Height Default
+			$wp_customize->add_setting(
+				'understrap_page_header_height_default',
+				array(
+					'default'           => 'default',
+					'type'              => 'theme_mod',
+					//'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'capability'        => 'edit_theme_options',
+				)
+			);
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'understrap_page_header_height_default',
+					array(
+						'label'       => __( 'Header Height', 'understrap' ),
+						'description' => __( '', 'understrap' ),
+						'section'     => 'understrap_page_header_defaults',
+						'options'    => 'understrap_page_header_height_default',
+						'type'        => 'select',
+						'choices'		=> array(
+							'default' => __( 'Default' ),
+							'tall' => __( 'Tall' ),
+							'full_page' => __( 'Fullpage' )
+						)
+					)
+				)
+			);
+
+			// Page Title Alignment Default
+			$wp_customize->add_setting(
+				'understrap_page_header_title_align_default',
+				array(
+					'default'           => 'default',
+					'type'              => 'theme_mod',
+					//'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'capability'        => 'edit_theme_options',
+				)
+			);
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'understrap_page_header_title_align_default',
+					array(
+						'label'       => __( 'Header Title Alignment', 'understrap' ),
+						'description' => __( '', 'understrap' ),
+						'section'     => 'understrap_page_header_defaults',
+						'options'    => 'understrap_page_header_title_align_default',
+						'type'        => 'select',
+						'choices'		=> array(
+							'default' => __( 'Left' ),
+							'text-center' => __( 'Center' ),
+							'text-right' => __( 'Right' )
+						)
+					)
+				)
+			);
+
+			// Page Heading Vertical Alignment Default
+			$wp_customize->add_setting(
+				'understrap_page_header_vertical_align_default',
+				array(
+					'default'           => '',
+					'type'              => 'theme_mod',
+					//'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'capability'        => 'edit_theme_options',
+				)
+			);
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'understrap_page_header_vertical_align_default',
+					array(
+						'label'       => __( 'Header Vertical Alignment Default', 'understrap' ),
+						'description' => __( '', 'understrap' ),
+						'section'     => 'understrap_page_header_defaults',
+						'options'    => 'understrap_page_header_vertical_align_default',
+						'type'        => 'select',
+						'choices'		=> array(
+							'align-items-start' => __( 'Top' ),
+							'align-items-end' => __( 'Bottom' ),
+							'align-items-center' => __( 'Middle' ),
+							'align-items-stretch' => __( 'Stretch' )
+						)
+					)
+				)
+			);
+
+			// Page Heading Horizontal Alignment Default
+			$wp_customize->add_setting(
+				'understrap_page_header_horizontal_align_default',
+				array(
+					'default'           => '',
+					'type'              => 'theme_mod',
+					//'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'capability'        => 'edit_theme_options',
+				)
+			);
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'understrap_page_header_horizontal_align_default',
+					array(
+						'label'       => __( 'Header Horizontal Alignment Default', 'understrap' ),
+						'description' => __( '', 'understrap' ),
+						'section'     => 'understrap_page_header_defaults',
+						'options'    => 'understrap_page_header_horizontal_align_default',
+						'type'        => 'select',
+						'choices'		=> array(
+							'justify-content-start' => __( 'Left' ),
+							'justify-content-center' => __( 'Center' ),
+							'justify-content-end' => __( 'Right' )
+						)
+					)
+				)
+			);
+
+			// Page Heading Content Alignment Default
+			$wp_customize->add_setting(
+				'understrap_page_header_content_align_default',
+				array(
+					'default'           => '',
+					'type'              => 'theme_mod',
+					//'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'capability'        => 'edit_theme_options',
+				)
+			);
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'understrap_page_header_content_align_default',
+					array(
+						'label'       => __( 'Header Content Alignment Default', 'understrap' ),
+						'description' => __( '', 'understrap' ),
+						'section'     => 'understrap_page_header_defaults',
+						'options'    => 'understrap_page_header_content_align_default',
+						'type'        => 'select',
+						'choices'		=> array(
+							'align-content-start' => __( 'Top' ),
+							'align-content-end' => __( 'Bottom' ),
+							'align-content-center' => __( 'Center' ),
+							'align-content-betwee' => __( 'Space Between' ),
+							'align-content-around' => __( 'Space Around' )
+						)
+					)
+				)
+			);
+		
+			/*$header_classes[] = get_field('header_vertical_align');
+			align-items-start : Top
+			align-items-end : Bottom
+			align-items-center : Middle
+			align-items-stretch : Stretch
+			$header_classes[] = get_field('header_horizontal_align');
+			justify-content-start : Left
+			justify-content-center : Center
+			justify-content-end : Right
+			$header_classes[] = get_field('header_content_align');
+			align-content-start : Top
+			align-content-end : Bottom
+			align-content-center : Center
+			align-content-between : Space Between
+			align-content-around : Space Around*/
+
 		/**
 		 * BS Navbar Options.
 		*/

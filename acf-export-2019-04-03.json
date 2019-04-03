@@ -148,17 +148,17 @@
                 "return_format": "value"
             },
             {
-                "key": "field_5c9c539325f21",
-                "label": "Title Horizontal Alignment",
-                "name": "title_horizontal_alignment",
+                "key": "field_5ca489f2e013b",
+                "label": "Title Alignment",
+                "name": "title_alignment",
                 "type": "select",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": [
                     [
                         {
-                            "field": "field_5c9be12153522",
-                            "operator": "==",
+                            "field": "field_5ca48998e013a",
+                            "operator": "!=",
                             "value": "1"
                         }
                     ]
@@ -175,6 +175,134 @@
                 },
                 "default_value": [
                     "default"
+                ],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": ""
+            },
+            {
+                "key": "field_5ca48998e013a",
+                "label": "Enable Advanced Header Alignment",
+                "name": "enable_advanced_header_alignment",
+                "type": "true_false",
+                "instructions": "Enables advanced header alignment options.\r\nWill disable Title Alignment option",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_5ca484a101658",
+                "label": "Header Vertical Align",
+                "name": "header_vertical_align",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5ca48998e013a",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "align-items-start": "Top",
+                    "align-items-end": "Bottom",
+                    "align-items-center": "Middle",
+                    "align-items-stretch": "Stretch"
+                },
+                "default_value": [],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 1,
+                "ajax": 0,
+                "return_format": "value",
+                "placeholder": ""
+            },
+            {
+                "key": "field_5c9c539325f21",
+                "label": "Header Horizontal Align",
+                "name": "header_horizontal_align",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5ca48998e013a",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "justify-content-start": "Left",
+                    "justify-content-center": "Center",
+                    "justify-content-end": "Right"
+                },
+                "default_value": [
+                    "justify-content-start"
+                ],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": ""
+            },
+            {
+                "key": "field_5ca48af5e013e",
+                "label": "Header Content Align",
+                "name": "header_content_align",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5ca48998e013a",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "align-content-start": "Top",
+                    "align-content-end": "Bottom",
+                    "align-content-center": "Center",
+                    "align-content-between": "Space Between",
+                    "align-content-around": "Space Around"
+                },
+                "default_value": [
+                    "align-content-start"
                 ],
                 "allow_null": 0,
                 "multiple": 0,
@@ -243,7 +371,7 @@
                 "conditional_logic": [
                     [
                         {
-                            "field": "field_5c9be12153522",
+                            "field": "field_5c9c5b0284890",
                             "operator": "==",
                             "value": "1"
                         }

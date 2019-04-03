@@ -5,9 +5,13 @@ body.navbar-is-fixed-top.admin-bar .fixed-top {
     top: 32px;
 }
 
-body.navbar-is-fixed-top #index-wrapper,
 body.navbar-is-fixed-top #full-width-page-wrapper {
     padding-top: 0;
+}
+
+body.navbar-is-fixed-top #index-wrapper,
+body.navbar-is-fixed-top #single-wrapper {
+    padding-top: 85px;
 }
 
 body.navbar-is-fixed-top .entry-header.default,

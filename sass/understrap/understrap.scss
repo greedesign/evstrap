@@ -40,6 +40,13 @@
 
 .aligncenter { @extend .mx-auto; }
 
+// Content
+.page-content,
+.entry-content,
+.entry-summary {
+  margin: 1.5rem 0 0;
+}
+
 // Post design
 .entry-footer span { padding-right: 10px; }
 

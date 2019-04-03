@@ -32,6 +32,50 @@ if ( ! function_exists( 'understrap_setup_theme_default_settings' ) ) {
 			set_theme_mod( 'understrap_container_type', 'container' );
 		}
 
+
+		/**
+		 * Page Header Defaults
+		 */
+		$understrap_enable_page_header_bgimg_default = get_theme_mod( 'understrap_enable_page_header_bgimg_default' );
+		if ( '' == $understrap_enable_page_header_bgimg_default ) {
+			set_theme_mod( 'understrap_enable_page_header_bgimg_default', 0 );
+		}
+
+		$understrap_page_header_bgimg_default = get_theme_mod( 'understrap_page_header_bgimg_default' );
+		if ( '' == $understrap_page_header_bgimg_default ) {
+			set_theme_mod( 'understrap_page_header_bgimg_default', '' );
+		}
+
+		$understrap_page_header_width_default = get_theme_mod( 'understrap_page_header_width_default' );
+		if ( '' == $understrap_page_header_width_default ) {
+			set_theme_mod( 'understrap_page_header_width_default', 'default' );
+		}
+
+		$understrap_page_header_height_default = get_theme_mod( 'understrap_page_header_height_default' );
+		if ( '' == $understrap_page_header_height_default ) {
+			set_theme_mod( 'understrap_page_header_height_default', 'default' );
+		}
+
+		$understrap_page_header_title_align_default = get_theme_mod( 'understrap_page_header_title_align_default' );
+		if ( '' == $understrap_page_header_title_align_default ) {
+			set_theme_mod( 'understrap_page_header_title_align_default', 'default' );
+		}
+
+		$understrap_page_header_vertical_align_default = get_theme_mod( 'understrap_page_header_vertical_align_default' );
+		if ( '' == $understrap_page_header_vertical_align_default ) {
+			set_theme_mod( 'understrap_page_header_vertical_align_default', '' );
+		}
+
+		$understrap_page_header_horizontal_align_default = get_theme_mod( 'understrap_page_header_horizontal_align_default' );
+		if ( '' == $understrap_page_header_horizontal_align_default ) {
+			set_theme_mod( 'understrap_page_header_horizontal_align_default', '' );
+		}
+
+		$understrap_page_header_content_align_default = get_theme_mod( 'understrap_page_header_content_align_default' );
+		if ( '' == $understrap_page_header_content_align_default ) {
+			set_theme_mod( 'understrap_page_header_content_align_default', '' );
+		}
+
 		/**
 		 * Navbar Options
 		 */
