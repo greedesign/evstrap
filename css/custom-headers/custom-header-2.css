@@ -1,0 +1,16 @@
+
+    .wrapper {
+      padding-top: 0;
+    }
+    .entry-header {
+      position: relative;
+      padding: 50px;
+      color: #fff;
+      height: 550px;
+      background-image: url(http://ev-design-system.local/wp-content/uploads/2019/03/wp2382523-1600x550.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .navbar-is-fixed-top .entry-header {
+      padding-top: calc(50px + 56px);
+    }
