@@ -103,13 +103,6 @@ function understrap_navbar() {
     $navbar_bgcolor = (get_theme_mod('understrap_navbar_bgcolor') !== '' ? get_theme_mod('understrap_navbar_bgcolor') : '');
     $navbar_bgalpha = (get_theme_mod('understrap_navbar_bgalpha') !== '' ? 'bg-alpha' : '');
 
-    // check if variable has value
-    //$navbar_position !== '' ? $navbar_position : '';
-    // $navbar_breakpoint !== '' ? $navbar_breakpoint : '';
-    // $navbar_color_scheme !== '' ? $navbar_color_scheme : '';
-    // $navbar_bgcolor !== '' ? $navbar_bgcolor : '';
-    // $navbar_bgalpha = ($navbar_bgalpha !== '' ? 'bg-alpha' : '');
-
     // concatinate all variables into tidy class string
     $navbar_classes[] = $navbar_breakpoint;
     $navbar_classes[] = $navbar_color_scheme;

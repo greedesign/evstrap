@@ -103,3 +103,26 @@ function acf_header_styles() {
   }
 }
 add_action( 'wp_enqueue_scripts', 'acf_header_styles' );
+
+/**
+ * Need to work in logic to check if theme defaults are set in Customizer
+ * and use those as individual page defaults
+ */
+/*function acf_check_defaults() {
+
+  $page_header_width = get_field( 'page_header_width' );
+
+  $value = update_field( 'my_field', 'my_value', $post_id );
+
+}*/
+
+/*$understrap_page_header_width_default = get_theme_mod('understrap_page_header_width_default');
+
+add_filter('acf/load_field/name=page_header_width',
+        function($field) use ($understrap_page_header_width_default) { 
+        // the variable after 'use' ($member_id) indicates that it is the one to 'use' from the main script.  $field is coming from 'acf/load_field'.  
+      $field['default_value'] = $understrap_page_header_width_default;
+      return $field;
+  }
+);
+*/

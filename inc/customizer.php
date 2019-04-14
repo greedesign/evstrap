@@ -675,6 +675,28 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 				)
 			)
 		);
+		
+		$wp_customize->add_setting(
+			'understrap_navbar_markup',
+			array(
+				'default'           => '',
+				'transport'         => 'refresh',
+				//'sanitize_callback' => 'esc_attr',
+				//'sanitize_js_callback' => 'esc_html',
+			)
+		);
+		$wp_customize->add_control(
+			new Understrap_TinyMCE_Custom_control(
+			$wp_customize,
+				'understrap_navbar_markup',
+				array(
+					'label'    		=> esc_html__('Navbar Markup', 'understrap'),
+					'description' 	=> esc_html__('Add content here to add additional elements to navbar', 'understrap'),
+					'settings'		=> 'understrap_navbar_markup',
+					'section'  		=> 'understrap_theme_navbar_content',
+				)
+			)
+		);
 
 
 		// Page Header options.

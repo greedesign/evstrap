@@ -11,17 +11,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Combine variables for use as classes
 $header_classes = [];
-
-$header_classes[] = (get_field('header_background_image') !== '' ? 'header-background-img' : '');
-$header_classes[] = get_field('page_header_width');
 $header_classes[] = get_field('title_alignment');
-$header_classes[] = (get_field('enable_advanced_header_alignment') !== '' ? 'd-felx' : '');
-
-$header_classes[] = get_field('header_vertical_align');
-$header_classes[] = get_field('header_horizontal_align');
-$header_classes[] = get_field('header_content_align');
-
-//$header_classes[] = (get_field('header_vertical_align') !== '' || get_field('title_horizontal_alignment') !== '' ? 'd-flex' : '');
+$header_classes[] = (get_field('header_background_image') == 1 ? 'header-background-img' : 'header-default');
+//only add header background classes if header background toggle is enabled
+if (get_field('header_background_image') == 1):
+	$header_classes[] = get_field('page_header_width');
+	$header_classes[] = (get_field('enable_advanced_header_alignment') !== '' ? 'd-felx' : '');
+	$header_classes[] = get_field('header_vertical_align');
+	$header_classes[] = get_field('header_horizontal_align');
+	$header_classes[] = get_field('header_content_align');
+endif;
 
 
 $header_classes = implode (" ", $header_classes);

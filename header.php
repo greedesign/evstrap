@@ -11,61 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-/*
-// Collect and format customizer variables for output
-// @TODO create simple function to pass inf check if customizer setting is set so we can reduce the amount of code in out templates
-$container = get_theme_mod( 'understrap_navbar_container' );
-$navbar_position = get_theme_mod('understrap_navbar_position'); //@TODO add CSS to apply appropriate spacing for navbar position body classes
-$navbar_breakpoint = get_theme_mod( 'understrap_navbar_breakpoint' );
-$navbar_shortcodes = get_theme_mod( 'understrap_navbar_shortcode' );
-$navbar_color_scheme = get_theme_mod( 'understrap_navbar_color_scheme' );
-$navbar_bgcolor = get_theme_mod( 'understrap_navbar_bgcolor' );
-$navbar_bgalpha = get_theme_mod( 'understrap_navbar_bgalpha' );
-
-// check if variable has value
-$navbar_breakpoint !== '' ? $navbar_breakpoint : '';
-$navbar_color_scheme !== '' ? $navbar_color_scheme : '';
-$navbar_position !== '' ? $navbar_position : '';
-$navbar_bgcolor !== '' ? $navbar_bgcolor : '';
-$navbar_bgalpha !== '' ? $navbar_bgalpha : '';
-if($navbar_bgalpha !== '') {
-	function navbar_header_styles() {
-		wp_enqueue_style(
-		'custom-navbar-style',
-		get_template_directory_uri() . '/style.css'
-		);
-
-		$understrap_color_primary = get_theme_mod( 'understrap_color_primary' );
-		$understrap_color_secondary = get_theme_mod( 'understrap_color_secondary' );
-		$understrap_color_light = get_theme_mod( 'understrap_color_light' );
-		$understrap_color_dark = get_theme_mod( 'understrap_color_dark' );
-		$understrap_color_white = get_theme_mod( 'understrap_color_white' );
-
-		
-		// Style
-		$navbar_css = "
-		.navbar {
-			background-color: 
-		}";
-
-		wp_add_inline_style( 'custom-header-style', $navbar_css );
-	}
-	add_action( 'wp_enqueue_scripts', 'navbar_header_styles' );
-
- }
-
-
-// concatinate all variables into tidy class string
-$navbar_classes[] = $navbar_breakpoint;
-$navbar_classes[] = $navbar_color_scheme;
-//$navbar_classes[] = $navbar_position;
-$navbar_classes[] = $navbar_bgcolor;
-
-$navbar_classes = implode (" ", $navbar_classes);
-*/
-
 $container = get_theme_mod( 'understrap_navbar_container' );
 $navbar_shortcodes = (get_theme_mod( 'understrap_navbar_shortcode' ) !== '' ? get_theme_mod( 'understrap_navbar_shortcode' ) : '');
+$navbar_markup = (get_theme_mod( 'understrap_navbar_markup' ) !== '' ? get_theme_mod( 'understrap_navbar_markup' ) : '');
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -127,17 +75,22 @@ $navbar_shortcodes = (get_theme_mod( 'understrap_navbar_shortcode' ) !== '' ? ge
 					)
 				); ?>
 
-				<?php if ( $navbar_shortcodes !== '' ) : ?>
+				<?php if ( $navbar_shortcodes !== '' || $navbar_markup !== '' ) : ?>
 					<div class="ev-navbar-region">
 						<?php
-							$navbar_shortcodes = explode(",", $navbar_shortcodes);
-							foreach ( $navbar_shortcodes as $navbar_shortcode ) {
-								if ( false === strpos( $navbar_shortcode, '[' ) ) {
-									echo htmlspecialchars_decode($navbar_shortcode);
-								} else {
-									echo do_shortcode( $navbar_shortcode );
+							if( $navbar_shortcodes !== '' ):
+								$navbar_shortcodes = explode(",", $navbar_shortcodes);
+								foreach ( $navbar_shortcodes as $navbar_shortcode ) {
+									if ( false === strpos( $navbar_shortcode, '[' ) ) {
+										echo htmlspecialchars_decode($navbar_shortcode);
+									} else {
+										echo do_shortcode( $navbar_shortcode );
+									}
 								}
-							}
+							endif;
+							if( $navbar_markup !== '' ):
+								echo htmlspecialchars_decode($navbar_markup);
+							endif;
 						?>
 					</div>
 				<?php endif; ?>

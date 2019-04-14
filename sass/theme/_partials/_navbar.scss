@@ -14,8 +14,8 @@ body.navbar-is-fixed-top #single-wrapper {
     padding-top: 85px;
 }
 
-body.navbar-is-fixed-top .entry-header.default,
-body.navbar-is-fixed-top .entry-header.default {
+body.navbar-is-fixed-top .entry-header,
+body.navbar-is-fixed-top .entry-header {
     margin-top: 85px;
 }
 
@@ -26,7 +26,7 @@ body.navbar-is-fixed-top .entry-header.default {
 .img-fluid.custom-logo { // remove default padding - possibly remove through class control in template files  
     padding-top: 0;
     padding-bottom: 0;
-    height: 40px; // imag height
+    height: 40px; // image height
     width: auto;
 }
 
@@ -43,9 +43,11 @@ body.navbar-is-fixed-top .entry-header.default {
  * * scoped specificlly to the #main-menu
  * 
  */
-// All nabvar <a> */ 
+// All nabvar <a> */
 .navbar-nav .nav-link {}
 // navbar 1st level <a> 
 .navbar-nav > li > .nav-link {}
-// navbar children <a> 
-.navbar-nav > li > .nav-link {}
+// navbar dropdown items <a>
+.dropdown-item {}
+
+.ev-navbar-region a { color: inherit; } 
