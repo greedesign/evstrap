@@ -160,6 +160,41 @@
                 "placeholder": ""
             },
             {
+                "key": "field_5cb417e30812a",
+                "label": "Header Image Background Repeat",
+                "name": "header_image_bgrepeat",
+                "type": "select",
+                "instructions": "Set the background image repeat",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5c9be12153522",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "repeat_no": "No Repeat",
+                    "repeat": "Repeat",
+                    "repeat_x": "Repeat Horizontally",
+                    "repeat_y": "Repeat Vertically"
+                },
+                "default_value": [],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": ""
+            },
+            {
                 "key": "field_5c9bdd1e64b25",
                 "label": "Page Header Width",
                 "name": "page_header_width",
