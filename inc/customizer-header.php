@@ -3,61 +3,11 @@
  * Understrap Customizer Variables for header.php
  *
  * @package understrap
- * ! Dosn't Work - needs fixing
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-
-/*
-function get_navbar_class( $class = '' ) {
-    
-    // Collect and format customizer variables for output
-    // @TODO create simple function to pass variable name into so we can check if variable is set so we can reduce the amount of code in out templates
-    $container = get_theme_mod( 'understrap_navbar_container' );
-    $navbar_position = get_theme_mod('understrap_navbar_position'); //@TODO add CSS to apply appropriate spacing for navbar position body classes
-    $navbar_breakpoint = get_theme_mod( 'understrap_navbar_breakpoint' );
-    $navbar_shortcodes = get_theme_mod( 'understrap_navbar_shortcode' );
-    $navbar_color_scheme = get_theme_mod( 'understrap_navbar_color_scheme' );
-    $navbar_bgcolor = get_theme_mod( 'understrap_navbar_bgcolor' );
-    $navbar_bgalpha = get_theme_mod( 'understrap_navbar_bgalpha' );
-
-    // check if variable has value
-    $navbar_breakpoint !== '' ? $navbar_breakpoint : '';
-    $navbar_color_scheme !== '' ? $navbar_color_scheme : '';
-    $navbar_position !== '' ? $navbar_position : '';
-    $navbar_bgcolor !== '' ? $navbar_bgcolor : '';
-    $navbar_bgalpha !== '' ? $navbar_bgalpha : '';
-
-    // concatinate all variables into tidy class string
-    $classes = array();
-    $classes[] = $navbar_breakpoint;
-    $classes[] = $navbar_color_scheme;
-    //$classes[] = $navbar_position;
-    $classes[] = $navbar_bgcolor;
-
-    $classes = array_map( 'esc_attr', $classes );
- 
-    /**
-     * Filters the list of CSS body class names for the current post or page.
-     *
-     * @since 2.8.0
-     *
-     * @param string[] $classes An array of body class names.
-     * @param string[] $class   An array of additional class names added to the body.
-     */
-/*    $classes = apply_filters( 'body_class', $classes, $class );
- 
-    return array_unique( $classes );
-
-}
-
-function navbar_class( $class = '' ) {
-    // Separates class names with a single space, collates class names for body element
-    echo 'class="' . join( ' ', get_navbar_class( $class ) ) . '"';
-}*/
 
 function understrap_hex2rgba($color, $opacity = false) {
     //$default = 'rgb(0,0,0)';    
@@ -82,16 +32,15 @@ function understrap_hex2rgba($color, $opacity = false) {
     return $output;
 }
 
+
 function understrap_navbar_wrapper() {
     $navbar_position = (get_theme_mod('understrap_navbar_position') !== '' ? get_theme_mod('understrap_navbar_position') : '');
-    //$navbar_position !== '' ? $navbar_position : '';
 
     if($navbar_position == 'fixed-top' || $navbar_position == 'fixed-bottom') {
         echo $navbar_fixed !== '' ? $navbar_position : '';
     }
 
 }
-//add_action( 'after_setup_theme', 'understrap_navbar_wrapper' );
 
 function understrap_navbar() {
 
@@ -109,25 +58,25 @@ function understrap_navbar() {
     $navbar_classes[] = $navbar_bgcolor;
     $navbar_classes[] = $navbar_bgalpha;
 
-    //$navbar_classes = implode (" ", $navbar_classes);
-    //return $navbar_classes;
-
     $navbar_classes = join(' ', $navbar_classes );
 
     echo $navbar_classes;
 
 }
-//add_action( 'after_setup_theme', 'understrap_navbar' );
 
-
+/**
+ * Get Customizer Navbar Bg Color settings and write to css file
+ * TODO: look into if this is properly cachable,
+ * TODO: if not output to inline styles (wp_add_inline_style)
+ */
 function navbar_header_styles() {
+    // Get BG base colour and alpha value
     $navbar_bgcolor = (get_theme_mod('understrap_navbar_bgcolor') !== '' ? get_theme_mod('understrap_navbar_bgcolor') : '');
     $navbar_bgalpha = (get_theme_mod('understrap_navbar_bgalpha') !== '' ? get_theme_mod('understrap_navbar_bgalpha') : '');
-    //$navbar_bgcolor !== '' ? $navbar_bgcolor : '';
-    //$navbar_bgalpha !== '' ? $navbar_bgalpha : '';
 
+    // if transparent
     if($navbar_bgalpha !== '') {
-        // Set current Theme palette value    
+        // Get current Theme palette value for use in alpha calculation 
         switch($navbar_bgcolor) {
             case 'bg-primary':
                 $bgcolor = get_theme_mod( 'understrap_color_primary' );
@@ -145,9 +94,10 @@ function navbar_header_styles() {
                 $bgcolor = get_theme_mod( 'understrap_color_white' );
                 break;
         }
-
+        // get set alpha value
         $navbar_bgalpha = $navbar_bgalpha / 100;
 
+        // calculate rgba value through hex2rgb function
         $bgcolor = understrap_hex2rgba($bgcolor, $navbar_bgalpha);
 
 		// Style

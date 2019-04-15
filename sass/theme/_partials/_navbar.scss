@@ -5,18 +5,24 @@ body.navbar-is-fixed-top.admin-bar .fixed-top {
     top: 32px;
 }
 
-body.navbar-is-fixed-top #full-width-page-wrapper {
-    padding-top: 0;
-}
+// body.navbar-is-fixed-top #full-width-page-wrapper {
+//     padding-top: 0;
+// }
 
-body.navbar-is-fixed-top #index-wrapper,
-body.navbar-is-fixed-top #single-wrapper {
+// body.navbar-is-fixed-top #index-wrapper,
+// body.navbar-is-fixed-top #single-wrapper,
+// body.navbar-is-fixed-top #full-width-page-wrapper {
+//     padding-top: 85px;
+// }
+
+// body.navbar-is-fixed-top .entry-header,
+// body.navbar-is-fixed-top .entry-header {
+//     margin-top: 85px;
+// }
+
+// add top margin to to #site wrapper
+body.navbar-is-fixed-top:not(.page-custom-header-image) #page {
     padding-top: 85px;
-}
-
-body.navbar-is-fixed-top .entry-header,
-body.navbar-is-fixed-top .entry-header {
-    margin-top: 85px;
 }
 
 

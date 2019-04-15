@@ -609,37 +609,6 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 				)
 			);
 
-			// // Alpha Color Picker setting.
-			// $wp_customize->add_setting(
-			// 	'understrap_navbar_bgcolor2',
-			// 	array(
-			// 		'default'     => 'rgba(209,0,55,0.7)',
-			// 		'type'        => 'theme_mod',
-			// 		'capability'  => 'edit_theme_options',
-			// 		'transport'   => 'postMessage'
-			// 	)
-			// );
-
-			// // Alpha Color Picker control.
-			// $wp_customize->add_control(
-			// 	new Understrap_Customize_Alpha_Color_Control(
-			// 		$wp_customize,
-			// 		'understrap_navbar_bgcolor2',
-			// 		array(
-			// 			'label'         => __( 'Alpha Color Picker', 'understrap' ),
-			// 			'section'       => 'understrap_theme_navbar_options',
-			// 			'settings'      => 'understrap_navbar_bgcolor2',
-			// 			'show_opacity'  => true, // Optional.
-			// 			'palette'	=> array(
-			// 				'rgb(150, 50, 220)', // RGB, RGBa, and hex values supported
-			// 				'rgba(50,50,50,0.8)',
-			// 				'rgba( 255, 255, 255, 0.2 )', // Different spacing = no problem
-			// 				'#00CC99' // Mix of color types = no problem
-			// 			)
-			// 		)
-			// 	)
-			// );
-
 
 		/**
 		* Navbar Features
@@ -778,6 +747,5 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 } // endif function_exists( 'understrap_theme_customize_register' ).
 add_action( 'customize_register', 'understrap_theme_customize_register' );
 
-// File dosn't work
 get_template_part( 'inc/customizer', 'header' );
 

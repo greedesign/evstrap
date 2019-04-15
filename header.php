@@ -29,11 +29,12 @@ $navbar_markup = (get_theme_mod( 'understrap_navbar_markup' ) !== '' ? get_theme
 <div class="site" id="page">
 
 	<!-- ******************* The Navbar Area ******************* -->
-	<div id="wrapper-navbar" class="<?php understrap_navbar_wrapper(); //echo $navbar_fixed; ?>" itemscope itemtype="http://schema.org/WebSite">
+	<!-- grab navbar wrapper classes and output -->
+	<div id="wrapper-navbar" class="<?php understrap_navbar_wrapper(); ?>" itemscope itemtype="http://schema.org/WebSite">
 
 		<a class="skip-link sr-only sr-only-focusable" href="#content"><?php esc_html_e( 'Skip to content', 'understrap' ); ?></a>
-		<?php //@TODO Add function to loop through all applicable navbar classes and output in one declaration to cleanup code ?>
-		<nav class="navbar <?php understrap_navbar(); //echo $navbar_class; ?>">
+		<!-- Loop through all available navbar classes and output -->
+		<nav class="navbar <?php understrap_navbar(); ?>">
 
 		<?php if ( 'container' == $container ) : ?>
 			<div class="container">
@@ -78,6 +79,7 @@ $navbar_markup = (get_theme_mod( 'understrap_navbar_markup' ) !== '' ? get_theme
 				<?php if ( $navbar_shortcodes !== '' || $navbar_markup !== '' ) : ?>
 					<div class="ev-navbar-region">
 						<?php
+							// if shortcodes exists parse and output
 							if( $navbar_shortcodes !== '' ):
 								$navbar_shortcodes = explode(",", $navbar_shortcodes);
 								foreach ( $navbar_shortcodes as $navbar_shortcode ) {
@@ -88,6 +90,7 @@ $navbar_markup = (get_theme_mod( 'understrap_navbar_markup' ) !== '' ? get_theme
 									}
 								}
 							endif;
+							// if HTML exists parse and output
 							if( $navbar_markup !== '' ):
 								echo htmlspecialchars_decode($navbar_markup);
 							endif;
