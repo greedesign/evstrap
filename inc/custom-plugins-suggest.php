@@ -17,6 +17,11 @@ function understrap_require_plugins() {
             'name'      => 'Advanced Custom Fields',
             'slug'      => 'advanced-custom-fields',
             'required'  => false, // this plugin is recommended
+        ),
+        array(
+            'name'      => 'Block Lab',
+            'slug'      => 'block-lab',
+            'required'  => false, // this plugin is recommended
         )
     );
     $config = array( /* The array to configure TGM Plugin Activation */ );
