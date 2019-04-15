@@ -34,7 +34,7 @@ function understrap_hex2rgba($color, $opacity = false) {
 
 
 function understrap_navbar_wrapper() {
-    $navbar_position = (get_theme_mod('understrap_navbar_position') !== '' ? get_theme_mod('understrap_navbar_position') : '');
+    $navbar_position = (!empty(get_theme_mod('understrap_navbar_position')) ? get_theme_mod('understrap_navbar_position') : '');
 
     if($navbar_position == 'fixed-top' || $navbar_position == 'fixed-bottom') {
         echo $navbar_fixed !== '' ? $navbar_position : '';
@@ -46,11 +46,11 @@ function understrap_navbar() {
 
     // Collect and format customizer variables for output
     // @TODO create simple function to pass inf check if customizer setting is set so we can reduce the amount of code in out templates
-    $navbar_position = (get_theme_mod('understrap_navbar_position') !== '' ? get_theme_mod('understrap_navbar_position') : '');
-    $navbar_breakpoint = (get_theme_mod('understrap_navbar_breakpoint') !== '' ? get_theme_mod('understrap_navbar_breakpoint') : '');
-    $navbar_color_scheme = (get_theme_mod('understrap_navbar_color_scheme') !== '' ? get_theme_mod('understrap_navbar_color_scheme') : '');
-    $navbar_bgcolor = (get_theme_mod('understrap_navbar_bgcolor') !== '' ? get_theme_mod('understrap_navbar_bgcolor') : '');
-    $navbar_bgalpha = (get_theme_mod('understrap_navbar_bgalpha') !== '' ? 'bg-alpha' : '');
+    $navbar_position = (!empty(get_theme_mod('understrap_navbar_position')) ? get_theme_mod('understrap_navbar_position') : '');
+    $navbar_breakpoint = (!empty(get_theme_mod('understrap_navbar_breakpoint')) ? get_theme_mod('understrap_navbar_breakpoint') : '');
+    $navbar_color_scheme = (!empty(get_theme_mod('understrap_navbar_color_scheme')) ? get_theme_mod('understrap_navbar_color_scheme') : '');
+    $navbar_bgcolor = (!empty(get_theme_mod('understrap_navbar_bgcolor')) ? get_theme_mod('understrap_navbar_bgcolor') : '');
+    $navbar_bgalpha = (!empty(get_theme_mod('understrap_navbar_bgalpha')) ? 'bg-alpha' : '');
 
     // concatinate all variables into tidy class string
     $navbar_classes[] = $navbar_breakpoint;
@@ -71,8 +71,8 @@ function understrap_navbar() {
  */
 function navbar_header_styles() {
     // Get BG base colour and alpha value
-    $navbar_bgcolor = (get_theme_mod('understrap_navbar_bgcolor') !== '' ? get_theme_mod('understrap_navbar_bgcolor') : '');
-    $navbar_bgalpha = (get_theme_mod('understrap_navbar_bgalpha') !== '' ? get_theme_mod('understrap_navbar_bgalpha') : '');
+    $navbar_bgcolor = (!empty(get_theme_mod('understrap_navbar_bgcolor')) ? get_theme_mod('understrap_navbar_bgcolor') : '');
+    $navbar_bgalpha = (!empty(get_theme_mod('understrap_navbar_bgalpha')) ? get_theme_mod('understrap_navbar_bgalpha') : '');
 
     // if transparent
     if($navbar_bgalpha !== '') {

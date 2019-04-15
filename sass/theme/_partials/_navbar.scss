@@ -2,7 +2,13 @@
  * Fixed navbar spacing on <body>
  */
 body.navbar-is-fixed-top.admin-bar .fixed-top {
-    top: 32px;
+    top: 46px;
+}
+
+@include media-breakpoint-up(md) {
+    body.navbar-is-fixed-top.admin-bar .fixed-top {
+        top: 32px;
+    }
 }
 
 // body.navbar-is-fixed-top #full-width-page-wrapper {

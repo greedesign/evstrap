@@ -40,6 +40,24 @@
 
 .aligncenter { @extend .mx-auto; }
 
+// Background Position / Size / Repeat
+.bgpos-left-top { background-position: left top; }
+.bgpos-left-center { background-position: left center; }
+.bgpos-left-bottom { background-position: left bottom; }
+.bgpos-right-top { background-position: right top; }
+.bgpos-right-center { background-position: right center; }
+.bgpos-right-bottom { background-position: right bottom; }
+.bgpos-center-top { background-position: center top; }
+.bgpos-center-center { background-position: center center; }
+.bgpos-center-bottom { background-position: center bottom; }
+.bgsize-cover { background-size: cover; }
+.bgsize-contain { background-size: contain; }
+.bgrepeat { background-repeat: repeat; }
+.bgrepeat-no { background-repeat: no-repeat; }
+.bgrepeat-x { background-repeat: repeat-x; }
+.bgrepeat-y { background-repeat: repeat-y; }
+
+
 // Content
 .page-content,
 .entry-content,
