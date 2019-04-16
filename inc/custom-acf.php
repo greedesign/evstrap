@@ -118,7 +118,7 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
       $header_classes[] = (get_field('header_image_bgsize') ? 'bgsize-' . get_field('header_image_bgsize') : '');
       $header_classes[] = (get_field('header_image_bgrepeat') ? 'bg' . str_replace('_', '-', get_field('header_image_bgrepeat')) : '');
       $header_classes[] = get_field('page_header_width');
-      $header_classes[] = (get_field('enable_advanced_header_alignment') ? 'd-felx' : '');
+      $header_classes[] = (get_field('enable_advanced_header_alignment') ? 'd-flex' : '');
       $header_classes[] = get_field('header_vertical_align');
       $header_classes[] = get_field('header_horizontal_align');
       $header_classes[] = get_field('header_content_align');
