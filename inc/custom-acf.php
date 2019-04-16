@@ -15,19 +15,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
 
   function acf_header_styles() {
-    if(get_field('header_background_image')) {
+    if(get_field('background_type') !== 'none') {
+      // ambigious enqueue call - dosn't actually do anything with style.css but need this to work for some reason?
       wp_enqueue_style(
         'custom-header-style',
         get_template_directory_uri() . '/style.css'
       );
 
-      $header_background_image = get_field('header_background_image');
-      $header_img = get_field('different_header_image');
+      //$header_background_image = get_field('header_background_image');
+      $header_feature_img = get_field('featured_header_image');
+      $header_img = get_field('header_image');
       $header_width = get_field('page_header_width');
       $header_height = get_field('page_header_height');
-      $overlay = get_field('overlay');
-      $overlay_color = get_field('overlay_color');
-      $overlay_transparency = (get_field('overlay_transparency') / 100);
+      //$overlay = get_field('overlay');
+      $img_overlay_type = get_field('img_overlay_type');
+      $img_overlay_color = get_field('img_overlay_color');
+      $img_color_overlay_transparency = (get_field('img_color_overlay_transparency') / 100);
+      $img_overlay_gradient = get_field('img_overlay_gradient');
 
       // Set Image Variables for output
       switch($header_height) {
@@ -60,10 +64,24 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
           break;
       }
       // Determine Header Image source
-      if($header_img == true && get_field('header_image')) {
+      // if featured_header_image is false and we have a set custom header image use it
+      if($header_feature_img == false && get_field('header_image')) {
         $header_img_url = get_field('header_image')['sizes'][$img_size];
-      } else {
+      } else { // otherwise use feartured image
         $header_img_url = get_the_post_thumbnail_url(get_the_ID(), $img_size);
+      }
+
+      // Determine and set Overlay properties
+      switch($img_overlay_type) {
+        case "color":
+          $overlay_props = "
+            background-color: {$img_overlay_color};
+            opacity: {$img_color_overlay_transparency};
+          ";
+          break;
+        case "gradient":
+          $overlay_props = $img_overlay_gradient;
+          break;
       }
 
       // Styles
@@ -81,7 +99,7 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
         .navbar-is-fixed-top .entry-header {
           padding-top: calc(50px + 56px);
         }";
-      if($overlay):
+      if($img_overlay_type !== 'none'):
         $header_css[] = "
           .entry-header > * {
             position: relative;
@@ -93,8 +111,7 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
             right: 0;
             bottom: 0;
             left: 0;
-            background-color: {$overlay_color};
-            opacity: {$overlay_transparency};
+            {$overlay_props}
             z-index: 0;
           }";
       endif;
@@ -108,12 +125,26 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
 
   // Add classes to header_page
   function acf_header_classes() {
+
     // Combine variables for use as classes
     $header_classes = [];
     $header_classes[] = get_field('title_alignment');
-    $header_classes[] = (get_field('header_background_image') == 1 ? 'header-background-img' : 'header-default');
-    //only add header background classes if header background toggle is enabled
-    if (get_field('header_background_image') == 1):
+    // if background type is not none add basic class , otherwise add default class
+    $header_classes[] = (get_field('background_type') !== 'none' ? 'header-background-cover' : 'header-default');
+    // only add header background classes if header background type is not none
+    if (get_field('background_type') !== 'none'):
+      // add class depending on background type option
+      switch(get_field('background_type')) {
+        case "color":
+          $header_classes[] = 'header-background-color';
+          break;
+        case "gradient":
+          $header_classes[] = 'header-background-gradient';
+          break;
+        case "image":
+          $header_classes[] = 'header-background-img';
+          break;
+      }
       $header_classes[] = (get_field('header_image_bgposition') ? 'bgpos-' . str_replace('_', '-', get_field('header_image_bgposition')) : '');
       $header_classes[] = (get_field('header_image_bgsize') ? 'bgsize-' . get_field('header_image_bgsize') : '');
       $header_classes[] = (get_field('header_image_bgrepeat') ? 'bg' . str_replace('_', '-', get_field('header_image_bgrepeat')) : '');
@@ -131,8 +162,8 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
 
   // add class to body if page has custom header
   function acf_header_body_class( $classes ) {
-    if (get_field('header_background_image') == 1):
-      $classes[] = "page-custom-header-image";
+    if (get_field('background_type') !== 'none'):
+      $classes[] = "page-custom-header";
     endif;
     return $classes;
   }
