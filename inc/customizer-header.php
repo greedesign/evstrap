@@ -21,27 +21,34 @@ function understrap_hex2rgba($color, $opacity = false) {
         $hex = array($color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2]);
     /*else
         return $default;*/
-    $rgb = array_map('hexdec', $hex);    
+    $rgb = array_map('hexdec', $hex);
     if ($opacity) {
         if (abs($opacity) > 1)
             $opacity = 1.0;
         $output = 'rgba(' . implode(",", $rgb) . ',' . $opacity . ')';
     } else {
         $output = 'rgb(' . implode(",", $rgb) . ')';
-    }    
+    }
     return $output;
 }
 
-
+/**
+ * If naxbar is fixed positioned apply appropriate class
+ *
+ */
 function understrap_navbar_wrapper() {
     $navbar_position = (!empty(get_theme_mod('understrap_navbar_position')) ? get_theme_mod('understrap_navbar_position') : '');
-
+    // if Navbar position is fixed top or bottom output that to our navbar wrapper
     if($navbar_position == 'fixed-top' || $navbar_position == 'fixed-bottom') {
-        echo $navbar_fixed !== '' ? $navbar_position : '';
+        $navbar_fixed = $navbar_position;
+        echo $navbar_fixed;
     }
-
 }
 
+/**
+ * Gather theme setting and output navbar classes
+ *
+ */
 function understrap_navbar() {
 
     // Collect and format customizer variables for output
