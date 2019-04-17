@@ -1,12 +1,15 @@
 /**
  * Content Block layout 
  */
+
+ // Wide Alignment
 .entry-content > .alignwide,
 .entry-header.alignwide {
-  margin-left  : -80px;
-  margin-right : -80px;
+  margin-left  : -$align_wide_width;
+  margin-right : -$align_wide_width;
 }
 
+// Full width alignment
 .entry-content > .alignfull,
 .entry-header.alignfull {
   margin-left  : calc( -100vw / 2 + 100% / 2 );
