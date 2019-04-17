@@ -31,15 +31,15 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
     // Combine variables for use as classes
     $header_classes = [];
     // only output title alignment class if advanced header alignment is enabled
-    if(get_field('enable_advanced_header_alignment' !== 1)):
+    if(get_field('enable_advanced_header_alignment') !== 1):
       $header_classes[] = get_field('title_alignment');
     endif;
 
     // if background type is not none: add background, width and alignment classes; otherwise add a default class
     if( $background_type !== 'none' ):
-      $header_classes[] = 'header-background-cover flex-wrap';
+      $header_classes[] = 'header-background-cover';
       $header_classes[] = get_field('page_header_width');
-      $header_classes[] = (get_field('enable_advanced_header_alignment') ? 'd-flex' : '');
+      $header_classes[] = (get_field('enable_advanced_header_alignment') == 1 ? 'd-flex flex-wrap' : '');
       $header_classes[] = get_field('header_vertical_align');
       $header_classes[] = get_field('header_horizontal_align');
       $header_classes[] = get_field('header_content_align');
