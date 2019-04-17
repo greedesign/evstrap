@@ -1,5 +1,17 @@
 /**
  * Admin styles
  */
+/**
+  * Advanced Custom Fields Bottom Metabox
+  * * experimental sticky positioning
+  */
+.edit-post-layout__content .edit-post-layout__metaboxes {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  background-color: #fff;
+  max-height: 50vh;
+  overflow-y: auto;
+  z-index: 999; }
 
-/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFkbWluLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0dBRUciLCJmaWxlIjoiYWRtaW4uY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXHJcbiAqIEFkbWluIHN0eWxlc1xyXG4gKi9cclxuIl19 */
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFkbWluLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0dBRUc7QUFFRjs7O0lBR0c7QUFDRjtFQUNFLHlCQUFnQjtFQUFoQixpQkFBZ0I7RUFDaEIsVUFBUztFQUNULHVCQUFzQjtFQUN0QixpQkFBZ0I7RUFDaEIsaUJBQWdCO0VBQ2hCLGFBQVksRUFDYiIsImZpbGUiOiJhZG1pbi5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEFkbWluIHN0eWxlc1xuICovXG5cbiAvKipcbiAgKiBBZHZhbmNlZCBDdXN0b20gRmllbGRzIEJvdHRvbSBNZXRhYm94XG4gICogKiBleHBlcmltZW50YWwgc3RpY2t5IHBvc2l0aW9uaW5nXG4gICovXG4gIC5lZGl0LXBvc3QtbGF5b3V0X19jb250ZW50IC5lZGl0LXBvc3QtbGF5b3V0X19tZXRhYm94ZXMge1xuICAgIHBvc2l0aW9uOiBzdGlja3k7XG4gICAgYm90dG9tOiAwO1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG4gICAgbWF4LWhlaWdodDogNTB2aDtcbiAgICBvdmVyZmxvdy15OiBhdXRvO1xuICAgIHotaW5kZXg6IDk5OTtcbiAgfSJdfQ== */
