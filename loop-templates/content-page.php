@@ -17,6 +17,32 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
+    <?php if (get_field('internal_links_position') == 'page_header'): ?>
+			<div class="entry-header--internal-links">
+        <?php
+          if( have_rows('internal_page_links') ):
+            // loop through the rows of data
+            while ( have_rows('internal_page_links') ) : the_row();
+              $link = get_sub_field('link');
+              if( $link ): 
+                $link_url = $link['url'];
+                $link_title = $link['title'];
+                $link_target = $link['target'] ? $link['target'] : '_self';
+                ?>
+                <?php if( get_row_index() > 1 ):?>|<?php endif; ?>
+                <a class="btn btn-link" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>"><?php echo esc_html($link_title); ?></a>
+              <?php endif;
+            endwhile;
+          endif;
+        ?>
+			</div>
+		<?php endif; ?>
+		<?php if (get_field('header_markup_type') == 'richtxt'): ?>
+			<div class="entry-header--custom-markup">
+				<?php the_field('header_custom_markup'); ?>
+			</div>
+		<?php endif; ?>
+
 	</header><!-- .entry-header -->
 
 	<?php //echo get_the_post_thumbnail( $post->ID, 'large' ); ?>

@@ -180,6 +180,14 @@ gulp.task( 'scripts', function() {
   gulp.src( scripts )
     .pipe( concat( 'theme.js' ) )
     .pipe( gulp.dest( paths.js ) );
+
+  gulp.src( paths.js + '/admin.js' )
+    .pipe( concat( 'admin.min.js' ) )
+    .pipe( uglify().on('error', function(e){
+      console.log(e);
+    }))
+    .pipe( gulp.dest( paths.js ) );
+
 });
 
 // Deleting any file inside the /src folder

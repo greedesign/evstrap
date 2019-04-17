@@ -4,3 +4,5 @@ jQuery( document ).ready(function($) {
     //wp.customize.previewer.refresh();
     
 });
+
+jQuery(window).off( 'beforeunload.edit-post' );
