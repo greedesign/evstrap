@@ -150,14 +150,6 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
        */
       if($background_type == 'image'):
 
-        // Determine Header Image source
-        // if featured_header_image is false and we have a set custom header image use it
-        if($header_feature_img == false && get_field('header_image')) {
-          $header_img_url = get_field('header_image')['sizes'][$img_size];
-        } else { // otherwise use feartured image
-          $header_img_url = get_the_post_thumbnail_url(get_the_ID(), $img_size);
-        }
-
         // Set Image style based on header height setting
         switch($header_height) {
           case "default":
@@ -179,6 +171,14 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
           default:
             $img_size = 'banner-full-screen';
             break;
+        }
+
+        // Determine Header Image source
+        // if featured_header_image is false and we have a set custom header image use it
+        if($header_feature_img == false && get_field('header_image')) {
+          $header_img_url = get_field('header_image')['sizes'][$img_size];
+        } else { // otherwise use feartured image
+          $header_img_url = get_the_post_thumbnail_url(get_the_ID(), $img_size);
         }
 
         // Determine and set Overlay CSS properties
