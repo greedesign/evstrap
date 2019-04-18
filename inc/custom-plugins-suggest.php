@@ -36,6 +36,13 @@ function understrap_require_plugins() {
             'required'  => true, // this plugin is recommended
             'force_activation'   => true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
         ),
+        array(
+            'name'      => 'Advanced Custom Fields: Font Awesome Field',
+            'slug'      => 'advanced-custom-fields-font-awesome',
+            'required'  => false, // this plugin is recommended
+            'force_activation'   => true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
+        ),
+
 
     );
     $config = array(

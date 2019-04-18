@@ -21,9 +21,10 @@ $understrap_includes = array(
 	'/customizer.php',                      // Customizer additions.
 	'/jetpack.php',                         // Load Jetpack compatibility file.
 	'/class-wp-bootstrap-navwalker.php',    // Load custom WordPress nav walker.
-	'/custom-acf.php',						// Custom Settings Specific to ACF module. Eventually want to remove acf dependancy
+	'/custom-acf.php',											// Custom Settings Specific to ACF module.
+	//'/custom-acf-blocks.php',								// Register ACF Blocks.
 	'/custom-comments.php',                 // Custom Comments file.
-	'/custom-plugins-suggest.php',			// Load Theme Plugin Suggestions
+	'/custom-plugins-suggest.php',					// Load Theme Plugin Suggestions
 	//'/woocommerce.php',                   // Load WooCommerce functions.
 	'/editor.php',                          // Load Editor functions.
 	'/deprecated.php',                      // Load deprecated functions.
