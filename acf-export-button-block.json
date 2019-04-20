@@ -1,0 +1,226 @@
+
+
+
+
+
+
+
+
+[
+    {
+        "key": "group_5cba225689fac",
+        "title": "ev+ Button",
+        "fields": [
+            {
+                "key": "field_5cba2263273d8",
+                "label": "HTML Element",
+                "name": "html_element",
+                "type": "button_group",
+                "instructions": "Select the html element to use for this button.\r\nDefault is anchor - used page and internal links\r\nbutton - useful for toggling JS calls and other on click\/tap events",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "a": "Link",
+                    "button": "Button",
+                    "input_button": "input_button",
+                    "input_submit": "input_submit"
+                },
+                "allow_null": 0,
+                "default_value": "",
+                "layout": "horizontal",
+                "return_format": "value"
+            },
+            {
+                "key": "field_5cba254d273d9",
+                "label": "Link",
+                "name": "link",
+                "type": "link",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5cba2263273d8",
+                            "operator": "==",
+                            "value": "a"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array"
+            },
+            {
+                "key": "field_5cba2cdf1e10c",
+                "label": "Button Label",
+                "name": "button_label",
+                "type": "text",
+                "instructions": "Text to display in button",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5cba2263273d8",
+                            "operator": "!=",
+                            "value": "a"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5cba2da21e10d",
+                "label": "Style",
+                "name": "style",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "btn-primary": "Primary",
+                    "btn-secondary": "Secondary",
+                    "btn-success": "Success",
+                    "btn-danger": "Danger",
+                    "btn-warning": "Warning",
+                    "btn-info": "Info",
+                    "btn-light": "Light",
+                    "btn-dark": "Dark",
+                    "btn-link": "Link"
+                },
+                "default_value": [
+                    "btn-secondary"
+                ],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": ""
+            },
+            {
+                "key": "field_5cba2e9f16bff",
+                "label": "Outline",
+                "name": "outline",
+                "type": "true_false",
+                "instructions": "Enable outline button style. See <a href=\"https:\/\/getbootstrap.com\/docs\/4.3\/components\/buttons\/#outline-buttons\" target=\"_blank\">BS Docs<\/a> for more info",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_5cba34a81fe82",
+                "label": "Size",
+                "name": "size",
+                "type": "select",
+                "instructions": "Set button size style. See <a href=\"https:\/\/getbootstrap.com\/docs\/4.3\/components\/buttons\/#sizes\" target=\"_blank\">BS Docs<\/a> for more info",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "btn-sm": "Small",
+                    "NULL": "Default",
+                    "btn-lg": "Large"
+                },
+                "default_value": [
+                    "NULL"
+                ],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": ""
+            },
+            {
+                "key": "field_5cba38594941e",
+                "label": "ID",
+                "name": "id",
+                "type": "text",
+                "instructions": "Set #ID for button. Useful for targeting element for JS events",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_5cba485c18b9e",
+                "label": "Button Block",
+                "name": "button_block",
+                "type": "true_false",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "block",
+                    "operator": "==",
+                    "value": "acf\/ev-button"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "seamless",
+        "label_placement": "left",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": ""
+    }
+]
