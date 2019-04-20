@@ -37,7 +37,8 @@ function my_acf_init() {
 			'category'			=> 'formatting',
 			'icon'				=> 'index-card',
 			'keywords'			=> array( 'featured', 'card', 'featured card'),
-			'enqueue_style' => get_template_directory_uri() . '/template-parts/blocks/ev-featured-card/ev-featured-card.css'
+			'enqueue_style' => get_template_directory_uri() . '/template-parts/blocks/ev-featured-card/ev-featured-card.css',
+			'enqueue_script' => get_template_directory_uri() . '/template-parts/blocks/ev-featured-card/ev-featured-card.js'
 		));
 		
 		// register ev+ Logo Grid
@@ -186,44 +187,43 @@ $secondaryContentBody = $secondaryContent['secondary_content_body'];
 //get secondary_content_button_label (text)
 $secondaryContentButtonLabel = $secondaryContent['secondary_content_button_label'];
 
-// create id attribute for specific styling
-//$id = 'fa-icon-' . $block['id'];
+// create id attribute for unique targeting
+$id = 'featured-card-' . $block['id'];
+
 
 // create align class ("alignwide") from block setting ("wide")
 //$align_class = $block['align'] ? 'align' . $block['align'] : '';
 ?>
-<div class="card">
-	<div id="<?php echo $block['id'];?>-secondary-content" class="d-none">
-		<?php echo $secondaryContentBody; ?>
-	</div>
+<div id="<?php echo $id; ?>"  class="card featured-card">
 	
 	<?php if($cardImage): ?>
 		<img class="card-img-top" src="<?php echo $cardImage; ?>" alt="<?php echo $card_image_alt; ?>">
 	<?php endif; ?>
-	
-	<span class="card-badge"><?php echo $cardBadge; ?></span>
   <div class="card-body">
+	<span class="card-badge"><?php echo $cardBadge; ?></span>
     <h5 class="card-title"><?php echo $title; ?></h5>
     <p class="card-text"><?php echo $cardBody; ?></p>
     <a href="<?php echo $buttonURL; ?>" class="btn btn-primary"><?php echo $buttonText; ?></a>
 		
 		<!-- Secondary Content Area -->
 		<?php if($secondaryContentButtonLabel): ?>
-			<button id="<?php echo $block['id'] . '-button'; ?>" class="btn btn-light card-link">
+			<button id="<?php echo $block['id'] . '-button'; ?>" class="btn btn-light card-link btn--secondary-content-toggle">
 				<?php echo $secondaryContentButtonLabel; ?>
 			</button>
 		<?php endif; ?>
-  </div>
+	</div>
+	<?php if($secondaryContentBody): ?>
+		<div class="card-secondary-content">
+			<button class="btn dismiss"><span class="fa fa-close"></span></button>
+			<div class="card-secondary-content-body">
+				<?php echo $secondaryContentBody; ?>
+			</div>
+		</div>
+	<?php endif; ?> 
 </div>
 
-<script type="text/javascript">
-	jQuery( <?php echo json_encode('#' . $block['id'] . '-button'); ?> ).on('click', function(){
-		jQuery( <?php echo json_encode('#' . $block['id'] . '-secondary-content'); ?> ).toggleClass( "d-none" );
-	});
-</script>
-<?php
-}
-?>
+<script type="text/javascript"></script>
+<?php } ?>
 
 
 <?php
@@ -392,10 +392,6 @@ function ev_button_block_block_render_callback( $block ) {
         $type = $html_elements[1];
       }
     }
-
-    
-
-
 
     // if outlined-button option is checked alter style value to reflect appropriate class value
     if ( $outline == 1) {
