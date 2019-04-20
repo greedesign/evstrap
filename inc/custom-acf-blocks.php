@@ -63,6 +63,18 @@ function my_acf_init() {
 			'keywords'			=> array( 'post', 'post grid', 'grid'),
 			'enqueue_style' => get_template_directory_uri() . '/template-parts/blocks/ev-post-object/ev-post-object.css'
 		));
+
+		// register ev+ Button
+		acf_register_block(array(
+			'name'				=> 'ev-button',
+			'title'				=> __('ev+ Button Block'),
+			'description'		=> __('Button element. Allows for anchor or button element and selection if bootstrap style options.'),
+			'render_callback'	=> 'ev_button_block_block_render_callback',
+			'category'			=> 'formatting',
+			'icon'				=> 'admin-post',
+			'keywords'			=> array( 'button', 'link', 'JS'),
+			'enqueue_style' => get_template_directory_uri() . '/template-parts/blocks/ev-button/ev-button.css'
+		));
 	}
 } 
 
@@ -315,3 +327,91 @@ $id = 'post-object-' . $block['id'];
 }
 
 
+
+/*
+ * Callback function for ev-button
+ */
+function ev_button_block_block_render_callback( $block ) {
+
+    /**
+     * Block Name: ev+ Button
+     *
+     * This is the template that displays Buttons.
+     */
+
+    // HTML Element
+    $html_element = get_field('html_element');
+    // Anchor Link
+    $link = get_field('link');
+    if( $link ) {
+      $link_url = $link['url'];
+      $title = $link['title'];
+      $link_target = $link['target'] ? $link['target'] : '_self';
+    }
+    // Button/ Input Label
+    $label = get_field('button_label');
+    
+    // Style Option
+    $style = get_field( 'style' );
+    // Size
+    $size = get_field('size');
+    // Outline  style
+    $outline = get_field( 'outline' );
+    // Button Block
+    $block_button = (NULL == get_field('block_button') ? '' : 'btn-block' );
+    // ID
+    $id = get_field('id');
+
+    // get additional_classes (text)
+    $additional_classes = get_field('additional_classes');
+
+    switch($html_element) {
+      case "a":
+        $template = "standard";
+        $label = $link['title'];
+        break;
+      case "button":
+        $template = "standard";
+        $type = "button";
+        $title = get_field('button_label');
+        break;
+      case "input_button":
+        $template = "empty";
+        break;
+      case "input_submit":
+        $template = "empty";
+        break;
+    }
+
+    if( $template == "empty" ) {
+      // explode
+      $html_elements = explode("_", $html_element);
+      // check if input
+      if (sizeof($html_elements) > 1 && $html_elements[0] == "input") {
+        $html_element = $html_elements[0];
+        $type = $html_elements[1];
+      }
+    }
+
+    
+
+
+
+    // if outlined-button option is checked alter style value to reflect appropriate class value
+    if ( $outline == 1) {
+      // break up initial $style value
+      $style = explode("-", $style);
+      $style = $style[0] . "-outline-" . $style[1];
+    }
+    
+    if($template == "standard"): ?>
+      <<?php echo $html_element; ?> <?php if($link):?> href="<?php echo($link_url) ?>"<?php endif; ?> <?php if($id):?>id="<?php echo($id); ?>" <?php endif; ?> class="btn <?php echo $style; ?> <?php echo $block_button; ?> <?php echo $size; ?>" <?php if($link_target): ?>target="<?php echo $link_target; ?>"<?php endif; ?>>
+        <?php echo($title) ?>
+      </<?php echo $html_element; ?>>
+    <?php endif; ?>
+
+    <?php if($template == "empty"): ?>
+      <<?php echo $html_element; ?> <?php if(isset($type)): ?> type="<?php echo $type; ?>"<?php endif; ?> class="btn <?php echo $style; ?> <?php echo $block_button; ?> <?php echo $size; ?>" value="<?php echo($label) ?>">
+    <?php endif; ?>
+
+  <?php } ?>

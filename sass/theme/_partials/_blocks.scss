@@ -17,6 +17,17 @@
   max-width    : 100vw;
 }
 
+// When device width is less than container make is 
+@include media-breakpoint-down(lg) {
+  .alignwide.header-background-cover {
+    margin-left  : calc( -100vw / 2 + 100% / 2 );
+    margin-right : calc( -100vw / 2 + 100% / 2 );
+    max-width    : 100vw;
+    width: auto;
+  }
+}
+
+// Fix for WP default cover block when alignfull is applied
 .wp-block-cover.alignfull,
 .wp-block-cover-image.alignfull {
   width: auto;

@@ -11,20 +11,14 @@ body.navbar-is-fixed-top.admin-bar .fixed-top {
   }
 }
 
-// body.navbar-is-fixed-top #full-width-page-wrapper {
-//  padding-top: 0;
-// }
-
-// body.navbar-is-fixed-top #index-wrapper,
-// body.navbar-is-fixed-top #single-wrapper,
-// body.navbar-is-fixed-top #full-width-page-wrapper {
-//   padding-top: 85px;
-// }
-
-// body.navbar-is-fixed-top .entry-header,
-// body.navbar-is-fixed-top .entry-header {
-//   margin-top: 85px;
-// }
+@include media-breakpoint-down(lg) {
+  .navbar-is-fixed-top .alignwide.header-background-color {
+    margin-left  : calc( -100vw / 2 + 100% / 2 );
+    margin-right : calc( -100vw / 2 + 100% / 2 );
+    max-width    : 100vw;
+    width: auto;
+  }
+}
 
 // add top margin to to #site wrapper
 body.navbar-is-fixed-top:not(.page-custom-header) #page {
