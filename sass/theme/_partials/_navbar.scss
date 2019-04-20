@@ -19,7 +19,9 @@ body.navbar-is-fixed-top.admin-bar .fixed-top {
     width: auto;
   }
 }
-
+body.page-custom-header-is-alignfull .entry-content > .alignfull:first-child {
+   margin-top: -1.5rem;
+}
 // add top margin to to #site wrapper
 body.navbar-is-fixed-top:not(.page-custom-header) #page {
   padding-top: 85px;

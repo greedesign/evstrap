@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"customizer-navbar.min.css","sourcesContent":[]}
+{"version":3,"sources":["customizer-navbar.css"],"names":[],"mappings":"AACE,iBACC,iBAAkB","file":"customizer-navbar.min.css","sourcesContent":["\n\t\t.navbar.bg-alpha {\n\t\t\tbackground-color: rgba(52,58,64,0.5) !important;\n        }"]}

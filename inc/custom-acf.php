@@ -19,6 +19,9 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
     if (get_field('background_type') !== 'none'):
       $classes[] = "page-custom-header";
     endif;
+    if (get_field('page_header_width') == 'alignfull'):
+      $classes[] = "page-custom-header-is-alignfull";
+    endif;
     return $classes;
   }
   add_filter( 'body_class', 'acf_header_body_class' );
