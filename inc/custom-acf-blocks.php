@@ -200,10 +200,13 @@ $id = 'featured-card-' . $block['id'];
 		<img class="card-img-top" src="<?php echo $cardImage; ?>" alt="<?php echo $card_image_alt; ?>">
 	<?php endif; ?>
   <div class="card-body">
-	<span class="card-badge"><?php echo $cardBadge; ?></span>
+		<div class="card-badge"><span><?php echo $cardBadge; ?></span></div>
     <h5 class="card-title"><?php echo $title; ?></h5>
-    <p class="card-text"><?php echo $cardBody; ?></p>
-    <a href="<?php echo $buttonURL; ?>" class="btn btn-primary"><?php echo $buttonText; ?></a>
+		<p class="card-text"><?php echo $cardBody; ?></p>
+		
+		<?php if($buttonURL): ?>
+			<a href="<?php echo $buttonURL; ?>" class="btn btn-primary"><?php echo $buttonText; ?></a>
+		<?php endif; ?>
 		
 		<!-- Secondary Content Area -->
 		<?php if($secondaryContentButtonLabel): ?>
