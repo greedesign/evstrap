@@ -3,9 +3,37 @@
     "title": "ev+ FA Icon",
     "fields": [
         {
+            "key": "field_5cb8a854ac535",
+            "label": "FA Icon",
+            "name": "fa_icon",
+            "type": "font-awesome",
+            "instructions": "Select a Font Aweosme Icon.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "icon_sets": [
+                "fas",
+                "far",
+                "fab"
+            ],
+            "custom_icon_set": "",
+            "default_label": "",
+            "default_value": "",
+            "save_format": "class",
+            "allow_null": 0,
+            "show_preview": 1,
+            "enqueue_fa": 0,
+            "fa_live_preview": "",
+            "choices": []
+        },
+        {
             "key": "field_5cb61131850ec",
-            "label": "Icon Class",
-            "name": "icon_class",
+            "label": "Additional Classes",
+            "name": "additional_classes",
             "type": "text",
             "instructions": "",
             "required": 1,
@@ -27,7 +55,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/fa-icon"
+                "value": "acf\/ev-fa-icon"
             }
         ]
     ],
@@ -39,5 +67,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1555520114
+    "modified": 1555632971
 }

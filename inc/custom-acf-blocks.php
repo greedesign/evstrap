@@ -53,7 +53,7 @@ function my_acf_init() {
 			'enqueue_style' => get_template_directory_uri() . '/template-parts/blocks/ev-logo-grid/ev-logo-grid.css'
 		));
 
-		// register ev+ Logo Grid
+		// register ev+ Post Object
 		acf_register_block(array(
 			'name'				=> 'ev-post-object',
 			'title'				=> __('ev+ Post Object'),
@@ -72,10 +72,35 @@ function my_acf_init() {
 			'description'		=> __('Button element. Allows for anchor or button element and selection if bootstrap style options.'),
 			'render_callback'	=> 'ev_button_block_block_render_callback',
 			'category'			=> 'formatting',
-			'icon'				=> 'admin-post',
+			'icon'				=> 'admin-links',
 			'keywords'			=> array( 'button', 'link', 'JS'),
 			'enqueue_style' => get_template_directory_uri() . '/template-parts/blocks/ev-button/ev-button.css'
 		));
+		
+		// register ev+ Custom Column Content
+		acf_register_block(array(
+			'name'				=> 'ev-custom-column-content',
+			'title'				=> __('ev+ Custom Column Content Block'),
+			'description'		=> __('Custom Bootstrap Columns with WYSIWYG content for each column. Only works up to 6 cols right now.'),
+			'render_callback'	=> 'ev_custom_column_content_block_render_callback',
+			'category'			=> 'formatting',
+			'icon'				=> 'welcome-widgets-menus',
+			'keywords'			=> array( 'column', 'columns'),
+			//'enqueue_style' => get_template_directory_uri() . '/template-parts/blocks/ev-button/ev-button.css'
+		));
+		
+		// register ev+ Artist Post Grid
+		acf_register_block(array(
+			'name'				=> 'ev-artist-post-grid',
+			'title'				=> __('ev+ Artist Post Grid'),
+			'description'		=> __('Custom Bootstrap Columns with WYSIWYG content for each column.'),
+			'render_callback'	=> 'ev_artist_post_grid_block_render_callback',
+			'category'			=> 'formatting',
+			'icon'				=> 'art',
+			'keywords'			=> array( 'artist', 'post grid', 'post'),
+			//'enqueue_style' => get_template_directory_uri() . '/template-parts/blocks/ev-button/ev-button.css'
+		));
+	
 	}
 } 
 
@@ -197,15 +222,18 @@ $id = 'featured-card-' . $block['id'];
 <div id="<?php echo $id; ?>"  class="card featured-card">
 	
 	<?php if($cardImage): ?>
-		<img class="card-img-top" src="<?php echo $cardImage; ?>" alt="<?php echo $card_image_alt; ?>">
+		<img class="card-img-top" src="<?php echo $cardImage; ?>" alt="<?php echo $card_image_alt; ?>" />
 	<?php endif; ?>
   <div class="card-body">
 		<div class="card-badge"><span><?php echo $cardBadge; ?></span></div>
     <h5 class="card-title"><?php echo $title; ?></h5>
-		<p class="card-text"><?php echo $cardBody; ?></p>
-		
+		<p class="card-text">
+			<?php echo $cardBody; ?>
+		</p>
 		<?php if($buttonURL): ?>
-			<a href="<?php echo $buttonURL; ?>" class="btn btn-primary"><?php echo $buttonText; ?></a>
+			<a href="<?php echo $buttonURL; ?>" class="btn btn-primary">
+				<?php echo $buttonText; ?>
+			</a>
 		<?php endif; ?>
 		
 		<!-- Secondary Content Area -->
@@ -217,7 +245,9 @@ $id = 'featured-card-' . $block['id'];
 	</div>
 	<?php if($secondaryContentBody): ?>
 		<div class="card-secondary-content">
-			<button class="btn dismiss"><span class="fa fa-close"></span></button>
+			<button class="btn dismiss">
+				<span class="fa fa-close"></span>
+			</button>
 			<div class="card-secondary-content-body">
 				<?php echo $secondaryContentBody; ?>
 			</div>
@@ -414,3 +444,256 @@ function ev_button_block_block_render_callback( $block ) {
     <?php endif; ?>
 
   <?php } ?>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <?php
+/*
+ * Callback function for ev-accordion
+ */
+function ev_custom_column_content_block_render_callback( $block ) {
+/**
+ * Block Name: ev+ Custom Column Content
+ *
+ * This is the template that displays the Accordion Block.
+ */
+
+// get Column field (repeater)
+$column = get_field('column');
+
+// Count number of columns
+$columnCount = count($column);
+
+// initialize colClassOddd
+$colClassOdd = '';
+
+// Determine if even or odd amount of columns. 1 == odd
+$evenOrOdd = $columnCount % 2 == 0 ? 0 : 1;
+
+switch ($columnCount) {
+    case 1:
+        $colClass = "col-xl-12 col-lg-12 col-md-12 col-sm-12";
+        break;
+    case 2:
+        $colClass = "col-xl-6 col-lg-6 col-md-6 col-sm-12";
+        break;
+    case 3:
+        $colClass = "col-xl-4 col-lg-4 col-md-4 col-sm-12";
+        break;
+	case 4:
+        $colClass = "col-xl-3 col-lg-3 col-md-3 col-sm-12";
+        break;
+	case 5:
+        $colClass = "col-xl-2 col-lg-2 col-md-2 col-sm-12";
+		$colClassOdd = "col-xl-1 col-xl-offset-1 col-lg-1 col-lg-offset-1 col-md-1 col-md-offset-1 col-sm-12";
+		break;
+	case 6:
+        $colClass = "col-xl-2 col-lg-2 col-md-2 col-sm-12";
+        break;
+	// Weird
+	case 7:
+        $colClass = "col-xl-2 col-lg-2 col-md-2 col-sm-12";
+		$colClassOdd = "col-xl-1 col-xl-offset-1 col-lg-1 col-lg-offset-1 col-md-1 col-md-offset-1 col-sm-12";
+		break;
+	case 8:
+        $colClass = "col-xl-12 col-lg-12 col-md-12 col-sm-12";
+        break;
+	case 9:
+        $colClass = "col-xl-12 col-lg-12 col-md-12 col-sm-12";
+        break;
+	case 10:
+        $colClass = "col-xl-12 col-lg-12 col-md-12 col-sm-12";
+        break;
+	case 11:
+        $colClass = "col-xl-1 col-lg-1 col-md-1 col-sm-12";
+		$colClassOdd = "col-xl-1 col-xl-offset-1 col-lg-1 col-md-1 col-sm-12";
+        break;
+	case 12:
+        $colClass = "col-xl-1 col-lg-1 col-md-1 col-sm-12";
+        break;
+    default:
+        $colClass = "col-xl-12 col-lg-12 col-md-12 col-sm-12";
+        break;
+}
+
+// create id attribute for specific styling
+$id = 'column-' . $block['id'];
+
+// create align class ("alignwide") from block setting ("wide")
+$align_class = $block['align'] ? 'align' . $block['align'] : '';
+
+?>
+
+<div class="row">
+	
+	<?php
+		// IF EVEN row.
+		if($evenOrOdd == 0){
+			foreach($column as $columnContent => $value){
+				echo '<div class="' . $colClass . '">';
+				echo $value['column_content'];
+				echo '</div>';
+			}
+		}
+	?>
+	
+	<?php
+		// IF ODD row.
+		// Add functionality for offset rows check if colClassOddd has a value other than null.
+		if($evenOrOdd == 1){
+			foreach($column as $columnContent => $value){
+				
+				//if colClassOdd is set.
+				if($colClassOdd){
+					echo '<div class="' . $colClassOdd . '">';
+					echo $value['column_content'];
+					echo '</div>';
+					$colClassOdd = '';
+				}else{
+					echo '<div class="' . $colClass . '">';
+					echo $value['column_content'];
+					echo '</div>';
+				}
+			
+			}
+		}
+	?>
+</div>
+
+<?php
+ }
+?>
+
+
+
+
+
+<?php
+/*
+ * Callback function for ev-fa-icon
+ */
+function ev_artist_post_grid_block_render_callback( $block ) {
+/**
+ * Block Name: ev+ Artist Post Grid Block
+ *
+ * This is the template that displays the ev+ Artist Post Grid Block
+ */
+
+ 
+ 
+// get artists field (ACF post_object field)
+$artistPosts = get_field('artists');
+
+$terms 				= get_the_terms( $artistPosts[0]->ID, 'stage' );
+$featuredStage 		= array_pop( $terms );
+$featuredImgURL 	= get_the_post_thumbnail_url($artistPosts[0]->ID, 'full'); 
+$featuredTime 		= get_post_meta( $artistPosts[0]->ID, 'performance_time', true );
+$featuredTime 		= date("g:ia", strtotime( $featuredTime ));
+$muzookaArtistID 	= get_post_meta( $artistPosts[0]->ID, 'muzooka_artist_id', true );;
+
+//var_dump($muzookaArtistID);
+
+// create id attribute for specific styling
+$id = 'artist-' . $block['id'];
+
+// create align class ("alignwide") from block setting ("wide")
+$align_class = $block['align'] ? 'align' . $block['align'] : '';
+
+// No need to LOOP for the first display.
+?>
+
+<div id="<?php echo $id; ?>" class="row <?php echo $align_class; ?>">
+	<div class="col-md-6">
+		<a href="#" data-mz-embed="artist" data-mz-label="<?php echo $artistPosts[0]->post_title; ?>" data-mz-fid="<?php echo $muzookaArtistID; ?>" class="performer-link">  
+			<div class="performer-details">	  
+				<img class="pfade" src="<?php echo $featuredImgURL; ?>" alt="<?php echo $artistPosts[0]->post_title; ?>">	  
+				<div class="performer-meta"><span class="stage"><?php echo $featuredStage->name; ?></span> | <span class="time"><?php echo $featuredTime; ?></span></div>
+			</div>
+			<div class="desc name">
+				<?php echo $artistPosts[0]->post_title;?> <i class="fa fa-fw fa-lg fa-arrow-circle-o-right"></i>
+			</div>
+		</a>
+	</div>
+	<div class="col-md-6">
+		<div class="row">
+			<?php foreach($artistPosts as $artistPost => $post){
+				if($artistPost > 0 && $artistPost <= 2){
+					$terms 				= get_the_terms( $post->ID, 'stage' );
+					$featuredStage 		= array_pop( $terms );
+					$featuredImgURL 	= get_the_post_thumbnail_url($post->ID, 'full'); 
+					$featuredTime 		= get_post_meta( $post->ID, 'performance_time', true );
+					$featuredTime 		= date("g:ia", strtotime( $featuredTime ));
+					$muzookaArtistID 	= get_post_meta( $post->ID, 'muzooka_artist_id', true );;
+				
+					echo '<div class="col-md-6">';
+					echo '	<a href="#" data-mz-embed="artist" data-mz-label="' . $post->post_title . '" data-mz-fid="' . $muzookaArtistID . '" class="performer-link">';
+					echo '		<div class="performer-details">';  
+					echo '			<img class="pfade" src="' . $featuredImgURL . '" alt="' . $post->post_title . '">';
+					echo '			<div class="performer-meta"><span class="stage">' . $featuredStage->name . '</span> | <span class="time">' . $featuredTime . '</span></div>';
+					echo '		</div>';
+					echo '		<div class="desc name">';
+					echo 			$post->post_title . '<i class="fa fa-fw fa-lg fa-arrow-circle-o-right"></i>';
+					echo '		</div>';
+					echo '	</a>';
+					echo '</div>';
+				}
+			}?>
+		</div>		
+		<div class="row">
+			<?php foreach($artistPosts as $artistPost => $post){
+				if($artistPost > 2 ){
+					$terms 				= get_the_terms( $post->ID, 'stage' );
+					$featuredStage 		= array_pop( $terms );
+					$featuredImgURL 	= get_the_post_thumbnail_url($post->ID, 'full'); 
+					$featuredTime 		= get_post_meta( $post->ID, 'performance_time', true );
+					$featuredTime 		= date("g:ia", strtotime( $featuredTime ));
+					$muzookaArtistID 	= get_post_meta( $post->ID, 'muzooka_artist_id', true );;
+				
+					echo '<div class="col-md-4">';
+					echo '	<a href="#" data-mz-embed="artist" data-mz-label="' . $post->post_title . '" data-mz-fid="' . $muzookaArtistID . '" class="performer-link">';
+					echo '		<div class="performer-details">';  
+					echo '			<img class="pfade" src="' . $featuredImgURL . '" alt="' . $post->post_title . '">';
+					echo '			<div class="performer-meta"><span class="stage">' . $featuredStage->name . '</span> | <span class="time">' . $featuredTime . '</span></div>';
+					echo '		</div>';
+					echo '		<div class="desc name">';
+					echo 			$post->post_title . '<i class="fa fa-fw fa-lg fa-arrow-circle-o-right"></i>';
+					echo '		</div>';
+					echo '	</a>';
+					echo '</div>';
+				}
+			}?>
+		</div>	
+	</div>
+</div>
+
+<?php echo '<script type="text/javascript" async="" src="https://embeds.muzooka.com/muzooka.js?1555884289884"></script>'; ?>
+
+<?php
+}
+?>
+
+
+
+
+
+
+
+
+
