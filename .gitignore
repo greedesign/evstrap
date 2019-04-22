@@ -28,3 +28,5 @@ Thumbs.db
 .idea/
 
 css/customizer-navbar.css
+css/customizer-navbar.min.css
+css/customizer-navbar.min.css.map
