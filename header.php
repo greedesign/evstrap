@@ -30,7 +30,7 @@ $navbar_markup = (get_theme_mod( 'understrap_navbar_markup' ) !== '' ? get_theme
 
 	<!-- ******************* The Navbar Area ******************* -->
 	<!-- grab navbar wrapper classes and output -->
-	<div id="wrapper-navbar" class="<?php understrap_navbar_wrapper(); ?>" itemscope itemtype="http://schema.org/WebSite">
+	<header id="wrapper-navbar" class="<?php understrap_navbar_wrapper(); ?>" itemscope itemtype="http://schema.org/WebSite">
 
 		<a class="skip-link sr-only sr-only-focusable" href="#content"><?php esc_html_e( 'Skip to content', 'understrap' ); ?></a>
 		<!-- Loop through all available navbar classes and output -->
@@ -104,4 +104,4 @@ $navbar_markup = (get_theme_mod( 'understrap_navbar_markup' ) !== '' ? get_theme
 
 		</nav><!-- .site-navigation -->
 
-	</div><!-- #wrapper-navbar end -->
+	</header><!-- #wrapper-navbar end -->

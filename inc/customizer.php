@@ -165,7 +165,8 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 		/**
 		 * Theme layout options.
-		 */ 
+		 */
+		/*
 		$wp_customize->add_section(
 			'understrap_page_header_defaults',
 			array(
@@ -400,21 +401,23 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 				)
 			);
 		
-			/*$header_classes[] = get_field('header_vertical_align');
-			align-items-start : Top
-			align-items-end : Bottom
-			align-items-center : Middle
-			align-items-stretch : Stretch
-			$header_classes[] = get_field('header_horizontal_align');
-			justify-content-start : Left
-			justify-content-center : Center
-			justify-content-end : Right
-			$header_classes[] = get_field('header_content_align');
-			align-content-start : Top
-			align-content-end : Bottom
-			align-content-center : Center
-			align-content-between : Space Between
-			align-content-around : Space Around*/
+			//$header_classes[] = get_field('header_vertical_align');
+			//align-items-start : Top
+			//align-items-end : Bottom
+			//align-items-center : Middle
+			//align-items-stretch : Stretch
+			//$header_classes[] = get_field('header_horizontal_align');
+			//justify-content-start : Left
+			//justify-content-center : Center
+			//justify-content-end : Right
+			//$header_classes[] = get_field('header_content_align');
+			//align-content-start : Top
+			//align-content-end : Bottom
+			//align-content-center : Center
+			//align-content-between : Space Between
+			//align-content-around : Space Around
+		*/ // end commenting out default values
+
 
 		/**
 		 * BS Navbar Options.
@@ -565,7 +568,7 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 					'understrap_navbar_bgcolor',
 					array(
 						'label'       => __( 'Navbar Background Color', 'understrap' ),
-						'description' => __( 'Choose Navbar background colour based on theme primary, secondary, dark, and light classes. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#background-colors" target="_blank">more details</a>', 'understrap' ),
+						'description' => __( 'Choose Navbar background colour based on theme primary, secondary, dark, light, and transparent classes. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#background-colors" target="_blank">more details</a>', 'understrap' ),
 						'section'     => 'understrap_theme_navbar_options',
 						'settings'    => 'understrap_navbar_bgcolor',
 						'type'        => 'select',
@@ -575,7 +578,7 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 							'bg-light'   	=> __( 'Light Background ', 'understrap' ),
 							'bg-dark'   	=> __( 'Dark Background ', 'understrap' ),
 							'bg-white'   	=> __( 'White ', 'understrap' ),
-							//'bg-transparent'   	=> __( 'Transparent', 'understrap' ),
+							'bg-transparent'   	=> __( 'Transparent', 'understrap' ),
 						)
 					)
 				)
@@ -597,7 +600,7 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 					'understrap_navbar_bgalpha',
 					array(
 						'label'       => __( 'Navbar background transparancy', 'understrap' ),
-						'description' => __( 'Choose opacity of background color', 'understrap' ),
+						'description' => __( 'Choose opacity of background color. If you want a fully transparent bg, select <i>Transparent</i> for the Navbar Background Color.', 'understrap' ),
 						'section'     => 'understrap_theme_navbar_options',
 						'settings'    => 'understrap_navbar_bgalpha',
 						'input_attrs' => array(
@@ -608,6 +611,66 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 					)
 				)
 			);
+
+			// // Navbar Pinned On Scroll background color
+			// $wp_customize->add_setting(
+			// 	'understrap_navbar_pinned_bgcolor',
+			// 	array(
+			// 		'default'           => '',
+			// 		'type'              => 'theme_mod',
+			// 		'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+			// 		'capability'        => 'edit_theme_options',
+			// 	)
+			// );
+			// $wp_customize->add_control(
+			// 	new WP_Customize_Control(
+			// 		$wp_customize,
+			// 		'understrap_navbar_pinned_bgcolor',
+			// 		array(
+			// 			'label'       => __( 'Navbar Pinned-on-scroll Background Color', 'understrap' ),
+			// 			'description' => __( 'Choose Navbar Pinned-on-scroll background colour based on theme primary, secondary, dark, and light classes. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#background-colors" target="_blank">more details</a>', 'understrap' ),
+			// 			'section'     => 'understrap_theme_navbar_options',
+			// 			'settings'    => 'understrap_navbar_pinned_bgcolor',
+			// 			'type'        => 'select',
+			// 			'choices'     => array(
+			// 				'bg-primary'    => __( 'Primary Background', 'understrap' ),
+			// 				'bg-secondary'   	=> __( 'Secondary Background ', 'understrap' ),
+			// 				'bg-light'   	=> __( 'Light Background ', 'understrap' ),
+			// 				'bg-dark'   	=> __( 'Dark Background ', 'understrap' ),
+			// 				'bg-white'   	=> __( 'White ', 'understrap' ),
+			// 				//'bg-transparent'   	=> __( 'Transparent', 'understrap' ),
+			// 			)
+			// 		)
+			// 	)
+			// );
+
+			// // Navbar Pinned-on-scroll background transparancy
+			// $wp_customize->add_setting(
+			// 	'understrap_navbar_pinned_bgalpha',
+			// 	array(
+			// 		'default'           => '',
+			// 		'type'              => 'theme_mod',
+			// 		'sanitize_callback' => 'understrap_sanitize_integer',
+			// 		'capability'        => 'edit_theme_options',
+			// 	)
+			// );
+			// $wp_customize->add_control(
+			// 	new Understrap_Slider_Custom_Control(
+			// 		$wp_customize,
+			// 		'understrap_navbar_pinned_bgalpha',
+			// 		array(
+			// 			'label'       => __( 'Navbar background transparancy', 'understrap' ),
+			// 			'description' => __( 'Choose opacity of background color. If you want a fully transparent bg, select <i>Transparent</i> for the Navbar Background Color.', 'understrap' ),
+			// 			'section'     => 'understrap_theme_navbar_options',
+			// 			'settings'    => 'understrap_navbar_pinned_bgalpha',
+			// 			'input_attrs' => array(
+			// 				'min' => 0, // Required. Minimum value for the slider
+			// 				'max' => 100, // Required. Maximum value for the slider
+			// 				'step' => 1, // Required. The size of each interval or step the slider takes between the minimum and maximum values
+			// 			),
+			// 		)
+			// 	)
+			// );
 
 
 		/**

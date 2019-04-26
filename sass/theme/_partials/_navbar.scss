@@ -27,7 +27,6 @@ body.navbar-is-fixed-top:not(.page-custom-header) #page {
   padding-top: 85px;
 }
 
-
 /**
  * Logo
  */
@@ -58,4 +57,43 @@ body.navbar-is-fixed-top:not(.page-custom-header) #page {
 // navbar dropdown items <a>
 .dropdown-item {}
 
-.ev-navbar-region a { color: inherit; } 
+
+.navbar-dark .ev-navbar-region a:not(.btn) {
+  color: $navbar-dark-color;
+}
+.navbar-light .ev-navbar-region a:not(.btn) {
+  color: $navbar-light-color;
+} 
+
+  // Navbar: if TransparentBackground ensure has background when pinned state
+  .headroom .navbar {
+    will-change: all;
+    transition: all 200ms linear;
+  }
+
+  .headroom:not(.headroom--top):not(.headroom--bottom) {
+    &.headroom--pinned .navbar.bg-transparent {
+      background-color: $navbar-pinned-bgcolor !important;
+      .nav-link:not(.btn),
+      .ev-navbar-region a:not(.btn) {
+        color: $navbar-pinned-color;
+      }
+    }
+  }
+
+  // Navbar: if TransparentBackground ensure has background when on pages with no header backgrounds state
+
+
+  /* Scroll State */
+  .navbar { transition: transform 0.5s ease; }
+  .navbar-hide { transform: translateY(-100%); }
+  .headroom {
+    will-change: transform;
+    transition: transform 200ms linear;
+  }
+  .headroom--pinned {
+    transform: translateY(0%);
+  }
+  .headroom--unpinned {
+    transform: translateY(-100%);
+  }

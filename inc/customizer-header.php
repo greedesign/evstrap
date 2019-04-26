@@ -40,8 +40,14 @@ function understrap_navbar_wrapper() {
     $navbar_position = (!empty(get_theme_mod('understrap_navbar_position')) ? get_theme_mod('understrap_navbar_position') : '');
     // if Navbar position is fixed top or bottom output that to our navbar wrapper
     if($navbar_position == 'fixed-top' || $navbar_position == 'fixed-bottom') {
-        $navbar_fixed = $navbar_position;
-        echo $navbar_fixed;
+        
+        $navbar_classes[] = $navbar_position;
+        $navbar_classes[] = "headroom";
+
+        $navbar_classes = join(' ', $navbar_classes );
+
+        echo $navbar_classes;
+        //echo $navbar_fixed;
     }
 }
 
@@ -57,13 +63,22 @@ function understrap_navbar() {
     $navbar_breakpoint = (!empty(get_theme_mod('understrap_navbar_breakpoint')) ? get_theme_mod('understrap_navbar_breakpoint') : '');
     $navbar_color_scheme = (!empty(get_theme_mod('understrap_navbar_color_scheme')) ? get_theme_mod('understrap_navbar_color_scheme') : '');
     $navbar_bgcolor = (!empty(get_theme_mod('understrap_navbar_bgcolor')) ? get_theme_mod('understrap_navbar_bgcolor') : '');
-    $navbar_bgalpha = (!empty(get_theme_mod('understrap_navbar_bgalpha')) ? 'bg-alpha' : '');
+    //$navbar_bgalpha = (!empty(get_theme_mod('understrap_navbar_bgalpha')) ? 'bg-alpha' : '');
+    $navbar_bgalpha = ( null !== get_theme_mod('understrap_navbar_bgalpha') ? get_theme_mod('understrap_navbar_bgalpha') : '');
+
+    // $navbar_pinned_bgcolor = (!empty(get_theme_mod('understrap_navbar_bgcolor')) ? get_theme_mod('understrap_navbar_bgcolor') : '');
+    // $navbar_pinned_bgalpha = (null !== get_theme_mod('understrap_navbar_bgalpha') ? get_theme_mod('understrap_navbar_bgalpha') : '');
 
     // concatinate all variables into tidy class string
     $navbar_classes[] = $navbar_breakpoint;
     $navbar_classes[] = $navbar_color_scheme;
-    $navbar_classes[] = $navbar_bgcolor;
-    $navbar_classes[] = $navbar_bgalpha;
+    if( $navbar_bgcolor !== 'bg-transparent' ) {
+    //if( (0 <= $navbar_bgalpha) && ($navbar_bgalpha <= 99) ) {
+        //$navbar_classes[] = $navbar_bgalpha;
+        $navbar_classes[] = 'bg-alpha';
+    } else {
+        $navbar_classes[] = $navbar_bgcolor;
+    }
 
     $navbar_classes = join(' ', $navbar_classes );
 
@@ -79,10 +94,18 @@ function understrap_navbar() {
 function navbar_header_styles() {
     // Get BG base colour and alpha value
     $navbar_bgcolor = (!empty(get_theme_mod('understrap_navbar_bgcolor')) ? get_theme_mod('understrap_navbar_bgcolor') : '');
-    $navbar_bgalpha = (!empty(get_theme_mod('understrap_navbar_bgalpha')) ? get_theme_mod('understrap_navbar_bgalpha') : '');
+    //$navbar_bgalpha = (!empty(get_theme_mod('understrap_navbar_bgalpha')) ? get_theme_mod('understrap_navbar_bgalpha') : '');
+    $navbar_bgalpha = (null !== get_theme_mod('understrap_navbar_bgalpha') ? get_theme_mod('understrap_navbar_bgalpha') : '');
 
-    // if transparent
-    if($navbar_bgalpha !== '') {
+    $navbar_pinned_bgcolor = (!empty(get_theme_mod('understrap_navbar_bgcolor')) ? get_theme_mod('understrap_navbar_bgcolor') : '');
+    $navbar_pinned_bgalpha = (null !== get_theme_mod('understrap_navbar_bgalpha') ? get_theme_mod('understrap_navbar_bgalpha') : '');
+
+
+    
+    // if bg opacity set and bg color not transparent
+    if( $navbar_bgcolor !== 'bg-transparent' ) {
+    //if( (0 <= $navbar_bgalpha) && ($navbar_bgalpha <= 99) ) {
+    //if( in_array($navbar_bgalpha, range(0,99)) ) {
         // Get current Theme palette value for use in alpha calculation 
         switch($navbar_bgcolor) {
             case 'bg-primary':
@@ -107,11 +130,52 @@ function navbar_header_styles() {
         // calculate rgba value through hex2rgb function
         $bgcolor = understrap_hex2rgba($bgcolor, $navbar_bgalpha);
 
-		// Style
-		$navbar_css = "
-		.navbar.bg-alpha {
-			background-color: {$bgcolor} !important;
-        }";
+    } // end if not bg-transparent
+    
+    /*
+    if( $navbar_pinned_bgcolor !== '' ) {
+        // Get current Theme palette value for use in alpha calculation 
+        switch($navbar_pinned_bgcolor) {
+            case 'bg-primary':
+                $pinned_bgcolor = get_theme_mod( 'understrap_color_primary' );
+                break;
+            case 'bg-secondary':
+                $pinned_bgcolor = get_theme_mod( 'understrap_color_secondary' );
+                break;
+            case 'bg-light':
+                $pinned_bgcolor = get_theme_mod( 'understrap_color_light' );
+                break;
+            case 'bg-dark':
+                $pinned_bgcolor = get_theme_mod( 'understrap_color_dark' );
+                break;
+            case 'bg-white':
+                $pinned_bgcolor = get_theme_mod( 'understrap_color_white' );
+                break;
+        }
+        // get set alpha value
+        $navbar_pinned_bgalpha = $navbar_pinned_bgalpha / 100;
+
+        // calculate rgba value through hex2rgb function
+        $pinned_bgcolor = understrap_hex2rgba($pinned_bgcolor, $navbar_pinned_bgalpha);
+    }*/
+
+    //if( $bgcolor !== '' || $pinned_bgcolor !== '' ) {
+    if( $bgcolor !== '' ) {
+        // Style
+        if( $bgcolor !== '' ) {
+            $navbar_css[] = "
+            .navbar.bg-alpha {
+                background-color: {$bgcolor} !important;
+            }";
+        }
+
+        // if( $pinned_bgcolor !== '' ) {
+        //     $navbar_css[] = "
+        //     .headroom--not-top.headroom--pinned .navbar.bg-alpha,
+        //     .headroom--not-bottom.headroom--pinned .navbar.bg-alpha {
+        //         background-color: {$pinned_bgcolor} !important;
+        //     }";
+        // }
 
         $css_file = file_get_contents(get_template_directory() . '/css/customizer-navbar.css');
 
@@ -123,7 +187,7 @@ function navbar_header_styles() {
         
 
         wp_enqueue_style('custom-navbar-style', get_template_directory_uri() . '/css/customizer-navbar.css');
-		//wp_add_inline_style( 'custom-navbar-style', $navbar_css );
-	}
+        //wp_add_inline_style( 'custom-navbar-style', $navbar_css );
+    } // end check if navbar bg colours 
  }
  add_action( 'wp_enqueue_scripts', 'navbar_header_styles' );
