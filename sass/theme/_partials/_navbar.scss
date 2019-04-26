@@ -27,6 +27,8 @@ body.navbar-is-fixed-top:not(.page-custom-header) #page {
   padding-top: 85px;
 }
 
+
+
 /**
  * Logo
  */
@@ -85,8 +87,12 @@ body.navbar-is-fixed-top:not(.page-custom-header) #page {
     }
   }
 
-  // Navbar: if TransparentBackground ensure has background when on pages with no header backgrounds state
-
+  // Navbar: if TransparentBackground ensure .navbar has default background and contrasting link colour when on pages with no header backgrounds
+  // if transparent navbar bg asnd on page with out a cover header ensure we have a default background and contrasting text color
+.navbar-is-fixed-top:not(.page-custom-header) .headroom .navbar.bg-transparent {
+  background-color: $primary !important;
+  color: $navbar-dark-color;
+}
 
   /* Scroll State */
   .navbar { transition: transform 0.5s ease; }
