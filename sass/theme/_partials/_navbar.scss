@@ -51,7 +51,11 @@ body.navbar-is-fixed-top:not(.page-custom-header) #page {
  * 
  */
 // All nabvar <a> */
-.navbar-nav .nav-link {}
+.navbar-nav .nav-link {
+  @if $link-decoration == underline {
+    text-decoration: none;
+  }
+}
 // navbar 1st level <a> 
 .navbar-nav > li > .nav-link {}
 // navbar dropdown items <a>
