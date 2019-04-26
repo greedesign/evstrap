@@ -11,6 +11,40 @@ $primary: #5533ff !default; // Thats a sample how you could change a BootStrap v
 //$light:         $gray-100 !default;
 //$dark:          $gray-800 !default;
 
+// Custom Variables
+//
+
+// Navbar
+
+$navbar-pinned-bgcolor: rgba(255,255,255,0.8);
+$navbar-pinned-color: rgba(0,0,0,0.8);
+
+// Block Settings
+
+$align_wide_width: 80px; // value will be made negative when parsed
+
+
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+
+$spacer: 1rem !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: (
+    6: ($spacer * 4.5),
+    7: ($spacer * 6),
+    8: ($spacer * 7.5),
+    9: ($spacer * 9)
+);
+
+// This variable affects the `.h-*` and `.w-*` classes.
+// stylelint-disable-next-line scss/dollar-variable-default
+// $sizes: (
+//     33: 33%
+// );
+
 
 // Body
 //
@@ -64,11 +98,3 @@ $primary: #5533ff !default; // Thats a sample how you could change a BootStrap v
 //$display3-weight:             300 !default;
 //$display4-weight:             300 !default;
 //$display-line-height:         $headings-line-height !default;
-
-// Navbar 
-
-$navbar-pinned-bgcolor: rgba(255,255,255,0.8);
-$navbar-pinned-color: rgba(0,0,0,0.8);
-
-// Block Settings
-$align_wide_width: 80px; // value will be made negative when parsed
