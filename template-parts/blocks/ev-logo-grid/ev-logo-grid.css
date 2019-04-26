@@ -1,0 +1,6 @@
+@media (max-width: 575px) {
+    .logo-grid .col {
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%;
+    }
+}
