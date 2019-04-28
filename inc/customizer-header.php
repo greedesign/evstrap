@@ -66,6 +66,7 @@ function understrap_navbar() {
     //$navbar_bgalpha = (!empty(get_theme_mod('understrap_navbar_bgalpha')) ? 'bg-alpha' : '');
     $navbar_bgalpha = ( null !== get_theme_mod('understrap_navbar_bgalpha') ? get_theme_mod('understrap_navbar_bgalpha') : '');
 
+    // Commented out code as options are currently not in play. May look to Include later
     // $navbar_pinned_bgcolor = (!empty(get_theme_mod('understrap_navbar_bgcolor')) ? get_theme_mod('understrap_navbar_bgcolor') : '');
     // $navbar_pinned_bgalpha = (null !== get_theme_mod('understrap_navbar_bgalpha') ? get_theme_mod('understrap_navbar_bgalpha') : '');
 
@@ -73,8 +74,6 @@ function understrap_navbar() {
     $navbar_classes[] = $navbar_breakpoint;
     $navbar_classes[] = $navbar_color_scheme;
     if( $navbar_bgcolor !== 'bg-transparent' ) {
-    //if( (0 <= $navbar_bgalpha) && ($navbar_bgalpha <= 99) ) {
-        //$navbar_classes[] = $navbar_bgalpha;
         $navbar_classes[] = 'bg-alpha';
     } else {
         $navbar_classes[] = $navbar_bgcolor;
@@ -90,6 +89,7 @@ function understrap_navbar() {
  * Get Customizer Navbar Bg Color settings and write to css file
  * TODO: look into if this is properly cachable,
  * TODO: if not output to inline styles (wp_add_inline_style)
+ * TODO: Have WP options for fixed menu styling
  */
 function navbar_header_styles() {
     // Get BG base colour and alpha value
@@ -100,8 +100,6 @@ function navbar_header_styles() {
     $navbar_pinned_bgcolor = (!empty(get_theme_mod('understrap_navbar_bgcolor')) ? get_theme_mod('understrap_navbar_bgcolor') : '');
     $navbar_pinned_bgalpha = (null !== get_theme_mod('understrap_navbar_bgalpha') ? get_theme_mod('understrap_navbar_bgalpha') : '');
 
-
-    
     // if bg opacity set and bg color not transparent
     if( $navbar_bgcolor !== 'bg-transparent' ) {
     //if( (0 <= $navbar_bgalpha) && ($navbar_bgalpha <= 99) ) {
@@ -184,7 +182,6 @@ function navbar_header_styles() {
             file_put_contents( get_template_directory() . '/css/customizer-navbar.css', $navbar_css);
         }
 
-        
 
         wp_enqueue_style('custom-navbar-style', get_template_directory_uri() . '/css/customizer-navbar.css');
         //wp_add_inline_style( 'custom-navbar-style', $navbar_css );

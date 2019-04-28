@@ -16,11 +16,13 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
 
   // add class to body if page has custom header
   function acf_header_body_class( $classes ) {
+    // ensure parent page header setting is currently not 'none' before processing anything 
     if (get_field('background_type') !== 'none'):
       $classes[] = "page-custom-header";
-    endif;
-    if (get_field('page_header_width') == 'alignfull'):
-      $classes[] = "page-custom-header-is-alignfull";
+
+      if (get_field('page_header_width') == 'alignfull'):
+        $classes[] = "page-custom-header-is-alignfull";
+      endif;
     endif;
     return $classes;
   }

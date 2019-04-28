@@ -1,5 +1,5 @@
 /**
- * Fixed navbar spacing on <body>
+ * Fixed navbar spacing on <body> when logged in
  */
 body.navbar-is-fixed-top.admin-bar .fixed-top {
   top: 46px;
@@ -19,14 +19,15 @@ body.navbar-is-fixed-top.admin-bar .fixed-top {
     width: auto;
   }
 }
+
+/* Pull first block item if it is full width up to fill in global wrapper gap */
 body.page-custom-header-is-alignfull .entry-content > .alignfull:first-child {
    margin-top: -1.5rem;
 }
 // add top margin to to #site wrapper
 body.navbar-is-fixed-top:not(.page-custom-header) #page {
-  padding-top: 85px;
+  padding-top: 56px;
 }
-
 
 
 /**

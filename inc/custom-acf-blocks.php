@@ -137,6 +137,41 @@ function my_acf_init() {
 } 
 
 
+function buy_tickets_url($atts) {
+	
+	extract(shortcode_atts(array(
+		'display' => '',
+		'target' => '',
+		'button_label' => 'Click Me',
+		'class' => ''		// default value if none supplied
+    ), $atts));
+    
+    if ($display == 'link') {
+        $URL = (!empty(get_theme_mod('understrap_child_buy_tickets_url')) ? get_theme_mod('understrap_child_buy_tickets_url') : '');
+        return '<a class="'.$class.'" target="'.$target.'" href="'.$URL.'">'.$button_label.'</a>';
+    } else {
+		$URL = (!empty(get_theme_mod('understrap_child_buy_tickets_url')) ? get_theme_mod('understrap_child_buy_tickets_url') : '');
+		return $URL;
+	}
+}
+add_shortcode('buy-tickets-url', 'buy_tickets_url');
+
+
+/**
+ * used for generic widget area in collaboration with widget_shortcode plugin which is used for a recents posts shortcode in megamenu
+ */
+if ( function_exists('register_sidebar') )
+  register_sidebar(array(
+    'name' => 'Generic Widgets',
+    'before_widget' => '<div class = "widgetizedArea">',
+    'after_widget' => '</div>',
+    'before_title' => '<h3>',
+    'after_title' => '</h3>',
+  )
+);
+
+
+
 /*
  * Callback function for ACF custom Gutenberg blocks
  * Assigns template file to defined block.
@@ -228,6 +263,12 @@ function ev_featured_card_block_render_callback( $block ) {
 
 	//get button_url field (URL)
 	$buttonURL = get_field('button_url');
+	
+	//grab Buy Ticket URL from theme settings, if use_buy_tickets_url is true, overriding $buttonURL
+	$use_buy_tickets_url = get_field('use_buy_tickets_url');
+	if($use_buy_tickets_url){
+		$buttonURL = (!empty(get_theme_mod('understrap_child_buy_tickets_url')) ? get_theme_mod('understrap_child_buy_tickets_url') : '');
+	}
 
 	//get card badge field (text)
 	$cardBadge = get_field('card_badge');
@@ -396,25 +437,25 @@ function ev_activity_post_grid_block_render_callback( $block ) {
 		// define columns from $columns_per_row
 	switch ($columns_per_row) {
 		case 1:
-				$colClass = "col-xl-12 col-lg-12 col-md-12 col-sm-3";
+				$colClass = "col-xl-12 col-lg-12 col-md-12 col-sm-4 col-6";
 				break;
 		case 2:
-				$colClass = "col-xl-6 col-lg-6 col-md-6 col-sm-3";
+				$colClass = "col-xl-6 col-lg-6 col-md-6 col-sm-4 col-6";
 				break;
 		case 3:
-				$colClass = "col-xl-4 col-lg-4 col-md-4 col-sm-3";
+				$colClass = "col-xl-4 col-lg-4 col-md-4 col-sm-4 col-6";
 				break;
 		case 4:
-				$colClass = "col-xl-3 col-lg-3 col-md-3 col-sm-3";
+				$colClass = "col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6";
 				break;
 		case 6:
-				$colClass = "col-xl-2 col-lg-2 col-md-2 col-sm-3";
+				$colClass = "col-xl-2 col-lg-2 col-md-2 col-sm-4 col-6";
 				break;
 		case 12: 
-				$colClass = "col-xl-1 col-lg-1 col-md-1 col-sm-3";
+				$colClass = "col-xl-1 col-lg-1 col-md-1 col-sm-4 col-6";
 				break;
 		default:
-				$colClass = "col-xl-3 col-lg-3 col-md-3 col-sm-3";
+				$colClass = "col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6";
 				break;
 	} 
 	?>
@@ -436,7 +477,7 @@ $the_query = new WP_Query(
 <?php if( $the_query->have_posts() ): ?>
 	<div class="row">
 	<?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
-		<div class="<?php echo $colClass; ?>">
+		<div class="<?php echo $colClass; ?> activity-column">
 			<a href="<?php the_permalink(); ?>">
 			
 				<?php if ( has_post_thumbnail() ) : ?>
@@ -520,13 +561,14 @@ function ev_logo_grid_block_render_callback( $block ) {
 			<?php while( have_rows('logo_grid') ): the_row(); 
 				$image 		 = get_sub_field('logo');
 				$url 		 = get_sub_field('url');
+				$alt 		 = get_sub_field('alt_tag');
 				$imageSize 	 = get_sub_field('image_size'); 
 				$sizedImgURL = $imageSize == 'full'  ? $image['url'] : $image['sizes'][$imageSize];			
 				?>
 
 				<div class="<?php echo $colClass; ?>">
 					<?php if($url): ?><a href="<?php echo $url; ?>" target="_blank"><?php endif; ?>
-						<image src="<?php echo $sizedImgURL; ?>" alt="" />
+						<image src="<?php echo $sizedImgURL; ?>" alt="<?php echo $alt; ?>" />
 					<?php if($url): ?></a><?php endif; ?>
 				</div>
 
@@ -642,12 +684,15 @@ function ev_button_block_block_render_callback( $block ) {
      *
      * This is the template that displays Buttons.
      */
+		 
+		 //css from additional classes
+		$additionalClasses = $block['className'];
 
     // HTML Element
     $html_element = get_field('html_element');
     // Anchor Link
     $link = get_field('link');
-    if( $link ) {
+    if( $link ) {	
       $link_url = $link['url'];
       $title = $link['title'];
       $link_target = $link['target'] ? $link['target'] : '_self';
@@ -706,9 +751,15 @@ function ev_button_block_block_render_callback( $block ) {
 		
 	// create align class ("alignwide") from block setting ("wide")
 	$align_class = $block['align'] ? 'align' . $block['align'] : '';
+	
+	//grab Buy Ticket URL from theme settings, if use_buy_tickets_url is true, overriding $link_url
+	$use_buy_tickets_url = get_field('use_buy_tickets_url');
+	if($use_buy_tickets_url){
+		$link_url = (!empty(get_theme_mod('understrap_child_buy_tickets_url')) ? get_theme_mod('understrap_child_buy_tickets_url') : '');
+	}
     
     if($template == "standard"): ?>
-      <<?php echo $html_element; ?> <?php if($link):?> href="<?php echo($link_url) ?>"<?php endif; ?> <?php if($id):?>id="<?php echo($id); ?>" <?php endif; ?> class="btn <?php echo $style; ?> <?php echo $block_button; ?> <?php echo $size; ?> <?php echo $align_class; ?>" <?php if($link_target): ?>target="<?php echo $link_target; ?>"<?php endif; ?>>
+      <<?php echo $html_element; ?> <?php if($link):?> href="<?php echo($link_url) ?>"<?php endif; ?> <?php if($id):?>id="<?php echo($id); ?>" <?php endif; ?> class="btn <?php echo $additionalClasses; ?> <?php echo $style; ?> <?php echo $block_button; ?> <?php echo $size; ?> <?php echo $align_class; ?>" <?php if($link_target): ?>target="<?php echo $link_target; ?>"<?php endif; ?>>
         <?php echo($title) ?>
       </<?php echo $html_element; ?>>
     <?php endif; ?>
@@ -903,7 +954,7 @@ function ev_artist_post_grid_block_render_callback( $block ) {
 								$featuredTime 		= date("g:ia", strtotime( $featuredTime ));
 								$muzookaArtistID 	= get_post_meta( $post->ID, 'muzooka_artist_id', true );;
 							
-								echo '<div class="col-md-6">';
+								echo '<div class="col-md-6 col-sm-6 col-6">';
 								echo '	<a href="#" data-mz-embed="artist" data-mz-label="' . $post->post_title . '" data-mz-fid="' . $muzookaArtistID . '" class="performer-link">';
 								echo '		<div class="performer-details">';  
 								echo '			<img class="pfade" src="' . $featuredImgURL . '" alt="' . $post->post_title . '">';
@@ -927,7 +978,7 @@ function ev_artist_post_grid_block_render_callback( $block ) {
 								$featuredTime 		= date("g:ia", strtotime( $featuredTime ));
 								$muzookaArtistID 	= get_post_meta( $post->ID, 'muzooka_artist_id', true );;
 							
-								echo '<div class="col-md-4">';
+								echo '<div class="col-md-4 col-sm-6 col-6">';
 								echo '	<a href="#" data-mz-embed="artist" data-mz-label="' . $post->post_title . '" data-mz-fid="' . $muzookaArtistID . '" class="performer-link">';
 								echo '		<div class="performer-details">';  
 								echo '			<img class="pfade" src="' . $featuredImgURL . '" alt="' . $post->post_title . '">';
