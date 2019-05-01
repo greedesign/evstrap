@@ -77,7 +77,7 @@ $navbar_markup = (get_theme_mod( 'understrap_navbar_markup' ) !== '' ? get_theme
 				); ?>
 
 				<?php if ( $navbar_shortcodes !== '' || $navbar_markup !== '' ) : ?>
-					<div class="ev-navbar-region">
+					<div class="navbar-features d-flex align-items-center">
 						<?php
 							// if shortcodes exists parse and output
 							if( $navbar_shortcodes !== '' ):

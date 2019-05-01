@@ -68,6 +68,9 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
         break;
     }
 
+    $additional_css_class = get_field('additional_css_class');
+    $header_classes[] = $additional_css_class;
+
     $header_classes = join(' ', $header_classes );
 
     echo $header_classes;

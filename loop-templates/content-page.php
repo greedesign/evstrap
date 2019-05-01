@@ -39,7 +39,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php endif; ?>
 		<?php if (get_field('header_markup_type') == 'richtxt'): ?>
 			<div class="entry-header--custom-markup">
+			<?php if(get_field('output_raw_html')): ?>
+				<?php the_field('header_custom_markup', false, false); ?>
+			<?php else: ?>
 				<?php the_field('header_custom_markup'); ?>
+				<?php endif; ?>
 			</div>
 		<?php endif; ?>
 
