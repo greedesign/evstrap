@@ -3,7 +3,7 @@
  */
 
  // Wide Alignment
-@media (min-width: $container-max-widths[xl] + $align_wide_width ) {
+@media (min-width: map-get($container-max-widths, xl) + $align_wide_width ) {
   .entry-content > .alignwide,
   .entry-header.alignwide {
     margin-left  : -$align_wide_width;
