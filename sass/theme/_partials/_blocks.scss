@@ -3,11 +3,13 @@
  */
 
  // Wide Alignment
-.entry-content > .alignwide,
-.entry-header.alignwide {
-  margin-left  : -$align_wide_width;
-  margin-right : -$align_wide_width;
-  width: auto;
+@media (min-width: $container-max-widths[xl] + $align_wide_width ) {
+  .entry-content > .alignwide,
+  .entry-header.alignwide {
+    margin-left  : -$align_wide_width;
+    margin-right : -$align_wide_width;
+    width: auto;
+  }
 }
 
 // Full width alignment
