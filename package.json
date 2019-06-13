@@ -1,5 +1,5 @@
 {
-  "name": "understrap",
+  "name": "evstrap",
   "version": "0.9.1",
   "description": "WordPress Theme framework",
   "main": "index.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/greedesign/understrap"
+    "url": "https://github.com/greedesign/evstrap"
   },
   "keywords": [
     "wordpress",
@@ -23,9 +23,9 @@
   "author": "Holger Koenemann",
   "license": "GPL-2.0",
   "bugs": {
-    "url": "https://github.com/greedesign/understrap"
+    "url": "https://github.com/greedesign/evstrap"
   },
-  "homepage": "https://understrap.com",
+  "homepage": "",
   "dependencies": {
     "@babel/preset-env": "^7.4.5",
     "bootstrap": "4.3.1",
@@ -49,7 +49,7 @@
     "gulp-watch": "^5.0.1",
     "headroom.js": "^0.9.4",
     "jquery": "^3.3.1",
-    "popper.js": "^1.14.7",
+    "popper.js": "^1.15.0",
     "run-sequence": "^2.2.1",
     "undescores-for-npm": "^1.0.0"
   },
