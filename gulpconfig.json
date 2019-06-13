@@ -1,6 +1,6 @@
 {
   "browserSyncOptions" : {
-    "proxy": "localhost/",
+    "proxy": "localhost:8080/",
     "notify": false
   },
   "browserSyncWatchFiles" : [

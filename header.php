@@ -25,7 +25,7 @@ $navbar_markup = (get_theme_mod( 'understrap_navbar_markup' ) !== '' ? get_theme
 </head>
 
 <body <?php body_class(); ?>>
-
+<?php do_action( 'wp_body_open' ); ?>
 <div class="site" id="page">
 
 	<!-- ******************* The Navbar Area ******************* -->

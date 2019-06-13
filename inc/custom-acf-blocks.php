@@ -137,38 +137,38 @@ function my_acf_init() {
 } 
 
 
-function buy_tickets_url($atts) {
+// function buy_tickets_url($atts) {
 	
-	extract(shortcode_atts(array(
-		'display' => '',
-		'target' => '',
-		'button_label' => 'Click Me',
-		'class' => ''		// default value if none supplied
-    ), $atts));
+// 	extract(shortcode_atts(array(
+// 		'display' => '',
+// 		'target' => '',
+// 		'button_label' => 'Click Me',
+// 		'class' => ''		// default value if none supplied
+//     ), $atts));
     
-    if ($display == 'link') {
-        $URL = (!empty(get_theme_mod('understrap_child_buy_tickets_url')) ? get_theme_mod('understrap_child_buy_tickets_url') : '');
-        return '<a class="'.$class.'" target="'.$target.'" href="'.$URL.'">'.$button_label.'</a>';
-    } else {
-		$URL = (!empty(get_theme_mod('understrap_child_buy_tickets_url')) ? get_theme_mod('understrap_child_buy_tickets_url') : '');
-		return $URL;
-	}
-}
-add_shortcode('buy-tickets-url', 'buy_tickets_url');
+//     if ($display == 'link') {
+//         $URL = (!empty(get_theme_mod('understrap_child_buy_tickets_url')) ? get_theme_mod('understrap_child_buy_tickets_url') : '');
+//         return '<a class="'.$class.'" target="'.$target.'" href="'.$URL.'">'.$button_label.'</a>';
+//     } else {
+// 		$URL = (!empty(get_theme_mod('understrap_child_buy_tickets_url')) ? get_theme_mod('understrap_child_buy_tickets_url') : '');
+// 		return $URL;
+// 	}
+// }
+// add_shortcode('buy-tickets-url', 'buy_tickets_url');
 
 
 /**
  * used for generic widget area in collaboration with widget_shortcode plugin which is used for a recents posts shortcode in megamenu
  */
-if ( function_exists('register_sidebar') )
-  register_sidebar(array(
-    'name' => 'Generic Widgets',
-    'before_widget' => '<div class = "widgetizedArea">',
-    'after_widget' => '</div>',
-    'before_title' => '<h3>',
-    'after_title' => '</h3>',
-  )
-);
+// if ( function_exists('register_sidebar') )
+//   register_sidebar(array(
+//     'name' => 'Generic Widgets',
+//     'before_widget' => '<div class = "widgetizedArea">',
+//     'after_widget' => '</div>',
+//     'before_title' => '<h3>',
+//     'after_title' => '</h3>',
+//   )
+// );
 
 
 
