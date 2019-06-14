@@ -1,6 +1,6 @@
 <?php
 /**
- * Understrap modify editor
+ * evStrap modify editor
  *
  * @package evstrap
  */

@@ -4,7 +4,7 @@
  *
  * @link https://jetpack.me/
  *
- * @package UnderStrap
+ * @package evStrap
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

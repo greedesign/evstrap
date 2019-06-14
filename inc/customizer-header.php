@@ -1,6 +1,6 @@
 <?php
 /**
- * Understrap Customizer Variables for header.php
+ * evStrap Customizer Variables for header.php
  *
  * @package evstrap
  */

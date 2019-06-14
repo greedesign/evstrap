@@ -7245,7 +7245,7 @@
   });
 })(window.Zepto || window.jQuery);
 /**
- * UNDERSTRAP THEME Code
+ * EVSTRAP THEME Code
  */
 
 

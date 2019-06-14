@@ -24,13 +24,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 */
 
 /* Check if Class Exists. */
-if ( ! class_exists( 'Understrap_WP_Bootstrap_Navwalker' ) ) {
+if ( ! class_exists( 'evStrap_WP_Bootstrap_Navwalker' ) ) {
 	/**
 	 * WP_Bootstrap_Navwalker class.
 	 *
 	 * @extends Walker_Nav_Menu
 	 */
-	class Understrap_WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
+	class evStrap_WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
 
 		/**
 		 * Starts the list before the elements are added.
@@ -183,7 +183,7 @@ if ( ! class_exists( 'Understrap_WP_Bootstrap_Navwalker' ) ) {
 			}
 
 			$atts['target'] = ! empty( $item->target ) ? $item->target : '';
-			if ( '_blank' === $item->target && empty( $item->xfn ) ) { // Thanks to LukaszJaro, see https://github.com/understrap/understrap/issues/973
+			if ( '_blank' === $item->target && empty( $item->xfn ) ) { // Thanks to LukaszJaro, see https://github.com/evstrap/evstrap/issues/973
 				$atts['rel'] = 'noopener noreferrer';
 			} else {
 				$atts['rel'] = $item->xfn;

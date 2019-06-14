@@ -15,9 +15,9 @@ if ( ! function_exists( 'evstrap_custom_header_setup' ) ) {
 	function evstrap_custom_header_setup() {
 
 		/**
-		 * Filter UnderStrap custom-header support arguments.
+		 * Filter evStrap custom-header support arguments.
 		 *
-		 * @since UnderStrap 0.5.2
+		 * @since evStrap 0.5.2
 		 *
 		 * @param array $args {
 		 *     An array of custom-header support arguments.

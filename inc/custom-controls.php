@@ -1,6 +1,6 @@
 <?php
 /**
- * Understrap Customizer Custom Controls
+ * evStrap Customizer Custom Controls
  *
  */
 
@@ -9,8 +9,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * Custom Control Base Class
 	 *
 	 */
-	class Understrap_Custom_Control extends WP_Customize_Control {
-		protected function get_Understrap_resource_url() {
+	class evStrap_Custom_Control extends WP_Customize_Control {
+		protected function get_evStrap_resource_url() {
 			if( strpos( wp_normalize_path( __DIR__ ), wp_normalize_path( WP_PLUGIN_DIR ) ) === 0 ) {
 				// We're in a plugin directory and need to determine the url accordingly.
 				return plugin_dir_url( __DIR__ );
@@ -27,7 +27,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	 class Understrap_Image_Checkbox_Custom_Control extends Understrap_Custom_Control {
+	 class evStrap_Image_Checkbox_Custom_Control extends evStrap_Custom_Control {
  		/**
  		 * The type of control being rendered
  		 */
@@ -36,7 +36,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
  		 * Enqueue our scripts and styles
  		 */
   		public function enqueue() {
- 			wp_enqueue_style( 'custom-controls-css', $this->get_Understrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
+ 			wp_enqueue_style( 'custom-controls-css', $this->get_evStrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
   		}
  		/**
  		 * Render the control in the customizer
@@ -70,7 +70,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	 class Understrap_Text_Radio_Button_Custom_Control extends Understrap_Custom_Control {
+	 class evStrap_Text_Radio_Button_Custom_Control extends evStrap_Custom_Control {
  		/**
  		 * The type of control being rendered
  		 */
@@ -79,7 +79,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
  		 * Enqueue our scripts and styles
  		 */
   		public function enqueue() {
- 			wp_enqueue_style( 'custom-controls-css', $this->get_Understrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
+ 			wp_enqueue_style( 'custom-controls-css', $this->get_evStrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
   		}
  		/**
  		 * Render the control in the customizer
@@ -114,7 +114,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Understrap_Image_Radio_Button_Custom_Control extends Understrap_Custom_Control {
+	class evStrap_Image_Radio_Button_Custom_Control extends evStrap_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -123,7 +123,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
  		public function enqueue() {
-			wp_enqueue_style( 'custom-controls-css', $this->get_Understrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
+			wp_enqueue_style( 'custom-controls-css', $this->get_evStrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
  		}
 		/**
 		 * Render the control in the customizer
@@ -156,7 +156,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Understrap_Single_Accordion_Custom_Control extends Understrap_Custom_Control {
+	class evStrap_Single_Accordion_Custom_Control extends evStrap_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -165,9 +165,9 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'custom-controls-js', $this->get_Understrap_resource_url() . 'js/customizer.min.js', array( 'jquery' ), '1.0', true );
-			wp_enqueue_style( 'custom-controls-css', $this->get_Understrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
-			wp_enqueue_style( 'fontawesome', $this->get_Understrap_resource_url() . 'css/font-awesome.min.css', array(), '4.6.3', 'all' );
+			wp_enqueue_script( 'custom-controls-js', $this->get_evStrap_resource_url() . 'js/customizer.min.js', array( 'jquery' ), '1.0', true );
+			wp_enqueue_style( 'custom-controls-css', $this->get_evStrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
+			wp_enqueue_style( 'fontawesome', $this->get_evStrap_resource_url() . 'css/font-awesome.min.css', array(), '4.6.3', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -216,7 +216,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Understrap_Simple_Notice_Custom_Control extends Understrap_Custom_Control {
+	class evStrap_Simple_Notice_Custom_Control extends evStrap_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -263,7 +263,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Understrap_Slider_Custom_Control extends Understrap_Custom_Control {
+	class evStrap_Slider_Custom_Control extends evStrap_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -272,8 +272,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'custom-controls-js', $this->get_Understrap_resource_url() . 'js/customizer.min.js', array( 'jquery', 'jquery-ui-core' ), '1.0', true );
-			wp_enqueue_style( 'custom-controls-css', $this->get_Understrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
+			wp_enqueue_script( 'custom-controls-js', $this->get_evStrap_resource_url() . 'js/customizer.min.js', array( 'jquery', 'jquery-ui-core' ), '1.0', true );
+			wp_enqueue_style( 'custom-controls-css', $this->get_evStrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -295,7 +295,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Understrap_Toggle_Switch_Custom_control extends Understrap_Custom_Control {
+	class evStrap_Toggle_Switch_Custom_control extends evStrap_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -304,7 +304,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue(){
-			wp_enqueue_style( 'custom-controls-css', $this->get_Understrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
+			wp_enqueue_style( 'custom-controls-css', $this->get_evStrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -335,7 +335,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Understrap_Sortable_Repeater_Custom_Control extends Understrap_Custom_Control {
+	class evStrap_Sortable_Repeater_Custom_Control extends evStrap_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -360,8 +360,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'custom-controls-js', $this->get_Understrap_resource_url() . 'js/customizer.min.js', array( 'jquery', 'jquery-ui-core' ), '1.0', true );
-			wp_enqueue_style( 'custom-controls-css', $this->get_Understrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
+			wp_enqueue_script( 'custom-controls-js', $this->get_evStrap_resource_url() . 'js/customizer.min.js', array( 'jquery', 'jquery-ui-core' ), '1.0', true );
+			wp_enqueue_style( 'custom-controls-css', $this->get_evStrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -394,7 +394,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Understrap_Dropdown_Select2_Custom_Control extends Understrap_Custom_Control {
+	class evStrap_Dropdown_Select2_Custom_Control extends evStrap_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -426,8 +426,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 */
 		public function enqueue() {
 			wp_enqueue_script( 'select2-js', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', array( 'jquery' ), '4.0.6', true );
-			wp_enqueue_script( 'custom-controls-js', $this->get_Understrap_resource_url() . 'js/customizer.min.js', array( 'select2-js' ), '1.0', true );
-			wp_enqueue_style( 'custom-controls-css', $this->get_Understrap_resource_url() . 'css/customizer.min.css', array(), '1.1', 'all' );
+			wp_enqueue_script( 'custom-controls-js', $this->get_evStrap_resource_url() . 'js/customizer.min.js', array( 'select2-js' ), '1.0', true );
+			wp_enqueue_style( 'custom-controls-css', $this->get_evStrap_resource_url() . 'css/customizer.min.css', array(), '1.1', 'all' );
 			wp_enqueue_style( 'select2-css', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css', array(), '4.0.6', 'all' );
 		}
 		/**
@@ -481,7 +481,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Understrap_Dropdown_Posts_Custom_Control extends Understrap_Custom_Control {
+	class evStrap_Dropdown_Posts_Custom_Control extends evStrap_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -537,7 +537,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Understrap_TinyMCE_Custom_control extends Understrap_Custom_Control {
+	class evStrap_TinyMCE_Custom_control extends evStrap_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -546,8 +546,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue(){
-			wp_enqueue_script( 'custom-controls-js', $this->get_Understrap_resource_url() . 'js/customizer.min.js', array( 'jquery' ), '1.0', true );
-			wp_enqueue_style( 'custom-controls-css', $this->get_Understrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
+			wp_enqueue_script( 'custom-controls-js', $this->get_evStrap_resource_url() . 'js/customizer.min.js', array( 'jquery' ), '1.0', true );
+			wp_enqueue_style( 'custom-controls-css', $this->get_evStrap_resource_url() . 'css/customizer.min.css', array(), '1.0', 'all' );
 			wp_enqueue_editor();
 		}
 		/**
@@ -555,8 +555,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 */
 		public function to_json() {
 			parent::to_json();
-			$this->json['understraptinymcetoolbar1'] = isset( $this->input_attrs['toolbar1'] ) ? esc_attr( $this->input_attrs['toolbar1'] ) : 'bold italic bullist numlist alignleft aligncenter alignright link';
-			$this->json['understraptinymcetoolbar2'] = isset( $this->input_attrs['toolbar2'] ) ? esc_attr( $this->input_attrs['toolbar2'] ) : '';
+			$this->json['evstraptinymcetoolbar1'] = isset( $this->input_attrs['toolbar1'] ) ? esc_attr( $this->input_attrs['toolbar1'] ) : 'bold italic bullist numlist alignleft aligncenter alignright link';
+			$this->json['evstraptinymcetoolbar2'] = isset( $this->input_attrs['toolbar2'] ) ? esc_attr( $this->input_attrs['toolbar2'] ) : '';
 		}
 		/**
 		 * Render the control in the customizer
@@ -581,7 +581,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @license http://www.gnu.org/licenses/gpl-2.0.html
 	 * @link https://github.com/maddisondesigns
 	 */
-	class Understrap_Google_Font_Select_Custom_Control extends Understrap_Custom_Control {
+	class evStrap_Google_Font_Select_Custom_Control extends evStrap_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -621,19 +621,19 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					$this->fontCount = ( abs( (int) $this->input_attrs['font_count'] ) > 0 ? abs( (int) $this->input_attrs['font_count'] ) : 'all' );
 				}
 			}
-			$this->fontList = $this->Understrap_getGoogleFonts( 'all' );
+			$this->fontList = $this->evStrap_getGoogleFonts( 'all' );
 			// Decode the default json font value
 			$this->fontValues = json_decode( $this->value() );
 			// Find the index of our default font within our list of Google fonts
-			$this->fontListIndex = $this->Understrap_getFontIndex( $this->fontList, $this->fontValues->font );
+			$this->fontListIndex = $this->evStrap_getFontIndex( $this->fontList, $this->fontValues->font );
 		}
 		/**
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
 			wp_enqueue_script( 'select2-js', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', array( 'jquery' ), '4.0.6', true );
-			wp_enqueue_script( 'custom-controls-js', $this->get_Understrap_resource_url() . 'js/customizer.min.js', array( 'select2-js' ), '1.0', true );
-			wp_enqueue_style( 'custom-controls-css', $this->get_Understrap_resource_url() . 'css/customizer.min.css', array(), '1.1', 'all' );
+			wp_enqueue_script( 'custom-controls-js', $this->get_evStrap_resource_url() . 'js/customizer.min.js', array( 'select2-js' ), '1.0', true );
+			wp_enqueue_style( 'custom-controls-css', $this->get_evStrap_resource_url() . 'css/customizer.min.css', array(), '1.1', 'all' );
 			wp_enqueue_style( 'select2-css', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css', array(), '4.0.6', 'all' );
 		}
 		/**
@@ -641,7 +641,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 */
 		public function to_json() {
 			parent::to_json();
-			$this->json['understrapfontslist'] = $this->fontList;
+			$this->json['evstrapfontslist'] = $this->fontList;
 		}
 		/**
 		 * Render the control in the customizer
@@ -739,7 +739,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		/**
 		 * Find the index of the saved font in our multidimensional array of Google Fonts
 		 */
-		public function Understrap_getFontIndex( $haystack, $needle ) {
+		public function evStrap_getFontIndex( $haystack, $needle ) {
 			foreach( $haystack as $key => $value ) {
 				if( $value->family == $needle ) {
 					return $key;
@@ -751,11 +751,11 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		/**
 		 * Return the list of Google Fonts from our json file. Unless otherwise specfied, list will be limited to 30 fonts.
 		 */
-		public function Understrap_getGoogleFonts( $count = 30 ) {
+		public function evStrap_getGoogleFonts( $count = 30 ) {
 			// Google Fonts json generated from https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=YOUR-API-KEY
-			$fontFile = $this->get_Understrap_resource_url() . 'inc/google-fonts-alphabetical.json';
+			$fontFile = $this->get_evStrap_resource_url() . 'inc/google-fonts-alphabetical.json';
 			if ( $this->fontOrderBy === 'popular' ) {
-				$fontFile = $this->get_Understrap_resource_url() . 'inc/google-fonts-popularity.json';
+				$fontFile = $this->get_evStrap_resource_url() . 'inc/google-fonts-popularity.json';
 			}
 
 			$request = wp_remote_get( $fontFile );
@@ -781,7 +781,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
  	 * @license http://www.gnu.org/licenses/gpl-3.0.html
  	 * @link https://github.com/BraadMartin/components/tree/master/customizer/alpha-color-picker
  	 */
-	class Understrap_Customize_Alpha_Color_Control extends Understrap_Custom_Control {
+	class evStrap_Customize_Alpha_Color_Control extends evStrap_Custom_Control {
 		/**
 		 * The type of control being rendered
 		 */
@@ -800,8 +800,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'custom-controls-js', $this->get_Understrap_resource_url() . 'js/customizer.min.js', array( 'jquery', 'wp-color-picker' ), '1.0', true );
-			wp_enqueue_style( 'custom-controls-css', $this->get_Understrap_resource_url() . 'css/customizer.min.css', array( 'wp-color-picker' ), '1.0', 'all' );
+			wp_enqueue_script( 'custom-controls-js', $this->get_evStrap_resource_url() . 'js/customizer.min.js', array( 'jquery', 'wp-color-picker' ), '1.0', true );
+			wp_enqueue_style( 'custom-controls-css', $this->get_evStrap_resource_url() . 'css/customizer.min.css', array( 'wp-color-picker' ), '1.0', 'all' );
 		}
 		/**
 		 * Render the control in the customizer
@@ -1070,7 +1070,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
  * @uses	wp_kses()	https://developer.wordpress.org/reference/functions/wp_kses/
  */
 
-function Understrap_slug_sanitize_html( $input ) {
+function evStrap_slug_sanitize_html( $input ) {
 	global $allowedposttags;
 
 	return wp_kses( $input, $allowedposttags );

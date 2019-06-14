@@ -39,7 +39,7 @@ if ( ! function_exists( 'evstrap_add_site_info' ) ) {
 				/* translators:*/
 				esc_html__( 'Theme: %1$s by %2$s.', 'evstrap' ),
 				$the_theme->get( 'Name' ),
-				'<a href="' . esc_url( __( 'http://understrap.com', 'evstrap' ) ) . '">understrap.com</a>'
+				'<a href="' . esc_url( __( 'http://evstrap.com', 'evstrap' ) ) . '">evstrap.com</a>'
 			),
 			sprintf( // WPCS: XSS ok.
 				/* translators:*/

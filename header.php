@@ -72,7 +72,7 @@ $navbar_markup = (get_theme_mod( 'evstrap_navbar_markup' ) !== '' ? get_theme_mo
 						'fallback_cb'     => '',
 						'menu_id'         => 'main-menu',
 						'depth'           => 2,
-						'walker'          => new Understrap_WP_Bootstrap_Navwalker(),
+						'walker'          => new evStrap_WP_Bootstrap_Navwalker(),
 					)
 				); ?>
 

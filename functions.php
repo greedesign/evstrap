@@ -1,6 +1,6 @@
 <?php
 /**
- * Understrap functions and definitions
+ * evStrap functions and definitions
  *
  * @package evstrap
  */

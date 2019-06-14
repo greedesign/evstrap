@@ -53,7 +53,7 @@ Some basics about the Sass and CSS files that come with UnderStrap:
  @import "theme/theme";  // 5. Add your styles into this file
  ```
 
-- Don’t edit the number 2-4 files/filesets listed above or you won’t be able to update Understrap without overwriting your own work!
+- Don’t edit the number 2-4 files/filesets listed above or you won’t be able to update evStrap without overwriting your own work!
 - Your design goes into: `/sass/theme`. 
   - Add your styles to the `/sass/theme/_theme.scss` file 
   - And your variables to the `/sass/theme/_theme_variables.scss`

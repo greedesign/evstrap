@@ -28,7 +28,7 @@ if ( ! function_exists ( 'evstrap_setup' ) ) {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on understrap, use a find and replace
+		 * If you're building a theme based on evstrap, use a find and replace
 		 * to change 'evstrap' to the name of your theme in all the template files
 		 */
 		load_theme_textdomain( 'evstrap', get_template_directory() . '/languages' );
@@ -170,7 +170,7 @@ if ( ! function_exists( 'evstrap_all_excerpts_get_more_link' ) ) {
 	 */
 	function evstrap_all_excerpts_get_more_link( $post_excerpt ) {
 		if ( ! is_admin() ) {
-			$post_excerpt = $post_excerpt . ' [...]<p><a class="btn btn-secondary understrap-read-more-link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . __( 'Read More...',
+			$post_excerpt = $post_excerpt . ' [...]<p><a class="btn btn-secondary evstrap-read-more-link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . __( 'Read More...',
 			'evstrap' ) . '</a></p>';
 		}
 		return $post_excerpt;

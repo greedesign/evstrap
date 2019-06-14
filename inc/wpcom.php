@@ -46,6 +46,6 @@ add_action( 'wp_enqueue_scripts', 'evstrap_wpcom_styles' );
 
 if ( ! function_exists( 'evstrap_wpcom_styles' ) ) {
 	function evstrap_wpcom_styles() {
-		wp_enqueue_style( 'understrap-wpcom', get_template_directory_uri() . '/inc/style-wpcom.css', array(), '20160411' );
+		wp_enqueue_style( 'evstrap-wpcom', get_template_directory_uri() . '/inc/style-wpcom.css', array(), '20160411' );
 	}
 }

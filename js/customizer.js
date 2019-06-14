@@ -59,7 +59,7 @@ jQuery(document).ready(function ($) {
         var i;
 
         for (i = 1; i < numRepeaterItems; ++i) {
-          understrapAppendRow($(this), defaultValuesArray[i]);
+          evstrapAppendRow($(this), defaultValuesArray[i]);
         }
       }
     }
@@ -67,7 +67,7 @@ jQuery(document).ready(function ($) {
 
   $(this).find('.sortable').sortable({
     update: function (event, ui) {
-      understrapGetAllInputs($(this).parent());
+      evstrapGetAllInputs($(this).parent());
     }
   }); // Remove item starting from it's parent element
 
@@ -79,22 +79,22 @@ jQuery(document).ready(function ($) {
       $(this).parent().slideUp('fast', function () {
         var parentContainer = $(this).parent().parent();
         $(this).remove();
-        understrapGetAllInputs(parentContainer);
+        evstrapGetAllInputs(parentContainer);
       });
     } else {
       $(this).parent().find('.repeater-input').val('');
-      understrapGetAllInputs($(this).parent().parent().parent());
+      evstrapGetAllInputs($(this).parent().parent().parent());
     }
   }); // Add new item
 
   $('.customize-control-sortable-repeater-add').click(function (event) {
     event.preventDefault();
-    understrapAppendRow($(this).parent());
-    understrapGetAllInputs($(this).parent());
+    evstrapAppendRow($(this).parent());
+    evstrapGetAllInputs($(this).parent());
   }); // Refresh our hidden field if any fields change
 
   $('.sortable').change(function () {
-    understrapGetAllInputs($(this).parent());
+    evstrapGetAllInputs($(this).parent());
   }); // Add https:// to the start of the URL if it doesn't have it
   // $('.sortable').on('blur', '.repeater-input', function() {
   // 	var url = $(this);
@@ -106,7 +106,7 @@ jQuery(document).ready(function ($) {
   // });
   // Append a new row to our list of elements
 
-  function understrapAppendRow($element, defaultValue) {
+  function evstrapAppendRow($element, defaultValue) {
     defaultValue = typeof defaultValue !== 'undefined' ? defaultValue : '';
     var newRow = '<div class="repeater" style="display:none"><input type="text" value="' + defaultValue.replace(/"/g, '\&quot;') + '" class="repeater-input" /><span class="dashicons dashicons-sort"></span><a class="customize-control-sortable-repeater-delete" href="#"><span class="dashicons dashicons-no-alt"></span></a></div>';
     $element.find('.sortable').append(newRow);
@@ -116,7 +116,7 @@ jQuery(document).ready(function ($) {
   } // Get the values from the repeater input fields and add to our hidden field
 
 
-  function understrapGetAllInputs($element) {
+  function evstrapGetAllInputs($element) {
     var inputValues = $element.find('.repeater-input').map(function () {
       return $(this).val();
     }).toArray(); // Add all the values from our repeater fields to the hidden field (which is the one that actually gets saved)
@@ -266,14 +266,14 @@ jQuery(document).ready(function ($) {
 
     var bodyfontcontrol = _wpCustomizeSettings.controls[customizerControlName]; // Find the index of the selected font
 
-    var indexes = $.map(bodyfontcontrol.understrapfontslist, function (obj, index) {
+    var indexes = $.map(bodyfontcontrol.evstrapfontslist, function (obj, index) {
       if (obj.family === selectedFont) {
         return index;
       }
     });
     var index = indexes[0]; // For the selected Google font show the available weight/style variants
 
-    $.each(bodyfontcontrol.understrapfontslist[index].variants, function (val, text) {
+    $.each(bodyfontcontrol.evstrapfontslist[index].variants, function (val, text) {
       elementRegularWeight.append($('<option></option>').val(text).html(text));
 
       if (text.indexOf("italic") >= 0) {
@@ -296,14 +296,14 @@ jQuery(document).ready(function ($) {
     } // Update the font category based on the selected font
 
 
-    $(this).parent().parent().find('.google-fonts-category').val(bodyfontcontrol.understrapfontslist[index].category);
-    understrapGetAllSelects($(this).parent().parent());
+    $(this).parent().parent().find('.google-fonts-category').val(bodyfontcontrol.evstrapfontslist[index].category);
+    evstrapGetAllSelects($(this).parent().parent());
   });
   $('.google_fonts_select_control select').on('change', function () {
-    understrapGetAllSelects($(this).parent().parent());
+    evstrapGetAllSelects($(this).parent().parent());
   });
 
-  function understrapGetAllSelects($element) {
+  function evstrapGetAllSelects($element) {
     var selectedFont = {
       font: $element.find('.google-fonts-list').val(),
       regularweight: $element.find('.google-fonts-regularweight-style').val(),
@@ -325,9 +325,9 @@ jQuery(document).ready(function ($) {
 
   $('.customize-control-tinymce-editor').each(function () {
     // Get the toolbar strings that were passed from the PHP Class
-    var tinyMCEToolbar1String = _wpCustomizeSettings.controls[$(this).attr('id')].understraptinymcetoolbar1;
+    var tinyMCEToolbar1String = _wpCustomizeSettings.controls[$(this).attr('id')].evstraptinymcetoolbar1;
 
-    var tinyMCEToolbar2String = _wpCustomizeSettings.controls[$(this).attr('id')].understraptinymcetoolbar2;
+    var tinyMCEToolbar2String = _wpCustomizeSettings.controls[$(this).attr('id')].evstraptinymcetoolbar2;
 
     wp.editor.initialize($(this).attr('id'), {
       tinymce: {

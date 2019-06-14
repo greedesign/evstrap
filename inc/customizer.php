@@ -1,6 +1,6 @@
 <?php
 /**
- * Understrap Theme Customizer
+ * evStrap Theme Customizer
  *
  * @package evstrap
  */
@@ -595,7 +595,7 @@ if ( ! function_exists( 'evstrap_theme_customize_register' ) ) {
 				)
 			);
 			$wp_customize->add_control(
-				new Understrap_Slider_Custom_Control(
+				new evStrap_Slider_Custom_Control(
 					$wp_customize,
 					'evstrap_navbar_bgalpha',
 					array(
@@ -655,7 +655,7 @@ if ( ! function_exists( 'evstrap_theme_customize_register' ) ) {
 			// 	)
 			// );
 			// $wp_customize->add_control(
-			// 	new Understrap_Slider_Custom_Control(
+			// 	new evStrap_Slider_Custom_Control(
 			// 		$wp_customize,
 			// 		'evstrap_navbar_pinned_bgalpha',
 			// 		array(
@@ -696,7 +696,7 @@ if ( ! function_exists( 'evstrap_theme_customize_register' ) ) {
 			)
 		);
 		$wp_customize->add_control(
-			new Understrap_Sortable_Repeater_Custom_Control(
+			new evStrap_Sortable_Repeater_Custom_Control(
 			$wp_customize,
 				'evstrap_navbar_shortcode',
 				array(
@@ -718,7 +718,7 @@ if ( ! function_exists( 'evstrap_theme_customize_register' ) ) {
 			)
 		);
 		$wp_customize->add_control(
-			new Understrap_TinyMCE_Custom_control(
+			new evStrap_TinyMCE_Custom_control(
 			$wp_customize,
 				'evstrap_navbar_markup',
 				array(
