@@ -10,6 +10,55 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Set Theme Editor Colour Palette
+ */
+
+add_action( 'after_setup_theme', 'evstrap_setup_theme_supported_features', 100 );
+
+if ( ! function_exists( 'evstrap_setup_theme_supported_features' ) ) {
+	function evstrap_setup_theme_supported_features() {
+		add_theme_support( 'editor-color-palette', array(
+				array(
+						'name' => __( 'Primary', 'themeLangDomain' ),
+						'slug' => 'primary',
+						'color' => get_theme_mod( 'evstrap_color_primary' ),
+				),
+				array(
+						'name' => __( 'Secondary', 'themeLangDomain' ),
+						'slug' => 'secondary',
+						'color' => get_theme_mod( 'evstrap_color_secondary' ),
+				),
+				array(
+						'name' => __( 'Info', 'themeLangDomain' ),
+						'slug' => 'info',
+						'color' => get_theme_mod( 'evstrap_color_info' ),
+				),
+				array(
+						'name' => __( 'Warning', 'themeLangDomain' ),
+						'slug' => 'warning',
+						'color' => get_theme_mod( 'evstrap_color_warning' ),
+				),
+				array(
+					'name' => __( 'Danger', 'themeLangDomain' ),
+					'slug' => 'danger',
+					'color' => get_theme_mod( 'evstrap_color_danger' ),
+				),
+				array(
+					'name' => __( 'Light', 'themeLangDomain' ),
+					'slug' => 'light',
+					'color' => get_theme_mod( 'evstrap_color_light' ),
+				),
+				array(
+					'name' => __( 'Dark', 'themeLangDomain' ),
+					'slug' => 'dark',
+					'color' => get_theme_mod( 'evstrap_color_dark' ),
+				),
+
+		) );
+	}
+}
+
+/**
  * Registers an editor stylesheet for the theme.
  */
 

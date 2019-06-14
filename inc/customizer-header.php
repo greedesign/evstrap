@@ -1,6 +1,6 @@
 <?php
 /**
- * evStrap Customizer Variables for header.php
+ * Understrap Customizer Variables for header.php
  *
  * @package evstrap
  */
@@ -63,17 +63,14 @@ function evstrap_navbar() {
     $navbar_breakpoint = (!empty(get_theme_mod('evstrap_navbar_breakpoint')) ? get_theme_mod('evstrap_navbar_breakpoint') : '');
     $navbar_color_scheme = (!empty(get_theme_mod('evstrap_navbar_color_scheme')) ? get_theme_mod('evstrap_navbar_color_scheme') : '');
     $navbar_bgcolor = (!empty(get_theme_mod('evstrap_navbar_bgcolor')) ? get_theme_mod('evstrap_navbar_bgcolor') : '');
-    //$navbar_bgalpha = (!empty(get_theme_mod('evstrap_navbar_bgalpha')) ? 'bg-alpha' : '');
     $navbar_bgalpha = ( null !== get_theme_mod('evstrap_navbar_bgalpha') ? get_theme_mod('evstrap_navbar_bgalpha') : '');
 
-    // Commented out code as options are currently not in play. May look to Include later
-    // $navbar_pinned_bgcolor = (!empty(get_theme_mod('evstrap_navbar_bgcolor')) ? get_theme_mod('evstrap_navbar_bgcolor') : '');
-    // $navbar_pinned_bgalpha = (null !== get_theme_mod('evstrap_navbar_bgalpha') ? get_theme_mod('evstrap_navbar_bgalpha') : '');
+
 
     // concatinate all variables into tidy class string
     $navbar_classes[] = $navbar_breakpoint;
     $navbar_classes[] = $navbar_color_scheme;
-    if( $navbar_bgcolor !== 'bg-transparent' ) {
+    if( $navbar_bgcolor !== 'bg-transparent' && $navbar_bgalpha < 100 ) {
         $navbar_classes[] = 'bg-alpha';
     } else {
         $navbar_classes[] = $navbar_bgcolor;
@@ -94,7 +91,6 @@ function evstrap_navbar() {
 function navbar_header_styles() {
     // Get BG base colour and alpha value
     $navbar_bgcolor = (!empty(get_theme_mod('evstrap_navbar_bgcolor')) ? get_theme_mod('evstrap_navbar_bgcolor') : '');
-    //$navbar_bgalpha = (!empty(get_theme_mod('evstrap_navbar_bgalpha')) ? get_theme_mod('evstrap_navbar_bgalpha') : '');
     $navbar_bgalpha = (null !== get_theme_mod('evstrap_navbar_bgalpha') ? get_theme_mod('evstrap_navbar_bgalpha') : '');
 
     $navbar_pinned_bgcolor = (!empty(get_theme_mod('evstrap_navbar_bgcolor')) ? get_theme_mod('evstrap_navbar_bgcolor') : '');
@@ -102,8 +98,6 @@ function navbar_header_styles() {
 
     // if bg opacity set and bg color not transparent
     if( $navbar_bgcolor !== 'bg-transparent' ) {
-    //if( (0 <= $navbar_bgalpha) && ($navbar_bgalpha <= 99) ) {
-    //if( in_array($navbar_bgalpha, range(0,99)) ) {
         // Get current Theme palette value for use in alpha calculation 
         switch($navbar_bgcolor) {
             case 'bg-primary':
@@ -129,60 +123,20 @@ function navbar_header_styles() {
         $bgcolor = evstrap_hex2rgba($bgcolor, $navbar_bgalpha);
 
     } // end if not bg-transparent
-    
-    /*
-    if( $navbar_pinned_bgcolor !== '' ) {
-        // Get current Theme palette value for use in alpha calculation 
-        switch($navbar_pinned_bgcolor) {
-            case 'bg-primary':
-                $pinned_bgcolor = get_theme_mod( 'evstrap_color_primary' );
-                break;
-            case 'bg-secondary':
-                $pinned_bgcolor = get_theme_mod( 'evstrap_color_secondary' );
-                break;
-            case 'bg-light':
-                $pinned_bgcolor = get_theme_mod( 'evstrap_color_light' );
-                break;
-            case 'bg-dark':
-                $pinned_bgcolor = get_theme_mod( 'evstrap_color_dark' );
-                break;
-            case 'bg-white':
-                $pinned_bgcolor = get_theme_mod( 'evstrap_color_white' );
-                break;
-        }
-        // get set alpha value
-        $navbar_pinned_bgalpha = $navbar_pinned_bgalpha / 100;
 
-        // calculate rgba value through hex2rgb function
-        $pinned_bgcolor = evstrap_hex2rgba($pinned_bgcolor, $navbar_pinned_bgalpha);
-    }*/
-
-    //if( $bgcolor !== '' || $pinned_bgcolor !== '' ) {
+    // If a bgcolor is set
     if( $bgcolor !== '' ) {
         // Style
-        if( $bgcolor !== '' ) {
-            $navbar_css[] = "
+        $navbar_css[] = "
             .navbar.bg-alpha {
                 background-color: {$bgcolor} !important;
             }";
-        }
 
-        // if( $pinned_bgcolor !== '' ) {
-        //     $navbar_css[] = "
-        //     .headroom--not-top.headroom--pinned .navbar.bg-alpha,
-        //     .headroom--not-bottom.headroom--pinned .navbar.bg-alpha {
-        //         background-color: {$pinned_bgcolor} !important;
-        //     }";
-        // }
+        //check if dynamic css file exists, if not set null
+        $css_file = get_template_directory() . '/css/customizer-navbar.css';
 
-        $navbarfile = get_template_directory() . '/css/customizer-navbar.css';
-
-        if (file_exists($navbarfile)) {
-            $css_file = file_get_contents($navbarfile);
-
-            if($navbar_css != $css_file) {
-                file_put_contents( $navbarfile, $navbar_css);
-            }
+        if( !empty($css_file) && $navbar_css != $css_file) {
+            file_put_contents( $css_file, $navbar_css);
         }
 
         wp_enqueue_style('custom-navbar-style', get_template_directory_uri() . '/css/customizer-navbar.css');

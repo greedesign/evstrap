@@ -152,275 +152,9 @@ if ( ! function_exists( 'evstrap_theme_customize_register' ) ) {
 				)
 			);
 
-			/*
-			$header_classes[] = (get_field('header_background_image') !== '' ? 'header-background-img' : '');
-			$header_classes[] = get_field('page_header_width');
-			$header_classes[] = get_field('title_alignment');
-			$header_classes[] = (get_field('enable_advanced_header_alignment') !== '' ? 'd-felx' : '');
-			
-			$header_classes[] = get_field('header_vertical_align');
-			$header_classes[] = get_field('header_horizontal_align');
-			$header_classes[] = get_field('header_content_align');
-			*/
 
 		/**
-		 * Theme layout options.
-		 */
-		/*
-		$wp_customize->add_section(
-			'evstrap_page_header_defaults',
-			array(
-				'title'       => __( 'Page Header Defaults', 'evstrap' ),
-				'capability'  => 'edit_theme_options',
-				'description' => __( 'Set page header options.', 'evstrap' ),
-				'panel' => 'evstrap_options',
-			)
-		);
-
-			// Enable Page Header Background Image Default
-			$wp_customize->add_setting(
-				'evstrap_enable_page_header_bgimg_default',
-				array(
-					'default'           => 0,
-					'type'              => 'theme_mod',
-					'sanitize_callback' => 'evstrap_switch_sanitization',
-					'capability'        => 'edit_theme_options',
-				)
-			);
-			$wp_customize->add_control(
-				new WP_Customize_Control(
-					$wp_customize,
-					'evstrap_enable_page_header_bgimg_default',
-					array(
-						'label'       => __( 'Header Background Image', 'evstrap' ),
-						'description' => __( 'Enable to set a page background image. Will use the Featured Image by default or you can specify another one if required.', 'evstrap' ),
-						'section'     => 'evstrap_page_header_defaults',
-						'options'    => 'evstrap_enable_page_header_bgimg_default',
-						'type'        => 'checkbox',
-					)
-				)
-			);
-
-			// Page Background Image Default
-			$wp_customize->add_setting(
-				'evstrap_page_header_bgimg_default',
-				array(
-					'default'           => '',
-					'type'              => 'theme_mod',
-					//'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
-					'capability'        => 'edit_theme_options',
-				)
-			);
-			$wp_customize->add_control(
-				new WP_Customize_Image_Control(
-					$wp_customize,
-					'evstrap_page_header_bgimg_default',
-					array(
-						'label'       => __( 'Default Page Header Background Image', 'evstrap' ),
-						'description' => __( 'Upload image to be used if page has no featured image set', 'evstrap' ),
-						'section'     => 'evstrap_page_header_defaults',
-						'options'    => 'evstrap_page_header_bgimg_default',
-					)
-				)
-			);
-
-			// Page Header Width Default
-			$wp_customize->add_setting(
-				'evstrap_page_header_width_default',
-				array(
-					'default'           => 'default',
-					'type'              => 'theme_mod',
-					//'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
-					'capability'        => 'edit_theme_options',
-				)
-			);
-			$wp_customize->add_control(
-				new WP_Customize_Control(
-					$wp_customize,
-					'evstrap_page_header_width_default',
-					array(
-						'label'       => __( 'Header Width', 'evstrap' ),
-						'description' => __( '', 'evstrap' ),
-						'section'     => 'evstrap_page_header_defaults',
-						'options'    => 'evstrap_page_header_width_default',
-						'type'        => 'select',
-						'choices'		=> array(
-							'default' => __( 'Default' ),
-							'alignwide' => __( 'Wide' ),
-							'alignfull' => __( 'Fullwidth' )
-						)
-					)
-				)
-			);
-
-			// Page Header Height Default
-			$wp_customize->add_setting(
-				'evstrap_page_header_height_default',
-				array(
-					'default'           => 'default',
-					'type'              => 'theme_mod',
-					//'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
-					'capability'        => 'edit_theme_options',
-				)
-			);
-			$wp_customize->add_control(
-				new WP_Customize_Control(
-					$wp_customize,
-					'evstrap_page_header_height_default',
-					array(
-						'label'       => __( 'Header Height', 'evstrap' ),
-						'description' => __( '', 'evstrap' ),
-						'section'     => 'evstrap_page_header_defaults',
-						'options'    => 'evstrap_page_header_height_default',
-						'type'        => 'select',
-						'choices'		=> array(
-							'default' => __( 'Default' ),
-							'tall' => __( 'Tall' ),
-							'full_page' => __( 'Fullpage' )
-						)
-					)
-				)
-			);
-
-			// Page Title Alignment Default
-			$wp_customize->add_setting(
-				'evstrap_page_header_title_align_default',
-				array(
-					'default'           => 'default',
-					'type'              => 'theme_mod',
-					//'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
-					'capability'        => 'edit_theme_options',
-				)
-			);
-			$wp_customize->add_control(
-				new WP_Customize_Control(
-					$wp_customize,
-					'evstrap_page_header_title_align_default',
-					array(
-						'label'       => __( 'Header Title Alignment', 'evstrap' ),
-						'description' => __( '', 'evstrap' ),
-						'section'     => 'evstrap_page_header_defaults',
-						'options'    => 'evstrap_page_header_title_align_default',
-						'type'        => 'select',
-						'choices'		=> array(
-							'default' => __( 'Left' ),
-							'text-center' => __( 'Center' ),
-							'text-right' => __( 'Right' )
-						)
-					)
-				)
-			);
-
-			// Page Heading Vertical Alignment Default
-			$wp_customize->add_setting(
-				'evstrap_page_header_vertical_align_default',
-				array(
-					'default'           => '',
-					'type'              => 'theme_mod',
-					//'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
-					'capability'        => 'edit_theme_options',
-				)
-			);
-			$wp_customize->add_control(
-				new WP_Customize_Control(
-					$wp_customize,
-					'evstrap_page_header_vertical_align_default',
-					array(
-						'label'       => __( 'Header Vertical Alignment Default', 'evstrap' ),
-						'description' => __( '', 'evstrap' ),
-						'section'     => 'evstrap_page_header_defaults',
-						'options'    => 'evstrap_page_header_vertical_align_default',
-						'type'        => 'select',
-						'choices'		=> array(
-							'align-items-start' => __( 'Top' ),
-							'align-items-end' => __( 'Bottom' ),
-							'align-items-center' => __( 'Middle' ),
-							'align-items-stretch' => __( 'Stretch' )
-						)
-					)
-				)
-			);
-
-			// Page Heading Horizontal Alignment Default
-			$wp_customize->add_setting(
-				'evstrap_page_header_horizontal_align_default',
-				array(
-					'default'           => '',
-					'type'              => 'theme_mod',
-					//'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
-					'capability'        => 'edit_theme_options',
-				)
-			);
-			$wp_customize->add_control(
-				new WP_Customize_Control(
-					$wp_customize,
-					'evstrap_page_header_horizontal_align_default',
-					array(
-						'label'       => __( 'Header Horizontal Alignment Default', 'evstrap' ),
-						'description' => __( '', 'evstrap' ),
-						'section'     => 'evstrap_page_header_defaults',
-						'options'    => 'evstrap_page_header_horizontal_align_default',
-						'type'        => 'select',
-						'choices'		=> array(
-							'justify-content-start' => __( 'Left' ),
-							'justify-content-center' => __( 'Center' ),
-							'justify-content-end' => __( 'Right' )
-						)
-					)
-				)
-			);
-
-			// Page Heading Content Alignment Default
-			$wp_customize->add_setting(
-				'evstrap_page_header_content_align_default',
-				array(
-					'default'           => '',
-					'type'              => 'theme_mod',
-					//'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
-					'capability'        => 'edit_theme_options',
-				)
-			);
-			$wp_customize->add_control(
-				new WP_Customize_Control(
-					$wp_customize,
-					'evstrap_page_header_content_align_default',
-					array(
-						'label'       => __( 'Header Content Alignment Default', 'evstrap' ),
-						'description' => __( '', 'evstrap' ),
-						'section'     => 'evstrap_page_header_defaults',
-						'options'    => 'evstrap_page_header_content_align_default',
-						'type'        => 'select',
-						'choices'		=> array(
-							'align-content-start' => __( 'Top' ),
-							'align-content-end' => __( 'Bottom' ),
-							'align-content-center' => __( 'Center' ),
-							'align-content-betwee' => __( 'Space Between' ),
-							'align-content-around' => __( 'Space Around' )
-						)
-					)
-				)
-			);
-		
-			//$header_classes[] = get_field('header_vertical_align');
-			//align-items-start : Top
-			//align-items-end : Bottom
-			//align-items-center : Middle
-			//align-items-stretch : Stretch
-			//$header_classes[] = get_field('header_horizontal_align');
-			//justify-content-start : Left
-			//justify-content-center : Center
-			//justify-content-end : Right
-			//$header_classes[] = get_field('header_content_align');
-			//align-content-start : Top
-			//align-content-end : Bottom
-			//align-content-center : Center
-			//align-content-between : Space Between
-			//align-content-around : Space Around
-		*/ // end commenting out default values
-
-
-		/**
-		 * BS Navbar Options.
+		 * evStrap Navbar Options.
 		*/
 		$wp_customize->add_section(
 			'evstrap_theme_navbar_options',
@@ -744,13 +478,17 @@ if ( ! function_exists( 'evstrap_theme_customize_register' ) ) {
 
 		/**
 		 * Colour Pallete
-		 * * Building palette array 
+		 * * Building palette array
+		 * 
+		 * * removed for now as there is not easy way to have the colour picker
+		 * * and SASS cooperate nicely
 		 */
-		 
+		/*
 		// primary color
 		$evstrap_color_palette[] = array(
 			'slug'=>'evstrap_color_primary', 
-			'default' => '#7C008C',
+			//'default' => '#7C008C',
+			'default' => get_theme_mod( 'evstrap_color_primary' ),
 			'label' => 'Primary Color'
 		);
 
@@ -781,10 +519,12 @@ if ( ! function_exists( 'evstrap_theme_customize_register' ) ) {
 			'default' => '#dc3545',
 			'label' => 'Danger Color'
 		);
-
+		*/
 		/**
 		 * Loop through palette aray and define settings and controls for each
+		 * * commented out for now - see above
 		 */ 
+		/*
 		foreach( $evstrap_color_palette as $evstrap_color_palette ) {
 			// SETTINGS
 			$wp_customize->add_setting(
@@ -804,7 +544,7 @@ if ( ! function_exists( 'evstrap_theme_customize_register' ) ) {
 						'settings' => $evstrap_color_palette['slug'])
 				)
 			);
-		}
+		}*/
 
 	}
 } // endif function_exists( 'evstrap_theme_customize_register' ).

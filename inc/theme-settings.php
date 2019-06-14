@@ -108,11 +108,6 @@ if ( ! function_exists( 'evstrap_setup_theme_default_settings' ) ) {
 			set_theme_mod( 'evstrap_navbar_bgcolor', 'bg-primary' );
 		}
 
-		// $evstrap_navbar_bgcolor2 = get_theme_mod( 'evstrap_navbar_bgcolor2' );
-		// if ( '' == $evstrap_navbar_bgcolor2 ) {
-		// 	set_theme_mod( 'evstrap_navbar_bgcolor2', '' );
-		// }
-
 		$evstrap_navbar_bgalpha = get_theme_mod( 'evstrap_navbar_bgalpha' );
 		if ( '' == $evstrap_navbar_bgalpha ) {
 			set_theme_mod( 'evstrap_navbar_bgalpha', 100 );
@@ -128,6 +123,9 @@ if ( ! function_exists( 'evstrap_setup_theme_default_settings' ) ) {
 
 		/**
 		 * Colour Pallets
+		 *
+		 * Set Colors defaults
+		 * * need to manually set these color defaults to match the SASS variables
 		 */
 		// Primary.
 		$evstrap_color_primary = get_theme_mod( 'evstrap_color_primary' );
@@ -152,7 +150,7 @@ if ( ! function_exists( 'evstrap_setup_theme_default_settings' ) ) {
 		// Danger
 		$evstrap_color_danger = get_theme_mod( 'evstrap_color_danger' );
 		if ( '' == $evstrap_color_danger ) {
-			set_theme_mod( 'evstrap_color_danger', '#7C008C' );
+			set_theme_mod( 'evstrap_color_danger', '#ff0000' );
 		}
 		// Light
 		$evstrap_color_light = get_theme_mod( 'evstrap_color_light' );
