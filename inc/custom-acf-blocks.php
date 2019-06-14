@@ -147,10 +147,10 @@ function my_acf_init() {
 //     ), $atts));
     
 //     if ($display == 'link') {
-//         $URL = (!empty(get_theme_mod('understrap_child_buy_tickets_url')) ? get_theme_mod('understrap_child_buy_tickets_url') : '');
+//         $URL = (!empty(get_theme_mod('evstrap_child_buy_tickets_url')) ? get_theme_mod('evstrap_child_buy_tickets_url') : '');
 //         return '<a class="'.$class.'" target="'.$target.'" href="'.$URL.'">'.$button_label.'</a>';
 //     } else {
-// 		$URL = (!empty(get_theme_mod('understrap_child_buy_tickets_url')) ? get_theme_mod('understrap_child_buy_tickets_url') : '');
+// 		$URL = (!empty(get_theme_mod('evstrap_child_buy_tickets_url')) ? get_theme_mod('evstrap_child_buy_tickets_url') : '');
 // 		return $URL;
 // 	}
 // }
@@ -267,7 +267,7 @@ function ev_featured_card_block_render_callback( $block ) {
 	//grab Buy Ticket URL from theme settings, if use_buy_tickets_url is true, overriding $buttonURL
 	$use_buy_tickets_url = get_field('use_buy_tickets_url');
 	if($use_buy_tickets_url){
-		$buttonURL = (!empty(get_theme_mod('understrap_child_buy_tickets_url')) ? get_theme_mod('understrap_child_buy_tickets_url') : '');
+		$buttonURL = (!empty(get_theme_mod('evstrap_child_buy_tickets_url')) ? get_theme_mod('evstrap_child_buy_tickets_url') : '');
 	}
 
 	//get card badge field (text)
@@ -755,7 +755,7 @@ function ev_button_block_block_render_callback( $block ) {
 	//grab Buy Ticket URL from theme settings, if use_buy_tickets_url is true, overriding $link_url
 	$use_buy_tickets_url = get_field('use_buy_tickets_url');
 	if($use_buy_tickets_url){
-		$link_url = (!empty(get_theme_mod('understrap_child_buy_tickets_url')) ? get_theme_mod('understrap_child_buy_tickets_url') : '');
+		$link_url = (!empty(get_theme_mod('evstrap_child_buy_tickets_url')) ? get_theme_mod('evstrap_child_buy_tickets_url') : '');
 	}
     
     if($template == "standard"): ?>

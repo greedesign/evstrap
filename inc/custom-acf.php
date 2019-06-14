@@ -2,7 +2,7 @@
 /**
  * Custom afc functions.
  *
- * @package understrap
+ * @package evstrap
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -41,7 +41,7 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
     endif;
 
     // if background type is not none: add background, width and alignment classes; otherwise add a default class
-    if( $background_type !== 'none' ):
+    if (get_field('background_type') && get_field('background_type') !== 'none'):
       $header_classes[] = 'header-background-cover';
       $header_classes[] = get_field('page_header_width');
       $header_classes[] = (get_field('enable_advanced_header_alignment') == 1 ? 'd-flex flex-wrap' : '');
@@ -98,7 +98,7 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
     $header_bgcolor = get_field('background_color');
     $header_bggradient = get_field('background_gradient');
     
-    if($background_type !== 'none') {
+    if (get_field('background_type') && get_field('background_type') !== 'none'):
       // ambigious enqueue call - dosn't actually do anything with style.css but need this to work for some reason?
       wp_enqueue_style(
         'custom-header-style',
@@ -134,21 +134,21 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
       .navbar-is-fixed-top .entry-header {
         padding-top: calc(50px + 56px);
       }";
-    if($img_overlay_type !== 'none'):
-      $header_css[] = "
-        .entry-header > * {
-          position: relative;
-        }
-        .entry-header::before {
-          content: \"\";
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          z-index: 0;
-        }";
-    endif;
+      if($img_overlay_type !== 'none'):
+        $header_css[] = "
+          .entry-header > * {
+            position: relative;
+          }
+          .entry-header::before {
+            content: \"\";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 0;
+          }";
+      endif;
 
       /**
        * Background Type - Image
@@ -239,7 +239,8 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
       $header_css = implode(" ", $header_css);
 
       wp_add_inline_style( 'custom-header-style', $header_css );
-    }
+    
+    endif;
   }
   add_action( 'wp_enqueue_scripts', 'acf_header_styles' );
 
@@ -257,12 +258,12 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
 
 }*/
 
-/*$understrap_page_header_width_default = get_theme_mod('understrap_page_header_width_default');
+/*$evstrap_page_header_width_default = get_theme_mod('evstrap_page_header_width_default');
 
 add_filter('acf/load_field/name=page_header_width',
-        function($field) use ($understrap_page_header_width_default) { 
+        function($field) use ($evstrap_page_header_width_default) { 
         // the variable after 'use' ($member_id) indicates that it is the one to 'use' from the main script.  $field is coming from 'acf/load_field'.  
-      $field['default_value'] = $understrap_page_header_width_default;
+      $field['default_value'] = $evstrap_page_header_width_default;
       return $field;
   }
 );

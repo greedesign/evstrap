@@ -2,16 +2,16 @@
 /**
  * Pagination layout.
  *
- * @package understrap
+ * @package evstrap
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! function_exists( 'understrap_pagination' ) ) {
+if ( ! function_exists( 'evstrap_pagination' ) ) {
 
-	function understrap_pagination( $args = array(), $class = 'pagination' ) {
+	function evstrap_pagination( $args = array(), $class = 'pagination' ) {
 
 		if ( $GLOBALS['wp_query']->max_num_pages <= 1 ) {
 			return;
@@ -22,9 +22,9 @@ if ( ! function_exists( 'understrap_pagination' ) ) {
 			array(
 				'mid_size'           => 2,
 				'prev_next'          => true,
-				'prev_text'          => __( '&laquo;', 'understrap' ),
-				'next_text'          => __( '&raquo;', 'understrap' ),
-				'screen_reader_text' => __( 'Posts navigation', 'understrap' ),
+				'prev_text'          => __( '&laquo;', 'evstrap' ),
+				'next_text'          => __( '&raquo;', 'evstrap' ),
+				'screen_reader_text' => __( 'Posts navigation', 'evstrap' ),
 				'type'               => 'array',
 				'current'            => max( 1, get_query_var( 'paged' ) ),
 			)

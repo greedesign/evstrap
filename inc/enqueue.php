@@ -2,18 +2,18 @@
 /**
  * Understrap enqueue scripts
  *
- * @package understrap
+ * @package evstrap
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! function_exists( 'understrap_scripts' ) ) {
+if ( ! function_exists( 'evstrap_scripts' ) ) {
 	/**
 	 * Load theme's JavaScript and CSS sources.
 	 */
-	function understrap_scripts() {
+	function evstrap_scripts() {
 		// Get the theme data.
 		$the_theme     = wp_get_theme();
 		$theme_version = $the_theme->get( 'Version' );
@@ -29,9 +29,9 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
 	}
-} // endif function_exists( 'understrap_scripts' ).
+} // endif function_exists( 'evstrap_scripts' ).
 
-add_action( 'wp_enqueue_scripts', 'understrap_scripts' );
+add_action( 'wp_enqueue_scripts', 'evstrap_scripts' );
 
 
 

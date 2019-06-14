@@ -2,7 +2,7 @@
 /**
  * Understrap Theme Customizer
  *
- * @package understrap
+ * @package evstrap
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,19 +14,19 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-if ( ! function_exists( 'understrap_customize_register' ) ) {
+if ( ! function_exists( 'evstrap_customize_register' ) ) {
 	/**
 	 * Register basic customizer support.
 	 *
 	 * @param object $wp_customize Customizer reference.
 	 */
-	function understrap_customize_register( $wp_customize ) {
+	function evstrap_customize_register( $wp_customize ) {
 		$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 		$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 		$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 	}
 }
-add_action( 'customize_register', 'understrap_customize_register' );
+add_action( 'customize_register', 'evstrap_customize_register' );
 
 /**
  * Add Custom Controls
@@ -34,13 +34,13 @@ add_action( 'customize_register', 'understrap_customize_register' );
 require_once trailingslashit( dirname(__FILE__) ) . 'custom-controls.php';
 
 
-if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
+if ( ! function_exists( 'evstrap_theme_customize_register' ) ) {
 	/**
 	 * Register individual settings through customizer's API.
 	 *
 	 * @param WP_Customize_Manager $wp_customize Customizer reference.
 	 */
-	function understrap_theme_customize_register( $wp_customize ) {
+	function evstrap_theme_customize_register( $wp_customize ) {
 
 
 		/**
@@ -50,7 +50,7 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		 * @param WP_Customize_Setting $setting Setting instance.
 		 * @return string Sanitized slug if it is a valid choice; otherwise, the setting default.
 		 */
-		function understrap_theme_slug_sanitize_select( $input, $setting ) {
+		function evstrap_theme_slug_sanitize_select( $input, $setting ) {
 
 			// Ensure input is a slug (lowercase alphanumeric characters, dashes and underscores are allowed only).
 			$input = sanitize_key( $input );
@@ -67,9 +67,9 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		/**
 		 * Create Theme Options Panel
 		 */
-		$wp_customize->add_panel( 'understrap_options', array(
+		$wp_customize->add_panel( 'evstrap_options', array(
 			'title' => __( 'Theme Options' ),
-			'description' => __( 'Custom Theme Options', 'understrap' ), // Include html tags such as <p>.
+			'description' => __( 'Custom Theme Options', 'evstrap' ), // Include html tags such as <p>.
 			'priority' => 160, // Mixed with top-level-section hierarchy.
 		) );
 	
@@ -78,38 +78,38 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		 * Theme layout options.
 		 */ 
 		$wp_customize->add_section(
-			'understrap_theme_layout_options',
+			'evstrap_theme_layout_options',
 			array(
-				'title'       => __( 'Site Layout Options', 'understrap' ),
+				'title'       => __( 'Site Layout Options', 'evstrap' ),
 				'capability'  => 'edit_theme_options',
-				'description' => __( 'Container width and sidebar defaults', 'understrap' ),
-				'panel' => 'understrap_options',
+				'description' => __( 'Container width and sidebar defaults', 'evstrap' ),
+				'panel' => 'evstrap_options',
 			)
 		);
 
 			// Container Type
 			$wp_customize->add_setting(
-				'understrap_container_type',
+				'evstrap_container_type',
 				array(
 					'default'           => 'container',
 					'type'              => 'theme_mod',
-					'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
 					'capability'        => 'edit_theme_options',
 				)
 			);
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'understrap_container_type',
+					'evstrap_container_type',
 					array(
-						'label'       => __( 'Container Width', 'understrap' ),
-						'description' => __( 'Choose between Bootstrap\'s container and container-fluid', 'understrap' ),
-						'section'     => 'understrap_theme_layout_options',
-						'options'    => 'understrap_container_type',
+						'label'       => __( 'Container Width', 'evstrap' ),
+						'description' => __( 'Choose between Bootstrap\'s container and container-fluid', 'evstrap' ),
+						'section'     => 'evstrap_theme_layout_options',
+						'options'    => 'evstrap_container_type',
 						'type'        => 'select',
 						'choices'     => array(
-							'container'       => __( 'Fixed width container', 'understrap' ),
-							'container-fluid' => __( 'Full width container', 'understrap' ),
+							'container'       => __( 'Fixed width container', 'evstrap' ),
+							'container-fluid' => __( 'Full width container', 'evstrap' ),
 						),
 						'priority'    => '10',
 					)
@@ -118,7 +118,7 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 			//Sidebar Position
 			$wp_customize->add_setting(
-				'understrap_sidebar_position',
+				'evstrap_sidebar_position',
 				array(
 					'default'           => 'right',
 					'type'              => 'theme_mod',
@@ -130,22 +130,22 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'understrap_sidebar_position',
+					'evstrap_sidebar_position',
 					array(
-						'label'             => __( 'Sidebar Positioning', 'understrap' ),
+						'label'             => __( 'Sidebar Positioning', 'evstrap' ),
 						'description'       => __(
 							'Set sidebar\'s default position. Can either be: right, left, both or none. Note: this can be overridden on individual pages.',
-							'understrap'
+							'evstrap'
 						),
-						'section'           => 'understrap_theme_layout_options',
-						'options'          => 'understrap_sidebar_position',
+						'section'           => 'evstrap_theme_layout_options',
+						'options'          => 'evstrap_sidebar_position',
 						'type'              => 'select',
-						'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+						'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
 						'choices'           => array(
-							'right' => __( 'Right sidebar', 'understrap' ),
-							'left'  => __( 'Left sidebar', 'understrap' ),
-							'both'  => __( 'Left & Right sidebars', 'understrap' ),
-							'none'  => __( 'No sidebar', 'understrap' ),
+							'right' => __( 'Right sidebar', 'evstrap' ),
+							'left'  => __( 'Left sidebar', 'evstrap' ),
+							'both'  => __( 'Left & Right sidebars', 'evstrap' ),
+							'none'  => __( 'No sidebar', 'evstrap' ),
 						),
 						'priority'          => '20',
 					)
@@ -168,34 +168,34 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		 */
 		/*
 		$wp_customize->add_section(
-			'understrap_page_header_defaults',
+			'evstrap_page_header_defaults',
 			array(
-				'title'       => __( 'Page Header Defaults', 'understrap' ),
+				'title'       => __( 'Page Header Defaults', 'evstrap' ),
 				'capability'  => 'edit_theme_options',
-				'description' => __( 'Set page header options.', 'understrap' ),
-				'panel' => 'understrap_options',
+				'description' => __( 'Set page header options.', 'evstrap' ),
+				'panel' => 'evstrap_options',
 			)
 		);
 
 			// Enable Page Header Background Image Default
 			$wp_customize->add_setting(
-				'understrap_enable_page_header_bgimg_default',
+				'evstrap_enable_page_header_bgimg_default',
 				array(
 					'default'           => 0,
 					'type'              => 'theme_mod',
-					'sanitize_callback' => 'understrap_switch_sanitization',
+					'sanitize_callback' => 'evstrap_switch_sanitization',
 					'capability'        => 'edit_theme_options',
 				)
 			);
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'understrap_enable_page_header_bgimg_default',
+					'evstrap_enable_page_header_bgimg_default',
 					array(
-						'label'       => __( 'Header Background Image', 'understrap' ),
-						'description' => __( 'Enable to set a page background image. Will use the Featured Image by default or you can specify another one if required.', 'understrap' ),
-						'section'     => 'understrap_page_header_defaults',
-						'options'    => 'understrap_enable_page_header_bgimg_default',
+						'label'       => __( 'Header Background Image', 'evstrap' ),
+						'description' => __( 'Enable to set a page background image. Will use the Featured Image by default or you can specify another one if required.', 'evstrap' ),
+						'section'     => 'evstrap_page_header_defaults',
+						'options'    => 'evstrap_enable_page_header_bgimg_default',
 						'type'        => 'checkbox',
 					)
 				)
@@ -203,46 +203,46 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 			// Page Background Image Default
 			$wp_customize->add_setting(
-				'understrap_page_header_bgimg_default',
+				'evstrap_page_header_bgimg_default',
 				array(
 					'default'           => '',
 					'type'              => 'theme_mod',
-					//'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					//'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
 					'capability'        => 'edit_theme_options',
 				)
 			);
 			$wp_customize->add_control(
 				new WP_Customize_Image_Control(
 					$wp_customize,
-					'understrap_page_header_bgimg_default',
+					'evstrap_page_header_bgimg_default',
 					array(
-						'label'       => __( 'Default Page Header Background Image', 'understrap' ),
-						'description' => __( 'Upload image to be used if page has no featured image set', 'understrap' ),
-						'section'     => 'understrap_page_header_defaults',
-						'options'    => 'understrap_page_header_bgimg_default',
+						'label'       => __( 'Default Page Header Background Image', 'evstrap' ),
+						'description' => __( 'Upload image to be used if page has no featured image set', 'evstrap' ),
+						'section'     => 'evstrap_page_header_defaults',
+						'options'    => 'evstrap_page_header_bgimg_default',
 					)
 				)
 			);
 
 			// Page Header Width Default
 			$wp_customize->add_setting(
-				'understrap_page_header_width_default',
+				'evstrap_page_header_width_default',
 				array(
 					'default'           => 'default',
 					'type'              => 'theme_mod',
-					//'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					//'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
 					'capability'        => 'edit_theme_options',
 				)
 			);
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'understrap_page_header_width_default',
+					'evstrap_page_header_width_default',
 					array(
-						'label'       => __( 'Header Width', 'understrap' ),
-						'description' => __( '', 'understrap' ),
-						'section'     => 'understrap_page_header_defaults',
-						'options'    => 'understrap_page_header_width_default',
+						'label'       => __( 'Header Width', 'evstrap' ),
+						'description' => __( '', 'evstrap' ),
+						'section'     => 'evstrap_page_header_defaults',
+						'options'    => 'evstrap_page_header_width_default',
 						'type'        => 'select',
 						'choices'		=> array(
 							'default' => __( 'Default' ),
@@ -255,23 +255,23 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 			// Page Header Height Default
 			$wp_customize->add_setting(
-				'understrap_page_header_height_default',
+				'evstrap_page_header_height_default',
 				array(
 					'default'           => 'default',
 					'type'              => 'theme_mod',
-					//'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					//'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
 					'capability'        => 'edit_theme_options',
 				)
 			);
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'understrap_page_header_height_default',
+					'evstrap_page_header_height_default',
 					array(
-						'label'       => __( 'Header Height', 'understrap' ),
-						'description' => __( '', 'understrap' ),
-						'section'     => 'understrap_page_header_defaults',
-						'options'    => 'understrap_page_header_height_default',
+						'label'       => __( 'Header Height', 'evstrap' ),
+						'description' => __( '', 'evstrap' ),
+						'section'     => 'evstrap_page_header_defaults',
+						'options'    => 'evstrap_page_header_height_default',
 						'type'        => 'select',
 						'choices'		=> array(
 							'default' => __( 'Default' ),
@@ -284,23 +284,23 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 			// Page Title Alignment Default
 			$wp_customize->add_setting(
-				'understrap_page_header_title_align_default',
+				'evstrap_page_header_title_align_default',
 				array(
 					'default'           => 'default',
 					'type'              => 'theme_mod',
-					//'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					//'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
 					'capability'        => 'edit_theme_options',
 				)
 			);
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'understrap_page_header_title_align_default',
+					'evstrap_page_header_title_align_default',
 					array(
-						'label'       => __( 'Header Title Alignment', 'understrap' ),
-						'description' => __( '', 'understrap' ),
-						'section'     => 'understrap_page_header_defaults',
-						'options'    => 'understrap_page_header_title_align_default',
+						'label'       => __( 'Header Title Alignment', 'evstrap' ),
+						'description' => __( '', 'evstrap' ),
+						'section'     => 'evstrap_page_header_defaults',
+						'options'    => 'evstrap_page_header_title_align_default',
 						'type'        => 'select',
 						'choices'		=> array(
 							'default' => __( 'Left' ),
@@ -313,23 +313,23 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 			// Page Heading Vertical Alignment Default
 			$wp_customize->add_setting(
-				'understrap_page_header_vertical_align_default',
+				'evstrap_page_header_vertical_align_default',
 				array(
 					'default'           => '',
 					'type'              => 'theme_mod',
-					//'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					//'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
 					'capability'        => 'edit_theme_options',
 				)
 			);
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'understrap_page_header_vertical_align_default',
+					'evstrap_page_header_vertical_align_default',
 					array(
-						'label'       => __( 'Header Vertical Alignment Default', 'understrap' ),
-						'description' => __( '', 'understrap' ),
-						'section'     => 'understrap_page_header_defaults',
-						'options'    => 'understrap_page_header_vertical_align_default',
+						'label'       => __( 'Header Vertical Alignment Default', 'evstrap' ),
+						'description' => __( '', 'evstrap' ),
+						'section'     => 'evstrap_page_header_defaults',
+						'options'    => 'evstrap_page_header_vertical_align_default',
 						'type'        => 'select',
 						'choices'		=> array(
 							'align-items-start' => __( 'Top' ),
@@ -343,23 +343,23 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 			// Page Heading Horizontal Alignment Default
 			$wp_customize->add_setting(
-				'understrap_page_header_horizontal_align_default',
+				'evstrap_page_header_horizontal_align_default',
 				array(
 					'default'           => '',
 					'type'              => 'theme_mod',
-					//'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					//'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
 					'capability'        => 'edit_theme_options',
 				)
 			);
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'understrap_page_header_horizontal_align_default',
+					'evstrap_page_header_horizontal_align_default',
 					array(
-						'label'       => __( 'Header Horizontal Alignment Default', 'understrap' ),
-						'description' => __( '', 'understrap' ),
-						'section'     => 'understrap_page_header_defaults',
-						'options'    => 'understrap_page_header_horizontal_align_default',
+						'label'       => __( 'Header Horizontal Alignment Default', 'evstrap' ),
+						'description' => __( '', 'evstrap' ),
+						'section'     => 'evstrap_page_header_defaults',
+						'options'    => 'evstrap_page_header_horizontal_align_default',
 						'type'        => 'select',
 						'choices'		=> array(
 							'justify-content-start' => __( 'Left' ),
@@ -372,23 +372,23 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 			// Page Heading Content Alignment Default
 			$wp_customize->add_setting(
-				'understrap_page_header_content_align_default',
+				'evstrap_page_header_content_align_default',
 				array(
 					'default'           => '',
 					'type'              => 'theme_mod',
-					//'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					//'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
 					'capability'        => 'edit_theme_options',
 				)
 			);
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'understrap_page_header_content_align_default',
+					'evstrap_page_header_content_align_default',
 					array(
-						'label'       => __( 'Header Content Alignment Default', 'understrap' ),
-						'description' => __( '', 'understrap' ),
-						'section'     => 'understrap_page_header_defaults',
-						'options'    => 'understrap_page_header_content_align_default',
+						'label'       => __( 'Header Content Alignment Default', 'evstrap' ),
+						'description' => __( '', 'evstrap' ),
+						'section'     => 'evstrap_page_header_defaults',
+						'options'    => 'evstrap_page_header_content_align_default',
 						'type'        => 'select',
 						'choices'		=> array(
 							'align-content-start' => __( 'Top' ),
@@ -423,41 +423,41 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		 * BS Navbar Options.
 		*/
 		$wp_customize->add_section(
-			'understrap_theme_navbar_options',
+			'evstrap_theme_navbar_options',
 			array(
-				'title'       => __( 'Navbar Options', 'understrap' ),
+				'title'       => __( 'Navbar Options', 'evstrap' ),
 				'capability'  => 'edit_theme_options',
-				'description' => __( 'Navbar skin and layout defaults', 'understrap' ),
-				'panel' => 'understrap_options',
+				'description' => __( 'Navbar skin and layout defaults', 'evstrap' ),
+				'panel' => 'evstrap_options',
 				//'priority'    => 161,
 			)
 		);
 
 			// Navbar Poistion
 			$wp_customize->add_setting(
-				'understrap_navbar_position',
+				'evstrap_navbar_position',
 				array(
 					'default'           => 'default',
 					'type'              => 'theme_mod',
-					'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
 					'capability'        => 'edit_theme_options',
 				)
 			);
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'understrap_navbar_position',
+					'evstrap_navbar_position',
 					array(
-						'label'       => __( 'Navbar Position', 'understrap' ),
-						'description' => __( 'Choose between Bootstrap\'s static, fixed top, fixed bottom, and sticky top navbar', 'understrap' ),
-						'section'     => 'understrap_theme_navbar_options',
-						'settings'    => 'understrap_navbar_position',
+						'label'       => __( 'Navbar Position', 'evstrap' ),
+						'description' => __( 'Choose between Bootstrap\'s static, fixed top, fixed bottom, and sticky top navbar', 'evstrap' ),
+						'section'     => 'evstrap_theme_navbar_options',
+						'settings'    => 'evstrap_navbar_position',
 						'type'        => 'select',
 						'choices'     => array(
-							'default'       				=> __( 'Default', 'understrap' ),
-							'fixed-top'   	=> __( 'Fixed top', 'understrap' ),
-							'fixed-bottom' 	=> __( 'Fixed bottom', 'understrap' ),
-							'sticky-top' 		=> __( 'Sticky Top', 'understrap' ),
+							'default'       				=> __( 'Default', 'evstrap' ),
+							'fixed-top'   	=> __( 'Fixed top', 'evstrap' ),
+							'fixed-bottom' 	=> __( 'Fixed bottom', 'evstrap' ),
+							'sticky-top' 		=> __( 'Sticky Top', 'evstrap' ),
 						),
 						'priority'    => '10',
 					)
@@ -466,27 +466,27 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 			// Navbar Container Width
 			$wp_customize->add_setting(
-				'understrap_navbar_container',
+				'evstrap_navbar_container',
 				array(
 					'default'           => 'container',
 					'type'              => 'theme_mod',
-					'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
 					'capability'        => 'edit_theme_options',
 				)
 			);
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'understrap_navbar_container',
+					'evstrap_navbar_container',
 					array(
-						'label'       => __( 'Navbar Container', 'understrap' ),
-						'description' => __( 'Choose between Bootstrap\'s container and container-fluid. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#how-it-works" target="_blank">more details</a>', 'understrap' ),
-						'section'     => 'understrap_theme_navbar_options',
-						'settings'    => 'understrap_navbar_container',
+						'label'       => __( 'Navbar Container', 'evstrap' ),
+						'description' => __( 'Choose between Bootstrap\'s container and container-fluid. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#how-it-works" target="_blank">more details</a>', 'evstrap' ),
+						'section'     => 'evstrap_theme_navbar_options',
+						'settings'    => 'evstrap_navbar_container',
 						'type'        => 'select',
 						'choices'     => array(
-							'container'       => __( 'Fixed width container', 'understrap' ),
-							'container-fluid' => __( 'Full width container', 'understrap' ),
+							'container'       => __( 'Fixed width container', 'evstrap' ),
+							'container-fluid' => __( 'Full width container', 'evstrap' ),
 						),
 					)
 				)
@@ -494,31 +494,31 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 			// Navbar Breakpoint
 			$wp_customize->add_setting(
-				'understrap_navbar_breakpoint',
+				'evstrap_navbar_breakpoint',
 				array(
 					'default'           => 'navbar-expand-md',
 					'type'              => 'theme_mod',
-					'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
 					'capability'        => 'edit_theme_options',
 				)
 			);
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'understrap_navbar_breakpoint',
+					'evstrap_navbar_breakpoint',
 					array(
-						'label'       => __( 'Navbar Collapse Breakpoint', 'understrap' ),
-						'description' => __( 'Choose at which device breakpoint the navbar collapses for mobile display. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#responsive-behaviors" target="_blank">more details</a>', 'understrap' ),
-						'section'     => 'understrap_theme_navbar_options',
-						'settings'    => 'understrap_navbar_breakpoint',
+						'label'       => __( 'Navbar Collapse Breakpoint', 'evstrap' ),
+						'description' => __( 'Choose at which device breakpoint the navbar collapses for mobile display. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#responsive-behaviors" target="_blank">more details</a>', 'evstrap' ),
+						'section'     => 'evstrap_theme_navbar_options',
+						'settings'    => 'evstrap_navbar_breakpoint',
 						'type'        => 'select',
 						'choices'     => array(
-							'navbar-expand-sm'    => __( 'Small (sm)', 'understrap' ),
-							'navbar-expand-md'   	=> __( 'Medium (md)', 'understrap' ),
-							'navbar-expand-lg' 		=> __( 'Large (lg)', 'understrap' ),
-							'navbar-expand-xl' 		=> __( 'Extra Large (xl)', 'understrap' ),
-							'navbar-expand'				=> __( 'Never Collapse', 'understrap' ),
-							''										=> __( 'Always Collapse Collapse', 'understrap' ),
+							'navbar-expand-sm'    => __( 'Small (sm)', 'evstrap' ),
+							'navbar-expand-md'   	=> __( 'Medium (md)', 'evstrap' ),
+							'navbar-expand-lg' 		=> __( 'Large (lg)', 'evstrap' ),
+							'navbar-expand-xl' 		=> __( 'Extra Large (xl)', 'evstrap' ),
+							'navbar-expand'				=> __( 'Never Collapse', 'evstrap' ),
+							''										=> __( 'Always Collapse Collapse', 'evstrap' ),
 						)
 					)
 				)
@@ -526,27 +526,27 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 			// Navbar Colour scheme
 			$wp_customize->add_setting(
-				'understrap_navbar_color_scheme',
+				'evstrap_navbar_color_scheme',
 				array(
 					'default'           => '',
 					'type'              => 'theme_mod',
-					'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
 					'capability'        => 'edit_theme_options',
 				)
 			);
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'understrap_navbar_color_scheme',
+					'evstrap_navbar_color_scheme',
 					array(
-						'label'       => __( 'Navbar Color scheme', 'understrap' ),
-						'description' => __( 'Choose base colour scheme./n See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#color-schemes" target="_blank">more details</a>', 'understrap' ),
-						'section'     => 'understrap_theme_navbar_options',
-						'settings'    => 'understrap_navbar_color_scheme',
+						'label'       => __( 'Navbar Color scheme', 'evstrap' ),
+						'description' => __( 'Choose base colour scheme./n See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#color-schemes" target="_blank">more details</a>', 'evstrap' ),
+						'section'     => 'evstrap_theme_navbar_options',
+						'settings'    => 'evstrap_navbar_color_scheme',
 						'type'        => 'select',
 						'choices'     => array(
-							'navbar-dark'    => __( 'Dark', 'understrap' ),
-							'navbar-light'   	=> __( 'Light', 'understrap' ),
+							'navbar-dark'    => __( 'Dark', 'evstrap' ),
+							'navbar-light'   	=> __( 'Light', 'evstrap' ),
 						)
 					)
 				)
@@ -554,31 +554,31 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 			// Navbar background color
 			$wp_customize->add_setting(
-				'understrap_navbar_bgcolor',
+				'evstrap_navbar_bgcolor',
 				array(
 					'default'           => 'bg-primary',
 					'type'              => 'theme_mod',
-					'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+					'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
 					'capability'        => 'edit_theme_options',
 				)
 			);
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'understrap_navbar_bgcolor',
+					'evstrap_navbar_bgcolor',
 					array(
-						'label'       => __( 'Navbar Background Color', 'understrap' ),
-						'description' => __( 'Choose Navbar background colour based on theme primary, secondary, dark, light, and transparent classes. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#background-colors" target="_blank">more details</a>', 'understrap' ),
-						'section'     => 'understrap_theme_navbar_options',
-						'settings'    => 'understrap_navbar_bgcolor',
+						'label'       => __( 'Navbar Background Color', 'evstrap' ),
+						'description' => __( 'Choose Navbar background colour based on theme primary, secondary, dark, light, and transparent classes. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#background-colors" target="_blank">more details</a>', 'evstrap' ),
+						'section'     => 'evstrap_theme_navbar_options',
+						'settings'    => 'evstrap_navbar_bgcolor',
 						'type'        => 'select',
 						'choices'     => array(
-							'bg-primary'    => __( 'Primary Background', 'understrap' ),
-							'bg-secondary'   	=> __( 'Secondary Background ', 'understrap' ),
-							'bg-light'   	=> __( 'Light Background ', 'understrap' ),
-							'bg-dark'   	=> __( 'Dark Background ', 'understrap' ),
-							'bg-white'   	=> __( 'White ', 'understrap' ),
-							'bg-transparent'   	=> __( 'Transparent', 'understrap' ),
+							'bg-primary'    => __( 'Primary Background', 'evstrap' ),
+							'bg-secondary'   	=> __( 'Secondary Background ', 'evstrap' ),
+							'bg-light'   	=> __( 'Light Background ', 'evstrap' ),
+							'bg-dark'   	=> __( 'Dark Background ', 'evstrap' ),
+							'bg-white'   	=> __( 'White ', 'evstrap' ),
+							'bg-transparent'   	=> __( 'Transparent', 'evstrap' ),
 						)
 					)
 				)
@@ -586,23 +586,23 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 			// Navbar background transparancy
 			$wp_customize->add_setting(
-				'understrap_navbar_bgalpha',
+				'evstrap_navbar_bgalpha',
 				array(
 					'default'           => 100,
 					'type'              => 'theme_mod',
-					'sanitize_callback' => 'understrap_sanitize_integer',
+					'sanitize_callback' => 'evstrap_sanitize_integer',
 					'capability'        => 'edit_theme_options',
 				)
 			);
 			$wp_customize->add_control(
 				new Understrap_Slider_Custom_Control(
 					$wp_customize,
-					'understrap_navbar_bgalpha',
+					'evstrap_navbar_bgalpha',
 					array(
-						'label'       => __( 'Navbar background transparancy', 'understrap' ),
-						'description' => __( 'Choose opacity of background color. If you want a fully transparent bg, select <i>Transparent</i> for the Navbar Background Color.', 'understrap' ),
-						'section'     => 'understrap_theme_navbar_options',
-						'settings'    => 'understrap_navbar_bgalpha',
+						'label'       => __( 'Navbar background transparancy', 'evstrap' ),
+						'description' => __( 'Choose opacity of background color. If you want a fully transparent bg, select <i>Transparent</i> for the Navbar Background Color.', 'evstrap' ),
+						'section'     => 'evstrap_theme_navbar_options',
+						'settings'    => 'evstrap_navbar_bgalpha',
 						'input_attrs' => array(
 							'min' => 0, // Required. Minimum value for the slider
 							'max' => 100, // Required. Maximum value for the slider
@@ -614,31 +614,31 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 			// // Navbar Pinned On Scroll background color
 			// $wp_customize->add_setting(
-			// 	'understrap_navbar_pinned_bgcolor',
+			// 	'evstrap_navbar_pinned_bgcolor',
 			// 	array(
 			// 		'default'           => '',
 			// 		'type'              => 'theme_mod',
-			// 		'sanitize_callback' => 'understrap_theme_slug_sanitize_select',
+			// 		'sanitize_callback' => 'evstrap_theme_slug_sanitize_select',
 			// 		'capability'        => 'edit_theme_options',
 			// 	)
 			// );
 			// $wp_customize->add_control(
 			// 	new WP_Customize_Control(
 			// 		$wp_customize,
-			// 		'understrap_navbar_pinned_bgcolor',
+			// 		'evstrap_navbar_pinned_bgcolor',
 			// 		array(
-			// 			'label'       => __( 'Navbar Pinned-on-scroll Background Color', 'understrap' ),
-			// 			'description' => __( 'Choose Navbar Pinned-on-scroll background colour based on theme primary, secondary, dark, and light classes. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#background-colors" target="_blank">more details</a>', 'understrap' ),
-			// 			'section'     => 'understrap_theme_navbar_options',
-			// 			'settings'    => 'understrap_navbar_pinned_bgcolor',
+			// 			'label'       => __( 'Navbar Pinned-on-scroll Background Color', 'evstrap' ),
+			// 			'description' => __( 'Choose Navbar Pinned-on-scroll background colour based on theme primary, secondary, dark, and light classes. See BS docs for <a href="https://getbootstrap.com/docs/4.2/components/navbar/#background-colors" target="_blank">more details</a>', 'evstrap' ),
+			// 			'section'     => 'evstrap_theme_navbar_options',
+			// 			'settings'    => 'evstrap_navbar_pinned_bgcolor',
 			// 			'type'        => 'select',
 			// 			'choices'     => array(
-			// 				'bg-primary'    => __( 'Primary Background', 'understrap' ),
-			// 				'bg-secondary'   	=> __( 'Secondary Background ', 'understrap' ),
-			// 				'bg-light'   	=> __( 'Light Background ', 'understrap' ),
-			// 				'bg-dark'   	=> __( 'Dark Background ', 'understrap' ),
-			// 				'bg-white'   	=> __( 'White ', 'understrap' ),
-			// 				//'bg-transparent'   	=> __( 'Transparent', 'understrap' ),
+			// 				'bg-primary'    => __( 'Primary Background', 'evstrap' ),
+			// 				'bg-secondary'   	=> __( 'Secondary Background ', 'evstrap' ),
+			// 				'bg-light'   	=> __( 'Light Background ', 'evstrap' ),
+			// 				'bg-dark'   	=> __( 'Dark Background ', 'evstrap' ),
+			// 				'bg-white'   	=> __( 'White ', 'evstrap' ),
+			// 				//'bg-transparent'   	=> __( 'Transparent', 'evstrap' ),
 			// 			)
 			// 		)
 			// 	)
@@ -646,23 +646,23 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 			// // Navbar Pinned-on-scroll background transparancy
 			// $wp_customize->add_setting(
-			// 	'understrap_navbar_pinned_bgalpha',
+			// 	'evstrap_navbar_pinned_bgalpha',
 			// 	array(
 			// 		'default'           => '',
 			// 		'type'              => 'theme_mod',
-			// 		'sanitize_callback' => 'understrap_sanitize_integer',
+			// 		'sanitize_callback' => 'evstrap_sanitize_integer',
 			// 		'capability'        => 'edit_theme_options',
 			// 	)
 			// );
 			// $wp_customize->add_control(
 			// 	new Understrap_Slider_Custom_Control(
 			// 		$wp_customize,
-			// 		'understrap_navbar_pinned_bgalpha',
+			// 		'evstrap_navbar_pinned_bgalpha',
 			// 		array(
-			// 			'label'       => __( 'Navbar background transparancy', 'understrap' ),
-			// 			'description' => __( 'Choose opacity of background color. If you want a fully transparent bg, select <i>Transparent</i> for the Navbar Background Color.', 'understrap' ),
-			// 			'section'     => 'understrap_theme_navbar_options',
-			// 			'settings'    => 'understrap_navbar_pinned_bgalpha',
+			// 			'label'       => __( 'Navbar background transparancy', 'evstrap' ),
+			// 			'description' => __( 'Choose opacity of background color. If you want a fully transparent bg, select <i>Transparent</i> for the Navbar Background Color.', 'evstrap' ),
+			// 			'section'     => 'evstrap_theme_navbar_options',
+			// 			'settings'    => 'evstrap_navbar_pinned_bgalpha',
 			// 			'input_attrs' => array(
 			// 				'min' => 0, // Required. Minimum value for the slider
 			// 				'max' => 100, // Required. Maximum value for the slider
@@ -677,17 +677,17 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		* Navbar Features
 		**/
 		$wp_customize->add_section(
-			'understrap_theme_navbar_content',
+			'evstrap_theme_navbar_content',
 			array(
-				'title'       => __( 'Navbar Features', 'understrap' ),
+				'title'       => __( 'Navbar Features', 'evstrap' ),
 				'capability'  => 'edit_theme_options',
-				'description' => __( 'Navbar featured elements', 'understrap' ),
-				'panel' => 'understrap_options',
+				'description' => __( 'Navbar featured elements', 'evstrap' ),
+				'panel' => 'evstrap_options',
 			)
 		);
 
 		$wp_customize->add_setting(
-			'understrap_navbar_shortcode',
+			'evstrap_navbar_shortcode',
 			array(
 				'default'           => '',
 				'transport'         => 'refresh',
@@ -698,18 +698,18 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		$wp_customize->add_control(
 			new Understrap_Sortable_Repeater_Custom_Control(
 			$wp_customize,
-				'understrap_navbar_shortcode',
+				'evstrap_navbar_shortcode',
 				array(
-					'label'    		=> esc_html__('Navbar Elements', 'understrap'),
-					'description' 	=> esc_html__('Add shortcodes here to add icon link, call-to-action buttons, etc', 'understrap'),
-					'settings'		=> 'understrap_navbar_shortcode',
-					'section'  		=> 'understrap_theme_navbar_content',
+					'label'    		=> esc_html__('Navbar Elements', 'evstrap'),
+					'description' 	=> esc_html__('Add shortcodes here to add icon link, call-to-action buttons, etc', 'evstrap'),
+					'settings'		=> 'evstrap_navbar_shortcode',
+					'section'  		=> 'evstrap_theme_navbar_content',
 				)
 			)
 		);
 		
 		$wp_customize->add_setting(
-			'understrap_navbar_markup',
+			'evstrap_navbar_markup',
 			array(
 				'default'           => '',
 				'transport'         => 'refresh',
@@ -720,12 +720,12 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		$wp_customize->add_control(
 			new Understrap_TinyMCE_Custom_control(
 			$wp_customize,
-				'understrap_navbar_markup',
+				'evstrap_navbar_markup',
 				array(
-					'label'    		=> esc_html__('Navbar Markup', 'understrap'),
-					'description' 	=> esc_html__('Add content here to add additional elements to navbar', 'understrap'),
-					'settings'		=> 'understrap_navbar_markup',
-					'section'  		=> 'understrap_theme_navbar_content',
+					'label'    		=> esc_html__('Navbar Markup', 'evstrap'),
+					'description' 	=> esc_html__('Add content here to add additional elements to navbar', 'evstrap'),
+					'settings'		=> 'evstrap_navbar_markup',
+					'section'  		=> 'evstrap_theme_navbar_content',
 				)
 			)
 		);
@@ -733,12 +733,12 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 		// Page Header options.
 		// $wp_customize->add_section(
-		// 	'understrap_theme_header_settings',
+		// 	'evstrap_theme_header_settings',
 		// 	array(
-		// 		'title'       => __( 'Page Header Settings', 'understrap' ),
+		// 		'title'       => __( 'Page Header Settings', 'evstrap' ),
 		// 		'capability'  => 'edit_theme_options',
-		// 		'description' => __( 'Navbar skin and layout defaults', 'understrap' ),
-		// 		'panel' => 'understrap_options',
+		// 		'description' => __( 'Navbar skin and layout defaults', 'evstrap' ),
+		// 		'panel' => 'evstrap_options',
 		// 	)
 		// );
 
@@ -748,36 +748,36 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		 */
 		 
 		// primary color
-		$understrap_color_palette[] = array(
-			'slug'=>'understrap_color_primary', 
+		$evstrap_color_palette[] = array(
+			'slug'=>'evstrap_color_primary', 
 			'default' => '#7C008C',
 			'label' => 'Primary Color'
 		);
 
 		// secondary color
-		$understrap_color_palette[] = array(
-			'slug'=>'understrap_color_secondary', 
+		$evstrap_color_palette[] = array(
+			'slug'=>'evstrap_color_secondary', 
 			'default' => '#6c757d',
 			'label' => 'Secondary Color'
 		);
 
 		// info color
-		$understrap_color_palette[] = array(
-			'slug'=>'understrap_color_info', 
+		$evstrap_color_palette[] = array(
+			'slug'=>'evstrap_color_info', 
 			'default' => '#17a2b8',
 			'label' => 'Info Color'
 		);
 
 		// warning color
-		$understrap_color_palette[] = array(
-			'slug'=>'understrap_color_warning', 
+		$evstrap_color_palette[] = array(
+			'slug'=>'evstrap_color_warning', 
 			'default' => '#ffc107',
 			'label' => 'Warning Color'
 		);
 
 		// danger color
-		$understrap_color_palette[] = array(
-			'slug'=>'understrap_color_danger', 
+		$evstrap_color_palette[] = array(
+			'slug'=>'evstrap_color_danger', 
 			'default' => '#dc3545',
 			'label' => 'Danger Color'
 		);
@@ -785,11 +785,11 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 		/**
 		 * Loop through palette aray and define settings and controls for each
 		 */ 
-		foreach( $understrap_color_palette as $understrap_color_palette ) {
+		foreach( $evstrap_color_palette as $evstrap_color_palette ) {
 			// SETTINGS
 			$wp_customize->add_setting(
-					$understrap_color_palette['slug'], array(
-							'default' => $understrap_color_palette['default'],
+					$evstrap_color_palette['slug'], array(
+							'default' => $evstrap_color_palette['default'],
 							'type' => 'option', 
 							'capability' =>  'edit_theme_options'
 					)
@@ -798,17 +798,17 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 			$wp_customize->add_control(
 				new WP_Customize_Color_Control(
 						$wp_customize,
-						$understrap_color_palette['slug'], 
-						array('label' => $understrap_color_palette['label'], 
+						$evstrap_color_palette['slug'], 
+						array('label' => $evstrap_color_palette['label'], 
 						'section' => 'colors',
-						'settings' => $understrap_color_palette['slug'])
+						'settings' => $evstrap_color_palette['slug'])
 				)
 			);
 		}
 
 	}
-} // endif function_exists( 'understrap_theme_customize_register' ).
-add_action( 'customize_register', 'understrap_theme_customize_register' );
+} // endif function_exists( 'evstrap_theme_customize_register' ).
+add_action( 'customize_register', 'evstrap_theme_customize_register' );
 
 get_template_part( 'inc/customizer', 'header' );
 

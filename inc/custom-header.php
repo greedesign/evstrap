@@ -2,17 +2,17 @@
 /**
  * Custom header setup.
  *
- * @package understrap
+ * @package evstrap
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-add_action( 'after_setup_theme', 'understrap_custom_header_setup' );
+add_action( 'after_setup_theme', 'evstrap_custom_header_setup' );
 
-if ( ! function_exists( 'understrap_custom_header_setup' ) ) {
-	function understrap_custom_header_setup() {
+if ( ! function_exists( 'evstrap_custom_header_setup' ) ) {
+	function evstrap_custom_header_setup() {
 
 		/**
 		 * Filter UnderStrap custom-header support arguments.
@@ -34,7 +34,7 @@ if ( ! function_exists( 'understrap_custom_header_setup' ) ) {
 		add_theme_support(
 			'custom-header',
 			apply_filters(
-				'understrap_custom_header_args',
+				'evstrap_custom_header_args',
 				array(
 					'default-image' => get_parent_theme_file_uri( '/img/header.jpg' ),
 					'default-text-color'     => '000000',
@@ -42,7 +42,7 @@ if ( ! function_exists( 'understrap_custom_header_setup' ) ) {
 					'height'        => 550,
 					'flex-height'   => true,
 					'uploads'       => true,
-					'wp-head-callback' => 'understrap_header_style',
+					'wp-head-callback' => 'evstrap_header_style',
 				)
 			)
 		);
@@ -52,7 +52,7 @@ if ( ! function_exists( 'understrap_custom_header_setup' ) ) {
 				'default-image' => array(
 					'url'           => '%s/img/header.jpg',
 					'thumbnail_url' => '%s/img/header.jpg',
-					'description'   => __( 'Default Header Image', 'understrap' ),
+					'description'   => __( 'Default Header Image', 'evstrap' ),
 				),
 			)
 		);

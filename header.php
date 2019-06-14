@@ -4,16 +4,16 @@
  *
  * Displays all of the <head> section and everything up till <div id="content">
  *
- * @package understrap
+ * @package evstrap
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-$container = get_theme_mod( 'understrap_navbar_container' );
-$navbar_shortcodes = (get_theme_mod( 'understrap_navbar_shortcode' ) !== '' ? get_theme_mod( 'understrap_navbar_shortcode' ) : '');
-$navbar_markup = (get_theme_mod( 'understrap_navbar_markup' ) !== '' ? get_theme_mod( 'understrap_navbar_markup' ) : '');
+$container = get_theme_mod( 'evstrap_navbar_container' );
+$navbar_shortcodes = (get_theme_mod( 'evstrap_navbar_shortcode' ) !== '' ? get_theme_mod( 'evstrap_navbar_shortcode' ) : '');
+$navbar_markup = (get_theme_mod( 'evstrap_navbar_markup' ) !== '' ? get_theme_mod( 'evstrap_navbar_markup' ) : '');
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -30,11 +30,11 @@ $navbar_markup = (get_theme_mod( 'understrap_navbar_markup' ) !== '' ? get_theme
 
 	<!-- ******************* The Navbar Area ******************* -->
 	<!-- grab navbar wrapper classes and output -->
-	<header id="wrapper-navbar" class="<?php understrap_navbar_wrapper(); ?>" itemscope itemtype="http://schema.org/WebSite">
+	<header id="wrapper-navbar" class="<?php evstrap_navbar_wrapper(); ?>" itemscope itemtype="http://schema.org/WebSite">
 
-		<a class="skip-link sr-only sr-only-focusable" href="#content"><?php esc_html_e( 'Skip to content', 'understrap' ); ?></a>
+		<a class="skip-link sr-only sr-only-focusable" href="#content"><?php esc_html_e( 'Skip to content', 'evstrap' ); ?></a>
 		<!-- Loop through all available navbar classes and output -->
-		<nav class="navbar <?php understrap_navbar(); ?>">
+		<nav class="navbar <?php evstrap_navbar(); ?>">
 
 		<?php if ( 'container' == $container ) : ?>
 			<div class="container">
@@ -58,7 +58,7 @@ $navbar_markup = (get_theme_mod( 'understrap_navbar_markup' ) !== '' ? get_theme
 						the_custom_logo();
 					} ?><!-- end custom logo -->
 
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'understrap' ); ?>">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'evstrap' ); ?>">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 

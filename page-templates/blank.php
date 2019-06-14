@@ -4,7 +4,7 @@
  *
  * Template for displaying a blank page.
  *
- * @package understrap
+ * @package evstrap
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

@@ -2,7 +2,7 @@
 /**
  * Content empty partial template.
  *
- * @package understrap
+ * @package evstrap
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

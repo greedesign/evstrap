@@ -2,7 +2,7 @@
 /**
  * Partial template for content in page.php
  *
- * @package understrap
+ * @package evstrap
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -58,7 +58,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php
 		wp_link_pages(
 			array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'understrap' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'evstrap' ),
 				'after'  => '</div>',
 			)
 		);
@@ -68,7 +68,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<footer class="entry-footer">
 
-		<?php edit_post_link( __( 'Edit', 'understrap' ), '<span class="edit-link">', '</span>' ); ?>
+		<?php edit_post_link( __( 'Edit', 'evstrap' ), '<span class="edit-link">', '</span>' ); ?>
 
 	</footer><!-- .entry-footer -->
 

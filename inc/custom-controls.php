@@ -352,7 +352,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 			// Merge the passed button labels with our default labels
 			$this->button_labels = wp_parse_args( $this->button_labels,
 				array(
-					'add' => __( 'Add', 'understrap' ),
+					'add' => __( 'Add', 'evstrap' ),
 				)
 			);
 		}
@@ -840,8 +840,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string	Input to be sanitized (either a string containing a single url or multiple, separated by commas)
 	 * @return string	Sanitized input
 	 */
-	if ( ! function_exists( 'understrap_url_sanitization' ) ) {
-		function understrap_url_sanitization( $input ) {
+	if ( ! function_exists( 'evstrap_url_sanitization' ) ) {
+		function evstrap_url_sanitization( $input ) {
 			if ( strpos( $input, ',' ) !== false) {
 				$input = explode( ',', $input );
 			}
@@ -864,8 +864,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string		Switch value
 	 * @return integer	Sanitized value
 	 */
-	if ( ! function_exists( 'understrap_switch_sanitization' ) ) {
-		function understrap_switch_sanitization( $input ) {
+	if ( ! function_exists( 'evstrap_switch_sanitization' ) ) {
+		function evstrap_switch_sanitization( $input ) {
 			if ( true === $input ) {
 				return 1;
 			} else {
@@ -880,8 +880,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string		Radio Button value
 	 * @return integer	Sanitized value
 	 */
-	if ( ! function_exists( 'understrap_radio_sanitization' ) ) {
-		function understrap_radio_sanitization( $input, $setting ) {
+	if ( ! function_exists( 'evstrap_radio_sanitization' ) ) {
+		function evstrap_radio_sanitization( $input, $setting ) {
 			//get the list of possible radio box or select options
          $choices = $setting->manager->get_control( $setting->id )->choices;
 
@@ -899,8 +899,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string		Input value to check
 	 * @return integer	Returned integer value
 	 */
-	if ( ! function_exists( 'understrap_sanitize_integer' ) ) {
-		function understrap_sanitize_integer( $input ) {
+	if ( ! function_exists( 'evstrap_sanitize_integer' ) ) {
+		function evstrap_sanitize_integer( $input ) {
 			return (int) $input;
 		}
 	}
@@ -911,8 +911,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string	Input to be sanitized (either a string containing a single string or multiple, separated by commas)
 	 * @return string	Sanitized input
 	 */
-	if ( ! function_exists( 'understrap_text_sanitization' ) ) {
-		function understrap_text_sanitization( $input ) {
+	if ( ! function_exists( 'evstrap_text_sanitization' ) ) {
+		function evstrap_text_sanitization( $input ) {
 			if ( strpos( $input, ',' ) !== false) {
 				$input = explode( ',', $input );
 			}
@@ -935,8 +935,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  array	Input to be sanitized
 	 * @return array	Sanitized input
 	 */
-	if ( ! function_exists( 'understrap_array_sanitization' ) ) {
-		function understrap_array_sanitization( $input ) {
+	if ( ! function_exists( 'evstrap_array_sanitization' ) ) {
+		function evstrap_array_sanitization( $input ) {
 			if( is_array( $input ) ) {
 				foreach ( $input as $key => $value ) {
 					$input[$key] = sanitize_text_field( $value );
@@ -955,8 +955,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string	Input to be sanitized
 	 * @return string	Sanitized input
 	 */
-	if ( ! function_exists( 'understrap_hex_rgba_sanitization' ) ) {
-		function understrap_hex_rgba_sanitization( $input, $setting ) {
+	if ( ! function_exists( 'evstrap_hex_rgba_sanitization' ) ) {
+		function evstrap_hex_rgba_sanitization( $input, $setting ) {
 			if ( empty( $input ) || is_array( $input ) ) {
 				return $setting->default;
 			}
@@ -968,7 +968,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 				// Sanitize as RGBa color
 				$input = str_replace( ' ', '', $input );
 				sscanf( $input, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
-				$input = 'rgba(' . understrap_in_range( $red, 0, 255 ) . ',' . understrap_in_range( $green, 0, 255 ) . ',' . understrap_in_range( $blue, 0, 255 ) . ',' . understrap_in_range( $alpha, 0, 1 ) . ')';
+				$input = 'rgba(' . evstrap_in_range( $red, 0, 255 ) . ',' . evstrap_in_range( $green, 0, 255 ) . ',' . evstrap_in_range( $blue, 0, 255 ) . ',' . evstrap_in_range( $alpha, 0, 1 ) . ')';
 			}
 			return $input;
 		}
@@ -980,8 +980,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  number	Input to be sanitized
 	 * @return number	Sanitized input
 	 */
-	if ( ! function_exists( 'understrap_in_range' ) ) {
-		function understrap_in_range( $input, $min, $max ){
+	if ( ! function_exists( 'evstrap_in_range' ) ) {
+		function evstrap_in_range( $input, $min, $max ){
 			if ( $input < $min ) {
 				$input = $min;
 			}
@@ -998,8 +998,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string	JSON string to be sanitized
 	 * @return string	Sanitized input
 	 */
-	if ( ! function_exists( 'understrap_google_font_sanitization' ) ) {
-		function understrap_google_font_sanitization( $input ) {
+	if ( ! function_exists( 'evstrap_google_font_sanitization' ) ) {
+		function evstrap_google_font_sanitization( $input ) {
 			$val =  json_decode( $input, true );
 			if( is_array( $val ) ) {
 				foreach ( $val as $key => $value ) {
@@ -1020,8 +1020,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string	Date/Time string to be sanitized
 	 * @return string	Sanitized input
 	 */
-	if ( ! function_exists( 'understrap_date_time_sanitization' ) ) {
-		function understrap_date_time_sanitization( $input, $setting ) {
+	if ( ! function_exists( 'evstrap_date_time_sanitization' ) ) {
+		function evstrap_date_time_sanitization( $input, $setting ) {
 			$datetimeformat = 'Y-m-d';
 			if ( $setting->manager->get_control( $setting->id )->include_time ) {
 				$datetimeformat = 'Y-m-d H:i:s';
@@ -1040,8 +1040,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 	 * @param  string	Slider value to be sanitized
 	 * @return string	Sanitized input
 	 */
-	if ( ! function_exists( 'understrap_range_sanitization' ) ) {
-		function understrap_range_sanitization( $input, $setting ) {
+	if ( ! function_exists( 'evstrap_range_sanitization' ) ) {
+		function evstrap_range_sanitization( $input, $setting ) {
 			$attrs = $setting->manager->get_control( $setting->id )->input_attrs;
 
 			$min = ( isset( $attrs['min'] ) ? $attrs['min'] : $input );
@@ -1050,7 +1050,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
 			$number = floor( $input / $attrs['step'] ) * $attrs['step'];
 
-			return understrap_in_range( $number, $min, $max );
+			return evstrap_in_range( $number, $min, $max );
 		}
 	}
 

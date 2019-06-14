@@ -2,7 +2,7 @@
 /**
  * Single post partial template.
  *
- * @package understrap
+ * @package evstrap
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="entry-meta">
 
-			<?php understrap_posted_on(); ?>
+			<?php evstrap_posted_on(); ?>
 
 		</div><!-- .entry-meta -->
 
@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php
 		wp_link_pages(
 			array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'understrap' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'evstrap' ),
 				'after'  => '</div>',
 			)
 		);
@@ -43,7 +43,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<footer class="entry-footer">
 
-		<?php understrap_entry_footer(); ?>
+		<?php evstrap_entry_footer(); ?>
 
 	</footer><!-- .entry-footer -->
 

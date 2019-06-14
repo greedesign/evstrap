@@ -8,9 +8,9 @@
 
 require_once dirname( __FILE__ ) . '/class-tgm-plugin-activation.php';
 
-add_action( 'tgmpa_register', 'understrap_require_plugins' );
+add_action( 'tgmpa_register', 'evstrap_require_plugins' );
 
-function understrap_require_plugins() {
+function evstrap_require_plugins() {
 
     $plugins = array(
         array(
@@ -22,7 +22,7 @@ function understrap_require_plugins() {
         array(
 			'name'               => 'Advanced Custom Fields PRO', // The plugin name.
 			'slug'               => 'advanced-custom-fields-pro', // The plugin slug (typically the folder name).
-			'source'             => get_stylesheet_directory() . '/lib/plugins/advanced-custom-fields-pro.5.8.0-RC2.zip', // The plugin source.
+			'source'             => get_template_directory_uri() . '/lib/plugins/advanced-custom-fields-pro.5.8.0-RC2.zip', // The plugin source.
 			'required'           => true, // If false, the plugin is only 'recommended' instead of required.
 			'version'            => '5.8.0-RC2', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
 			'force_activation'   => true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
