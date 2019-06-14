@@ -53,26 +53,16 @@ gulp.task( 'sass', function() {
 // Starts watcher. Watcher runs gulp sass task on changes
 gulp.task( 'watch', function() {
     gulp.watch( `${paths.sass}/**/*.scss`, gulp.series('styles') );
-    gulp.watch( `${paths.dev}/js/custom-javascript.js`, gulp.series['scripts'] );
-    gulp.watch( `${paths.dev}/js/admin.js`, gulp.series['adminscripts'] );
+    gulp.watch( `${paths.dev}/js/custom-javascript.js`, gulp.series('scripts') );
+    gulp.watch( `${paths.dev}/js/admin.js`, gulp.series('adminscripts') );
 
     gulp.watch(
       [
         `${paths.dev}/js/theme-customizer.js`,
         `${paths.dev}/js/custom-controls/*.js`
       ],
-      gulp.series['customizer'] );
-
-
-    // gulp.watch(
-    //   [
-    //     `${paths.dev}/js/**/*.js`,
-    //     'js/**/*.js',
-    //     '!js/theme.js',
-    //     '!js/theme.min.js'
-    //   ],
-    //   gulp.series('scripts')
-    // );
+      gulp.series('customizer')
+    );
 
     //Inside the watch task.
     gulp.watch( `${paths.imgsrc}/**`, gulp.series('imagemin-watch'));
