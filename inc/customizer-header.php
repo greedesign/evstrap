@@ -184,10 +184,6 @@ function navbar_header_styles() {
                 file_put_contents( $navbarfile, $navbar_css);
             }
         }
-       
-
-        
-
 
         wp_enqueue_style('custom-navbar-style', get_template_directory_uri() . '/css/customizer-navbar.css');
         //wp_add_inline_style( 'custom-navbar-style', $navbar_css );
