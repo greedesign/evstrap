@@ -21,7 +21,7 @@ $evstrap_includes = array(
 	'/customizer.php',                      // Customizer additions.
 	'/jetpack.php',                         // Load Jetpack compatibility file.
 	'/class-wp-bootstrap-navwalker.php',    // Load custom WordPress nav walker.
-	'/custom-acf.php',											// Custom Settings Specific to ACF module.
+	'/custom-acf.php',											// Custom THeme settings Specific to ACF module.
 	'/custom-acf-blocks.php',								// Register ACF Blocks.
 	'/custom-comments.php',                 // Custom Comments file.
 	'/custom-plugins-suggest.php',					// Load Theme Plugin Suggestions
