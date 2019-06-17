@@ -16,7 +16,7 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
 
   // add class to body if page has custom header
   function acf_header_body_class( $classes ) {
-    // ensure parent page header setting is currently not 'none' before processing anything 
+    // ensure parent page header setting is currently not 'none' before processing anything
     if (get_field('background_type') && get_field('background_type') !== 'none'):
       $classes[] = "page-custom-header";
 
@@ -97,7 +97,7 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
 
     $header_bgcolor = get_field('background_color');
     $header_bggradient = get_field('background_gradient');
-    
+
     if (get_field('background_type') && get_field('background_type') !== 'none'):
       // ambigious enqueue call - dosn't actually do anything with style.css but need this to work for some reason?
       wp_enqueue_style(
@@ -219,7 +219,7 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
       /**
        * Background Type - Color
        * * setup header background-color and output CSS
-       */ 
+       */
       if($background_type == 'color'):
         $header_css[] = "
           .entry-header {
@@ -239,7 +239,7 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
       $header_css = implode(" ", $header_css);
 
       wp_add_inline_style( 'custom-header-style', $header_css );
-    
+
     endif;
   }
   add_action( 'wp_enqueue_scripts', 'acf_header_styles' );
@@ -261,8 +261,8 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
 /*$evstrap_page_header_width_default = get_theme_mod('evstrap_page_header_width_default');
 
 add_filter('acf/load_field/name=page_header_width',
-        function($field) use ($evstrap_page_header_width_default) { 
-        // the variable after 'use' ($member_id) indicates that it is the one to 'use' from the main script.  $field is coming from 'acf/load_field'.  
+        function($field) use ($evstrap_page_header_width_default) {
+        // the variable after 'use' ($member_id) indicates that it is the one to 'use' from the main script.  $field is coming from 'acf/load_field'.
       $field['default_value'] = $evstrap_page_header_width_default;
       return $field;
   }
