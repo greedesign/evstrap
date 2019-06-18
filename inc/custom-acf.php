@@ -141,10 +141,13 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
       }
 
       // Styles
+      if($header_width == 'alignfull'):
+        $header_css[] = "
+        .wrapper {
+          padding-top: 0;
+        }";
+      endif;
       $header_css[] = "
-      .wrapper {
-        padding-top: 0;
-      }
       .entry-header {
         position: relative;
         padding: 50px;
