@@ -40,7 +40,7 @@ function evstrap_navbar_wrapper() {
     $navbar_position = (!empty(get_theme_mod('evstrap_navbar_position')) ? get_theme_mod('evstrap_navbar_position') : '');
     // if Navbar position is fixed top or bottom output that to our navbar wrapper
     if($navbar_position == 'fixed-top' || $navbar_position == 'fixed-bottom') {
-        
+
         $navbar_classes[] = $navbar_position;
         $navbar_classes[] = "headroom";
 
@@ -58,14 +58,11 @@ function evstrap_navbar_wrapper() {
 function evstrap_navbar() {
 
     // Collect and format customizer variables for output
-    // @TODO create simple function to pass inf check if customizer setting is set so we can reduce the amount of code in out templates
     $navbar_position = (!empty(get_theme_mod('evstrap_navbar_position')) ? get_theme_mod('evstrap_navbar_position') : '');
     $navbar_breakpoint = (!empty(get_theme_mod('evstrap_navbar_breakpoint')) ? get_theme_mod('evstrap_navbar_breakpoint') : '');
     $navbar_color_scheme = (!empty(get_theme_mod('evstrap_navbar_color_scheme')) ? get_theme_mod('evstrap_navbar_color_scheme') : '');
     $navbar_bgcolor = (!empty(get_theme_mod('evstrap_navbar_bgcolor')) ? get_theme_mod('evstrap_navbar_bgcolor') : '');
     $navbar_bgalpha = ( null !== get_theme_mod('evstrap_navbar_bgalpha') ? get_theme_mod('evstrap_navbar_bgalpha') : '');
-
-
 
     // concatinate all variables into tidy class string
     $navbar_classes[] = $navbar_breakpoint;

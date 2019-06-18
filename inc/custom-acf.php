@@ -16,13 +16,33 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
 
   // add class to body if page has custom header
   function acf_header_body_class( $classes ) {
+
+    $background_type = get_field('background_type');
+
     // ensure parent page header setting is currently not 'none' before processing anything
-    if (get_field('background_type') && get_field('background_type') !== 'none'):
+    if ($background_type && $background_type !== 'none'):
+
+      // Add default custom header class to body
       $classes[] = "page-custom-header";
 
+      // Add header background type class to body
+      switch($background_type) {
+        case "color":
+          $classes[] = 'page-custom-header-is-background-color';
+          break;
+        case "gradient":
+          $classes[] = 'page-custom-header-is-background-gradient';
+          break;
+        case "image":
+          $classes[] = 'page-custom-header-is-background-img';
+          break;
+      }
+
+      // Add class if header is full width
       if (get_field('page_header_width') == 'alignfull'):
         $classes[] = "page-custom-header-is-alignfull";
       endif;
+
     endif;
     return $classes;
   }
