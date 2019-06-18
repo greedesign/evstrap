@@ -31,13 +31,18 @@
 
 	<div id="<?php echo $id; ?>" class="latest-posts block-latest-posts <?php echo $align_class; ?> <?php echo $additional_classes; ?>">
 		<?php foreach($recent_posts as $post): ?>
-		<?php $img = get_the_post_thumbnail_url($post['ID'], 'medium');
-					$alt_text = get_post_meta($post['ID'], '_wp_attachment_image_alt', true); ?>
+			<?php
+				//$img = get_the_post_thumbnail_url($post['ID'], 'thumbnail-medium');
+				//$alt_text = get_post_meta($img->ID, '_wp_attachment_image_alt', true);
+
+				$img = get_the_post_thumbnail( $post['ID'], 'thumbnail-medium');
+				?>
 				<article class="mt-3 latest-post-wrap">
 					<div class="media">
 					<?php  if($img && $hide_featured_image != true): ?>
-						<a href="<?php echo get_permalink($post['ID']); ?>">
-							<img class="mr-4" src="<?php echo $img; ?>" alt="<?php echo $alt_text; ?>" />
+						<a href="<?php echo get_permalink($post['ID']); ?>" class="mr-4">
+							<!--img src="<?php //echo $img; ?>" alt="<?php //echo $alt_text; ?>" /-->
+							<?php echo $img; ?>
 						</a>
 					<?php endif; ?>
 						<div class="media-body">
