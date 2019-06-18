@@ -96,8 +96,8 @@ if( !function_exists('ev_acf_init') ) {
 
 			// register ev+ Latest Post Grid
 			acf_register_block_type(array(
-				'name'				=> 'ev-latest-post-grid',
-				'title'				=> __('ev+ Latest Post Grid'),
+				'name'				=> 'ev-latest-post',
+				'title'				=> __('ev+ Latest Post'),
 				'description'		=> __('Custom Bootstrap Columns with WYSIWYG content for each column.'),
 				//'render_callback'	=> 'ev_latest_post_grid_block_render_callback',
 				'render_template'	=> '/template-parts/blocks/ev-latest-posts/ev-latest-posts.php',

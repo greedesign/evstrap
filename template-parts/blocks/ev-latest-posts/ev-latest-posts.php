@@ -1,18 +1,19 @@
 <?php
 /**
- * Block Name: ev+ Custom Logo Grid Block
+ * ev+ Latest Posts Block.
  *
- * This is the template that displays the ev+ Custom Logo Grid Block
+ * @param   array $block The block settings and attributes.
+ * @param   string $content The block inner HTML (empty).
+ * @param   bool $is_preview True during AJAX preview.
+ * @param   (int|string) $post_id The post ID this block is saved to.
+ *
  */
 
 	// get logo-grid field (array)
-	$posts_to_show = get_field('posts_to_show');	
+	$posts_to_show = get_field('posts_to_show');
+
 	$recent_posts = wp_get_recent_posts( $posts_to_show );
-	
-	// get logo-grid field (array)
-	$columns_per_row = get_field('columns_per_row');
-	
-		// get  columns_per_row (select)
+
 	$hide_featured_image = get_field('hide_featured_image');
 
 	// create id attribute for specific styling
@@ -21,55 +22,40 @@
 	// create align class ("alignwide") from block setting ("wide")
 	$align_class = $block['align'] ? 'align' . $block['align'] : '';
 
- 	//css from additional classes
- 	$additional_classes = $block['className'];
-	
-		// define columns from $columns_per_row
-	switch ($columns_per_row) {
-		case 1:
-				$colClass = "col-xl-12 col-lg-12 col-md-12 col-sm-3 col-6";
-				break;
-		case 2:
-				$colClass = "col-xl-6 col-lg-6 col-md-6 col-sm-3 col-6";
-				break;
-		case 3:
-				$colClass = "col-xl-4 col-lg-4 col-md-4 col-sm-3 col-6";
-				break;
-		case 4:
-				$colClass = "col-xl-3 col-lg-3 col-md-3 col-sm-3 col-6";
-				break;
-		case 6:
-				$colClass = "col-xl-2 col-lg-2 col-md-2 col-sm-3 col-6";
-				break;
-		case 12:
-				$colClass = "col-xl-1 col-lg-1 col-md-1 col-sm-3 col-6";
-				break;
-		default:
-				$colClass = "col-xl-3 col-lg-3 col-md-3 col-sm-3 col-6";
-				break;
-	}
+	//css from additional classes
+	$additional_classes = $block['className'];
+
+	date_default_timezone_set('America/Edmonton');
 
 	?>
-	<div id="<?php echo $id; ?>" class="row">
+
+	<div id="<?php echo $id; ?>" class="latest-posts block-latest-posts <?php echo $align_class; ?> <?php echo $additional_classes; ?>">
 		<?php foreach($recent_posts as $post): ?>
-			<div class="<?php echo $colClass; ?>">
-				<div class="latest-post-wrap">
-					<a href="<?php echo get_permalink($post['ID']); ?>">
+		<?php $img = get_the_post_thumbnail_url($post['ID'], 'medium');
+					$alt_text = get_post_meta($post['ID'], '_wp_attachment_image_alt', true); ?>
+				<article class="mt-3 latest-post-wrap">
+					<div class="media">
+					<?php  if($img && $hide_featured_image != true): ?>
+						<a href="<?php echo get_permalink($post['ID']); ?>">
+							<img class="mr-4" src="<?php echo $img; ?>" alt="<?php echo $alt_text; ?>" />
+						</a>
+					<?php endif; ?>
+						<div class="media-body">
+								<h3 class="mt-0">
+									<a href="<?php echo get_permalink($post['ID']); ?>">
+										<?php echo $post['post_title']; ?>
+									</a>
+									- <small><?php echo date("F d, Y", strtotime($post['post_date'])); ?></small>
+								</h3>
 
-						<?php if(!$hide_featured_image): ?>
-							<?php  $img = get_the_post_thumbnail_url($post['ID'], 'content-medium'); ?>
-							<?php if($img): ?>
-								<img src="<?php echo $img; ?>" />
-							<?php endif; ?>
-						<?php endif; ?>
+								<?php	echo strip_tags($post['post_excerpt']); ?>
 
-						<div class="post-title">
-							<?php echo $post['post_title']; ?>
+								<?php echo '<div class="mt-2 read-more-link"><a href="' . get_permalink($post['ID']).'">Read more</a></div>'; ?>
+
 						</div>
-					</a>
-				</div>
-			</div>
+					</div>
+				</article>
+
 		<?php endforeach; ?>
-		<div class="col text-center pt-3"><a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>" class="btn btn-secondary">See more</a></div>
-	</div>
+</div>
 

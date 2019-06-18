@@ -42,7 +42,7 @@
 	$additional_classes = $block['className'];
 
 	?>
-	<div id="<?php echo $id; ?>"  class="card featured-card <?php echo $align_class; ?> <?php echo $additional_classes; ?>">
+	<div id="<?php echo $id; ?>"  class="card featured-card block-featured-card <?php echo $align_class; ?> <?php echo $additional_classes; ?>">
 		<?php if($imageID): ?>
 			<?php echo wp_get_attachment_image( $imageID, 'content-small' );?>
 		<?php endif; ?>

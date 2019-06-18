@@ -47,7 +47,7 @@
 
 	?>
 	<?php if( have_rows('logo_grid') ): ?>
-		<div id="<?php echo $id; ?>" class="row align-items-center logo-grid <?php echo $additional_classes; ?>">
+		<div id="<?php echo $id; ?>" class="logo-grid block-logo-grid row align-items-center <?php echo $align_class; ?> <?php echo $additional_classes; ?>">
 
 			<?php while( have_rows('logo_grid') ): the_row();
 				$image 		 = get_sub_field('logo');

@@ -20,7 +20,7 @@
 	$additional_classes = $block['className'];
 
 	?>
-	<div id="<?php echo $id;?>" class="accordion <?php echo $additional_classes;?>">
+	<div id="<?php echo $id;?>" class="accordion block-accordion <?php echo $additional_classes;?>">
 		<?php
 		foreach($accordion_collections as $accordion_collection => $value){
 
