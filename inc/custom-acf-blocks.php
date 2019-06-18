@@ -77,20 +77,6 @@ if( !function_exists('ev_acf_init') ) {
 				'enqueue_style' => get_template_directory_uri() . '/template-parts/blocks/ev-logo-grid/ev-logo-grid.css'
 			));
 
-			// register ev+ Post grid Object
-			acf_register_block_type(array(
-				'name'				=> 'ev-post-object',
-				'title'				=> __('ev+ Post Object'),
-				'description'		=> __('ev+ Custom Post Object Block.'),
-				//'render_callback'	=> 'ev_post_block_block_render_callback',
-				'render_template'	=> '/template-parts/blocks/ev-post-object/ev-post-object.php',
-				'category'			=> 'formatting',
-				'icon'				=> 'admin-post',
-				//'mode'				=> 'preview',
-				'keywords'			=> array( 'post', 'post grid', 'grid'),
-				//'enqueue_style' => get_template_directory_uri() . '/template-parts/blocks/ev-post-object/ev-post-object.css'
-			));
-
 			// register ev+ Button
 			acf_register_block_type(array(
 				'name'				=> 'ev-button',
