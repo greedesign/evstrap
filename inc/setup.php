@@ -112,6 +112,9 @@ if ( ! function_exists ( 'evstrap_setup' ) ) {
 		add_image_size( 'banner-tall-full-container', 1920, 550, true );
 		add_image_size( 'banner-full-screen', 1920, 1080, true );
 
+		add_image_size( 'thumbnail-no-crop', 150 );
+		add_image_size( 'thumbnail-medium', 200, 200, true );
+
 		add_image_size( 'content-small', 540 );
 		add_image_size( 'content-medium', 720 );
 		add_image_size( 'content-large', 960 );
