@@ -58,5 +58,8 @@
     "autoprefixer": "^9.5.1",
     "gulp-babel": "^8.0.0",
     "gulp-postcss": "^8.0.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.0.7"
   }
 }
