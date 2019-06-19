@@ -5,4 +5,4 @@ jQuery( document ).ready(function($) {
   
 });
 
-jQuery(window).off( 'beforeunload.edit-post' );
+//jQuery(window).off( 'beforeunload.edit-post' );

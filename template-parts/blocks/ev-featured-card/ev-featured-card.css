@@ -1,3 +1,9 @@
+.card { height: 100%; }
+
+.card p {
+    margin-bottom: 0.5rem;
+}
+
 .card-body {
     position: relative;
 
@@ -6,16 +12,37 @@
 .card-badge {
     position: absolute;
     right:1.25rem;
-    top:0;
+    top:0.5rem;
     background: #fff;
     border: 1px solid rgba(0,0,0,.125);
     border-radius: 50%;
     width: 4rem;
     height: 4rem;
     display: flex;
+    flex-direction: column;
     text-align: center;
     align-items: center;
     align-content: center;
+    justify-content: center;
+    line-height: 1;
+}
+.card-badge > span {
+    font-weight: bold;
+}
+
+.card-text {
+    max-width: 48rem;
+    padding-right: 2rem;
+}
+
+/* Has Card Image */
+.featured-card > img:first-child + .card-body .card-badge {
+    top:0;
+    transform: translateY(-50%);
+}
+
+.featured-card > img:first-child + .card-body .card-text {
+    padding-right: 2rem;
 }
 
 .card-secondary-content {
