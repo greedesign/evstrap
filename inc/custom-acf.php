@@ -135,6 +135,7 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
           break;
         case "full_page":
           $height = "calc(100vh - 56px)";
+          break;
         default:
           $height = $header_height . "px";
           break;

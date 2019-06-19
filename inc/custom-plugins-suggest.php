@@ -78,6 +78,18 @@ function evstrap_require_plugins() {
             'required'  => false, // this plugin is recommended
             'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
         ),
+        array(
+            'name'      => 'Duplicate Post',
+            'slug'      => 'duplicate-post',
+            'required'  => false, // this plugin is recommended
+            'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
+        ),
+        array(
+            'name'      => 'Gutenberg Blocks – Ultimate Addons for Gutenberg',
+            'slug'      => 'ultimate-addons-for-gutenberg',
+            'required'  => false, // this plugin is recommended
+            'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
+        ),
 
 
     );
