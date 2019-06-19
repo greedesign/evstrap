@@ -55,6 +55,24 @@ function evstrap_require_plugins() {
             'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
         ),
         array(
+            'name'      => 'ACF Content Analysis for Yoast SEO',
+            'slug'      => 'acf-content-analysis-for-yoast-seo',
+            'required'  => false, // this plugin is recommended
+            'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
+        ),
+        array(
+            'name'      => 'SVG Support',
+            'slug'      => 'svg-support',
+            'required'  => false, // this plugin is recommended
+            'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
+        ),
+        array(
+            'name'      => 'Safe SVG',
+            'slug'      => 'safe-svg',
+            'required'  => false, // this plugin is recommended
+            'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
+        ),
+        array(
             'name'      => 'Simple 301 Redirects',
             'slug'      => 'simple-301-redirects',
             'required'  => false, // this plugin is recommended
