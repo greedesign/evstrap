@@ -110,6 +110,7 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
 
     $header_feature_img = get_field('featured_header_image');
     $header_img = get_field('header_image');
+
     $img_overlay_type = get_field('img_overlay_type');
     $img_overlay_color = get_field('img_overlay_color');
     $img_color_overlay_transparency = (get_field('img_color_overlay_transparency') / 100);
@@ -126,6 +127,9 @@ if ( function_exists( 'get_field' ) ) { // CHECK THAT CUSTOM ACF IS INSTALLED
       );
 
       // set height property
+      /**
+       * TODO change generated CSS to set classesand control all through CSS
+       */
       switch($header_height) {
         case "default":
           $height = "auto";
